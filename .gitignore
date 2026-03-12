@@ -9,8 +9,8 @@
 
 .DS_Store
 *.dSYM/
-Vecteur3D
 a.out
+build
 
 # Precompiled Headers
 *.gch
