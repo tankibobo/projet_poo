@@ -8,7 +8,8 @@ class Vecteur3D {
 	Vecteur3D(double x = 0, double y = 0, double z = 0) 
         : vecteur({x, y, z})
     {}
-	void set_coord(const double& x, const double& y, const double& z) {vecteur = {x,y,z};}
+	void def_coord(const double& x, const double& y, const double& z) {vecteur = {x,y,z};}
+	void set_coord(const double& x, const double& y);
 	void affiche() const;
 	bool compare(const Vecteur3D& autre, const double& p = 1e-10) const;
 	Vecteur3D addition(const Vecteur3D& autre) const;
