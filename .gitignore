@@ -7,6 +7,11 @@
 *.o
 *.obj
 
+.DS_Store
+*.dSYM/
+Vecteur3D
+a.out
+
 # Precompiled Headers
 *.gch
 *.pch
