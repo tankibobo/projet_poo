@@ -15,6 +15,7 @@ build
 # Precompiled Headers
 *.gch
 *.pch
+AUTRES
 
 # Linker files
 *.ilk

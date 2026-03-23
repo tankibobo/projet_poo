@@ -1,28 +1,39 @@
 // AVANT DE COMMECNER: TAPER git.pull, , une fois fini taper git.push
-#include <cmath>
 #include <array>
+#include <iostream>
 #pragma once
 
 class Vecteur3D {
 	public:
-	Vecteur3D(double x = 0, double y = 0, double z = 0) 
-        : vecteur({x, y, z})
-    {}
+	Vecteur3D(): vecteur({0,0,0}) {};
+	Vecteur3D(const double& x, const double& y, const double& z): vecteur({x,y,z}) {};
+	// Vecteur3D(const Vecteur3D& autre): vecteur(autre.vecteur) {}; constructeur de copie par def
 	void def_coord(const double& x, const double& y, const double& z) {vecteur = {x,y,z};}
 	void set_coord(const double& x, const double& y);
-	void affiche() const;
-	bool compare(const Vecteur3D& autre, const double& p = 1e-10) const;
-	Vecteur3D addition(const Vecteur3D& autre) const;
-	Vecteur3D soustraction(const Vecteur3D& autre) const;
-	Vecteur3D oppose() const {return resultat({-vecteur[0], -vecteur[1], -vecteur[2]});}
-	Vecteur3D mult(const double& k) const {return resultat({k*vecteur[0], k*vecteur[1], k*vecteur[2]});}
-	Vecteur3D div(const double& k) const {return resultat({vecteur[0]/k, vecteur[1]/k, vecteur[2]/k});}
-	double prod_scal(const Vecteur3D& autre) const;
-	Vecteur3D prod_vect(const Vecteur3D& autre) const;
+	double getX() const {return vecteur[0];}
+	double getY() const {return vecteur[1];}
+	double getZ() const {return vecteur[2];}
 	double norme() const {return sqrt(vecteur[0]*vecteur[0] + vecteur[1]*vecteur[1] + vecteur[2]*vecteur[2]);}
 	double norme2() const {double x(norme()); return x*x;}
-	Vecteur3D unitaire() const;
+	double getP() const {return p;}
+	void operator+=(const Vecteur3D& autre) {vecteur = {autre.getX() + vecteur[0], autre.getY() + vecteur[1], autre.getZ() + vecteur[2]};}
+	void operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()};}
+	void operator*=(const double& k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]};}
+	void operator/=(const double& k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k};}
 	private :
 		std::array<double, 3> vecteur; 
-		Vecteur3D resultat(const std::array<double, 3>& v) const;
+		static constexpr double p = 1e-10;
 };
+
+std::ostream& operator<<(std::ostream& os, const Vecteur3D& v);
+bool operator==(const Vecteur3D& v1, const Vecteur3D& v2);
+Vecteur3D operator+(Vecteur3D v1, const Vecteur3D& v2);
+Vecteur3D operator*(const Vecteur3D& v, const double& k);
+Vecteur3D operator*(const double& k, const Vecteur3D& v);
+Vecteur3D operator-(const Vecteur3D& v);
+Vecteur3D operator-(Vecteur3D v1, const Vecteur3D& v2);
+Vecteur3D operator^(const Vecteur3D& v1, const Vecteur3D& v2);
+Vecteur3D operator/(const Vecteur3D& v, const double& k);
+Vecteur3D operator/(const double& k, const Vecteur3D& v);
+Vecteur3D operator~(const Vecteur3D& v);
+double operator|(const Vecteur3D& v1, const Vecteur3D& v2);
