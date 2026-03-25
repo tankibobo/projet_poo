@@ -18,7 +18,7 @@ class Particule {
         double getMasseVMilieu() const {return masse_v_milieu;}
         static double forceLJ(double const& x) {return (24*epsilon)/(sigma*sigma*f(x/sigma));}
         double getMasse() const {return (4/3)*Constantes::pi*rayon*rayon*rayon*masse_v;} //éviter d'include cmath
-        Vecteur3D lambda() const;
+        Vecteur3D lambda_v() const;
         void ajoute_force(const Vecteur3D& v) {force += v;}
         void ajoute_force();
         void ajoute_force(const Particule& p);

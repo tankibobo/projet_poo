@@ -19,7 +19,7 @@ double Particule::f(const double& x) {
     }
     return ((pow(x, 6)-2)/pow(x, 13));
 }
-Vecteur3D Particule::lambda() const {
+Vecteur3D Particule::lambda_v() const {
     if(vitesse.norme() <= (80*viscosite)/(3*masse_v_milieu*rayon)) {
         return (6*M_PI*viscosite*rayon)*vitesse;
     }
@@ -27,7 +27,7 @@ Vecteur3D Particule::lambda() const {
 }
 
 void Particule::ajoute_force() {
-    force += (getMasse() * Constantes::g - lambda());
+    force += (getMasse() * Constantes::g - lambda_v());
 }
 
 void Particule::ajoute_force(const Particule& p) {
@@ -36,7 +36,7 @@ void Particule::ajoute_force(const Particule& p) {
 }
 
 void Particule::bouger(double t) {
-    vitesse += (t/getMasse())*(force + getMasse()*Constantes::g - lambda());
+    vitesse += (t/getMasse())*(force + getMasse()*Constantes::g - lambda_v());
     position = {(t*vitesse).getX(), (t*vitesse).getY(), (t*vitesse).getZ()};
     force = Vecteur3D(0,0,0);
 }
