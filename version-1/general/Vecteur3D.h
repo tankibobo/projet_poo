@@ -1,7 +1,9 @@
 // AVANT DE COMMECNER: TAPER git.pull, , une fois fini taper git.push
+// inverser const et vecteur3d&: VECTEUR3D& CONST 
 #include <array>
 #include <iostream>
 #pragma once
+using namespace std;
 
 class Vecteur3D {
 	public:
@@ -20,19 +22,20 @@ class Vecteur3D {
 	void operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()};}
 	void operator*=(const double& k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]};}
 	void operator/=(const double& k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k};}
+	void operator^=(const Vecteur3D& autre) {vecteur = {vecteur[1] * autre.getZ() - vecteur[2] * autre.getY(), vecteur[2] * autre.getX() - vecteur[0] * autre.getZ(), vecteur[0] * autre.getY() - vecteur[1] * autre.getX()};}
 	private :
-		std::array<double, 3> vecteur; 
+		array<double, 3> vecteur; 
 		static constexpr double p = 1e-10;
 };
 
-std::ostream& operator<<(std::ostream& os, const Vecteur3D& v);
+ostream& operator<<(ostream& os, const Vecteur3D& v);
 bool operator==(const Vecteur3D& v1, const Vecteur3D& v2);
 Vecteur3D operator+(Vecteur3D v1, const Vecteur3D& v2);
 Vecteur3D operator*(const Vecteur3D& v, const double& k);
 Vecteur3D operator*(const double& k, const Vecteur3D& v);
 Vecteur3D operator-(const Vecteur3D& v);
 Vecteur3D operator-(Vecteur3D v1, const Vecteur3D& v2);
-Vecteur3D operator^(const Vecteur3D& v1, const Vecteur3D& v2);
+Vecteur3D operator^(Vecteur3D v1, const Vecteur3D& v2);
 Vecteur3D operator/(const Vecteur3D& v, const double& k);
 Vecteur3D operator/(const double& k, const Vecteur3D& v);
 Vecteur3D operator~(const Vecteur3D& v);
