@@ -18,6 +18,7 @@ class Vecteur3D {
 	double norme() const {return sqrt(vecteur[0]*vecteur[0] + vecteur[1]*vecteur[1] + vecteur[2]*vecteur[2]);}
 	double norme2() const {double x(norme()); return x*x;}
 	double getP() const {return p;}
+	void normalise() {vecteur = {vecteur[0]/norme(), vecteur[1]/norme(), vecteur[2]/norme()};}
 	void operator+=(const Vecteur3D& autre) {vecteur = {autre.getX() + vecteur[0], autre.getY() + vecteur[1], autre.getZ() + vecteur[2]};}
 	void operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()};}
 	void operator*=(const double& k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]};}
