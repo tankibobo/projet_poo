@@ -34,8 +34,9 @@ void Particule::ajoute_force(const Particule& p) {
     force += ((24*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j);
 }
 
-void Particule::ajoute_force(const Plan plan) {
-    // il va falloir utiliser la fonction PointPlusProche et la formule classique particule-particule
+void Particule::ajoute_force(const Plan& plan) {
+    Vecteur3D e_i_p = plan.PointPlusProche(Vecteur3D(position[0], position[1], position[2])) - Vecteur3D(position[0], position[1], position[2]);
+    force += 2 * ((24*epsilon*f(e_i_p.norme()/sigma))/(sigma*sigma))*(~e_i_p);
 }
 
 void Particule::bouger(double t) {

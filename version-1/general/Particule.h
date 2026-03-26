@@ -23,7 +23,7 @@ class Particule {
         void ajoute_force(const Vecteur3D& v) {force += v;}
         void ajoute_force();
         void ajoute_force(const Particule& p);
-        void ajoute_force(const Plan plan); // a définir je galère encore avec ca
+        void ajoute_force(const Plan& plan); // a définir je galère encore avec ca
         void bouger(double t);
     private:
         std::array<double, 3> position;
