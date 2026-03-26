@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Particule.h"
 #include <array>
-#include <cmath>
 #include "Constantes.h"
 using namespace std;
 
