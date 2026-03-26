@@ -3,6 +3,8 @@
 #include "Particule.h"
 #include <array>
 #include "Constantes.h"
+#include "Vecteur3D.h"
+#include "Plan.h"
 using namespace std;
 
 ostream& operator<<(std::ostream& os, const Particule& p) {
@@ -16,7 +18,7 @@ double Particule::f(const double& x) {
     if(x >= 2) {
         return 1;
     }
-    return ((pow(x, 6)-2)/pow(x, 13));
+    return ((puissance(x, 6)-2)/puissance(x, 13));
 }
 Vecteur3D Particule::lambda_v() const {
     if(vitesse.norme() <= (80*viscosite)/(3*masse_v_milieu*rayon)) {

@@ -12,10 +12,17 @@ namespace Constantes {
     inline constexpr double pi = 3.14159265358979323846;
 }
 
-void pow(double& x, const int& n) {
+inline double puissance(double x, int n) {
     double res(1);
     for (int i(0); i < n; ++i) {
         res *= x;
     }
-    x = res;
+    return res;
+}
+
+inline double absolue(double x) {
+    if (x < 0) {
+        x = -x;
+    }
+    return x;
 }
