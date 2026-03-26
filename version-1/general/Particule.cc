@@ -34,6 +34,10 @@ void Particule::ajoute_force(const Particule& p) {
     force += ((24*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j);
 }
 
+void Particule::ajoute_force(const Plan plan) {
+    // il va falloir utiliser la fonction PointPlusProche et la formule classique particule-particule
+}
+
 void Particule::bouger(double t) {
     vitesse += (t/getMasse())*(force + getMasse()*Constantes::g - lambda_v());
     position = {(t*vitesse).getX(), (t*vitesse).getY(), (t*vitesse).getZ()};
