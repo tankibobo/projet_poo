@@ -9,6 +9,7 @@ class Particule {
         Particule(const double& x, const double& y, const double& z, const double& vx, const double& vy, const double& vz, const double& mv, const double& r, const double& viscosite, const double& masse_v_milieu): position({x,y,z}), vitesse(vx,vy,vz), masse_v(mv), rayon(r), viscosite(viscosite), masse_v_milieu(masse_v_milieu) {};
         void setPosition(const double& x, const double& y, const double& z) {position = {x,y,z};}
         void setVitesse(const double& vx, const double& vy, const double& vz) {vitesse = Vecteur3D(vx,vy,vz);}
+        void setVitesse(const Vecteur3D& v) {vitesse = v;}
         void setMasseV(const double& mv) {masse_v = mv;}
         void setRayon(const double& r) {rayon = r;}
         std::array<double, 3> get_position() const {return position;}

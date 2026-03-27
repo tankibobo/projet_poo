@@ -5,12 +5,11 @@
 #include "Aleatoire.h"
 #include "Particule.h"
 #include "Vecteur3D.h"
-using namespace std;
 
 class Source {
     public:
-        Source(Particule const& modele, const double& x, const double& y, const double& z, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(1), ecart_type_rayon(1), debit(1), etat(false), modele(modele), generateur(generateur) {};
-        Source(Particule const& modele, const double& x, const double& y, const double& z, const double& ecart_v, const double& ecart_r, const double& debit, bool etat, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit), etat(etat), modele(modele), generateur(generateur) {};
+        Source(Particule const& modele, double x, double y, double z, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(1), ecart_type_rayon(1), debit(1), etat(true), modele(modele), generateur(generateur) {};
+        Source(Particule const& modele, double x, double y, double z, double ecart_v, double ecart_r, double debit, bool etat, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit), etat(etat), modele(modele), generateur(generateur) {};
 
         void on() {etat = true;}
         void off() {etat = false;}
@@ -21,10 +20,10 @@ class Source {
         Vecteur3D getVitesseMoyenne() const {return vitesse_moyenne;}
         double getEcartTypeVitesse() const {return ecart_type_vitesse;}
         double getEcartTypeRayon() const {return ecart_type_rayon;}
-        Particule getParticule() const {return modele;}
+        Particule const& getParticule() const {return modele;}
 
         // vrmt pas sûr que la fonction sort Particuel& mais on verra :)
-        Particule& creation(vector<Particule*>& particules, double dt);
+        void creation(std::vector<Particule*>& particules, double dt);
         
 
     private:
