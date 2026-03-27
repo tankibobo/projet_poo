@@ -8,7 +8,7 @@
 using namespace std;
 
 ostream& operator<<(std::ostream& os, const Particule& p) {
-os << "Position: (" << p.get_position()[0] << " " << p.get_position()[1] << " " << p.get_position()[2] << "), " << "Vitesse: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "Masse: " << p.getMasse() << ", Masse volumique: " << p.getMasseV() << ", Rayon: " << p.getRayon() << std::endl;
+os << "Position: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "Vitesse: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "Masse: " << p.getMasse() << ", Masse volumique: " << p.getMasseV() << ", Rayon: " << p.getRayon() << std::endl;
     return os;
 }
 double Particule::f(const double& x) {
@@ -32,19 +32,20 @@ void Particule::ajoute_force() {
 }
 
 void Particule::ajoute_force(const Particule& p) {
-    Vecteur3D e_i_j = Vecteur3D(p.get_position()[0] - position[0], p.get_position()[1] - position[1], p.get_position()[2] - position[2]);
+    Vecteur3D e_i_j = Vecteur3D(p.get_position().getX() - position.getX(), p.get_position().getY() - position.getY(), p.get_position().getZ() - position.getZ());
     force += ((24*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j);
 }
 
 void Particule::ajoute_force(const Obstacle& obstacle) {
-    Vecteur3D position(position.getX(), position.getY(), position.getZ());
-    Vecteur3D proche = obstacle.PointPlusProche(position);
-    Vecteur3D e_i_p = position - proche;
+    Vecteur3D pos(position.getX(), position.getY(), position.getZ());
+    Vecteur3D proche = obstacle.PointPlusProche(pos);
+    Vecteur3D e_i_p = pos - proche;
 force += 2.0 * (24*epsilon*f(e_i_p.norme()/sigma)/(sigma*sigma)) * (~e_i_p);
 }
 
 void Particule::bouger(double t) {
     vitesse += (t/getMasse())*(force + getMasse()*Constantes::g - lambda_v());
+    // faudrait pas plus ajouter a la position? en mode += et pas la réinitialier? A verifer
     position = {(t*vitesse).getX(), (t*vitesse).getY(), (t*vitesse).getZ()};
     force = Vecteur3D(0,0,0);
 }
