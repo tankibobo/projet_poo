@@ -36,9 +36,11 @@ void Particule::ajoute_force(const Particule& p) {
     force += ((24*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j);
 }
 
-void Particule::ajoute_force(const Plan& plan) {
-    Vecteur3D e_i_p = plan.PointPlusProche(Vecteur3D(position[0], position[1], position[2])) - Vecteur3D(position[0], position[1], position[2]);
-    force += 2 * ((24*epsilon*f(e_i_p.norme()/sigma))/(sigma*sigma))*(~e_i_p);
+void Particule::ajoute_force(const Obstacle& obstacle) {
+    Vecteur3D position(position.getX(), position.getY(), position.getZ());
+    Vecteur3D proche = obstacle.PointPlusProche(position);
+    Vecteur3D e_i_p = position - proche;
+force += 2.0 * (24*epsilon*f(e_i_p.norme()/sigma)/(sigma*sigma)) * (~e_i_p);
 }
 
 void Particule::bouger(double t) {

@@ -16,6 +16,7 @@ add_executable(testPlan
   testPlan.cc
   Plan.cc
   Vecteur3D.cc
+  Obstacle.h
 )
 target_compile_options(testPlan PRIVATE ${PROJECT_WARNING_FLAGS})
 
@@ -26,5 +27,6 @@ add_executable(testSource
   Particule.cc
   Plan.cc
   Vecteur3D.cc
+  Aleatoire.cc
 )
 target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})

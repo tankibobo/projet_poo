@@ -3,7 +3,6 @@
 #include <array>
 #include <iostream>
 #pragma once
-using namespace std;
 
 class Vecteur3D {
 	public:
@@ -25,7 +24,7 @@ class Vecteur3D {
 	void operator/=(const double& k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k};}
 	void operator^=(const Vecteur3D& autre) {vecteur = {vecteur[1] * autre.getZ() - vecteur[2] * autre.getY(), vecteur[2] * autre.getX() - vecteur[0] * autre.getZ(), vecteur[0] * autre.getY() - vecteur[1] * autre.getX()};}
 	private :
-		array<double, 3> vecteur; 
+		std::array<double, 3> vecteur; 
 		static constexpr double p = 1e-10;
 };
 

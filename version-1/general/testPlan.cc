@@ -8,7 +8,7 @@ int main() {
     Plan p2(0, 1, 0);
     Plan p3(1, 0, 0);
     Plan p4(1, 1, 1);
-    Plan p5(1, 2, 3, 1.1, 2.2, 3.3);
+    Plan p5(1, 2, 3, 1.1, 3.3, 2.2);
 
     vector<Plan> plans = {p1, p2, p3, p4, p5};
 
@@ -20,13 +20,13 @@ int main() {
     vector<Vecteur3D> tests = {t1, t2, t3, t4};
 
     for (const auto& plan : plans) {
-        for (const auto& test : tests) {
-            cout << "Plan: " << plan.getX() << " " << plan.getY() << " " << plan.getZ() << " Normale: " << plan.getNormale() << endl;
-            cout << "Test: " << test << endl;
-            cout << "Point plus proche: " << plan.PointPlusProche(test) << endl;
-            cout << endl;
-        }
+    cout << "Plan d'origine (" << plan.getX() << " " << plan.getY() << " " 
+         << plan.getZ() << ") et de normale (" << plan.getNormale() << ") : " << endl;
+    for (const auto& test : tests) {
+        cout << "distance à (" << test << ") : (" 
+             << plan.PointPlusProche(test) << ")" << endl;
     }
+}
 
     return 0;
 }

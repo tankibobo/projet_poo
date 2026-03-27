@@ -1,9 +1,9 @@
 // J'avoue je suis pas trop sûr que les obstacles sont tous considérés comme des plans, pour l'instant je fais comme ça et puis j'aviserai si je dois faire une classe obstacle ou pas, mais pour l'instant je pense que c'est pas nécessaire
 #pragma once
 #include "Vecteur3D.h"
-using namespace std;
+#include "Obstacle.h"
 
-class Plan {
+class Plan : public Obstacle {
     public:
         Plan() : position(0,0,0), normale(0,0,1) {};
         Plan(const double& a, const double& b, const double& c) : position(0,0,0), normale(a, b, c) {
