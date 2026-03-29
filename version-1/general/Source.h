@@ -22,7 +22,7 @@ class Source {
         double getEcartTypeRayon() const {return ecart_type_rayon;}
         Particule const& getParticule() const {return modele;}
 
-        // vrmt pas sûr que la fonction sort Particuel& mais on verra :)
+        // vrmt pas sûr que la fonction sorte Particule& mais on verra :)
         void creation(std::vector<Particule*>& particules, double dt);
         
 

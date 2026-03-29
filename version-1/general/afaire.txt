@@ -1,0 +1,7 @@
+listes des choses à faire impt
+
+- écrire notebook et réponses pour la semaine 5 (romain)
+- passer en revu les warnings de la semaine 5 (romain)
+- exo 1 semaine 6 (tanc)
+- commencer interface graphique semaine 7 (tanc)
+- faire fichiers tests vecteur3d et particules (tanc)
