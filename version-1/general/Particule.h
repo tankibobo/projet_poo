@@ -2,9 +2,11 @@
 #include "Plan.h"
 #include <array>
 #include "Constantes.h"
+#include "SupportADessin.h"
+#include "Dessinable.h"
 #pragma once
 
-class Particule {
+class Particule : public Dessinable {
     public:
         Particule(const double& x, const double& y, const double& z, const double& vx, const double& vy, const double& vz, const double& mv, const double& r, const double& viscosite, const double& masse_v_milieu): position(x,y,z), vitesse(vx,vy,vz), masse_v(mv), rayon(r), viscosite(viscosite), masse_v_milieu(masse_v_milieu) {};
         void setPosition(const double& x, const double& y, const double& z) {position = Vecteur3D(x,y,z);}
@@ -26,6 +28,7 @@ class Particule {
         void ajoute_force(const Particule& p);
         void ajoute_force(const Obstacle& obstacle);
         void bouger(double t);
+        virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
     private:
         Vecteur3D position;
         Vecteur3D vitesse;

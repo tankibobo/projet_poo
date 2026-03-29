@@ -5,8 +5,10 @@
 #include "Aleatoire.h"
 #include "Particule.h"
 #include "Vecteur3D.h"
+#include "Dessinable.h"
+#include "SupportADessin.h"
 
-class Source {
+class Source : public Dessinable {
     public:
         Source(Particule const& modele, double x, double y, double z, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(1), ecart_type_rayon(1), debit(1), etat(true), modele(modele), generateur(generateur) {};
         Source(Particule const& modele, double x, double y, double z, double ecart_v, double ecart_r, double debit, bool etat, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit), etat(etat), modele(modele), generateur(generateur) {};
@@ -24,6 +26,7 @@ class Source {
 
         // vrmt pas sûr que la fonction sorte Particule& mais on verra :)
         void creation(std::vector<Particule*>& particules, double dt);
+        virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
         
 
     private:

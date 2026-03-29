@@ -30,3 +30,14 @@ add_executable(testSource
   Aleatoire.cc
 )
 target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})
+
+add_executable(testSysteme
+  testSyseme.cc
+  Source.cc
+  Vecteur3D.cc
+  Aleatoire.cc
+  Plan.cc
+  Particule.cc
+  Systeme.cc
+)
+target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})

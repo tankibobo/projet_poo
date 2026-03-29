@@ -8,7 +8,7 @@
 using namespace std;
 
 ostream& operator<<(std::ostream& os, const Particule& p) {
-os << "Position: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "Vitesse: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "Masse: " << p.getMasse() << ", Masse volumique: " << p.getMasseV() << ", Rayon: " << p.getRayon() << std::endl;
+os << "Pos: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "V: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "M: " << p.getMasse() << ", M/V: " << p.getMasseV() << ", R: " << p.getRayon() << std::endl;
     return os;
 }
 double Particule::f(const double& x) {
