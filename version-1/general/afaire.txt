@@ -7,3 +7,4 @@ listes des choses à faire impt
 - faire fichiers tests vecteur3d et particules (tanc)
 - systeme.h ligne 14 est-ce qu'on fait une liste différente pour chauqe objet ou est-ce qu'on fait une liste pour tout? y a t il une fonction inhérente a c++ qui peut les trier
 - terminer obstacle.h (romain)
+- faire notebook + fichier test exo 1 semaine 6
