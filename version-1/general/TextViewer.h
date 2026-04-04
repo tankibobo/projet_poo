@@ -9,7 +9,8 @@ class TextViewer : public SupportADessin {
     public:
         virtual void dessine(Particule const& p) {os << p;};
         virtual void dessine(Systeme const& s) {os << s;};
-        virtual void dessine(Obstacle const& o) {os << o;};
+        virtual void dessine(Plan const& p) {os << p;};
+        virtual void dessine(Source const& s) {os << s;};
 
         //cons et destr et copie
         explicit TextViewer(std::ostream& os_) : os(os_) {} //explicit poir les constructeur à un argument (conversions "implicites")

@@ -36,8 +36,8 @@ Vecteur3D operator*(const Vecteur3D& v, const double& k);
 Vecteur3D operator*(const double& k, const Vecteur3D& v);
 Vecteur3D operator-(const Vecteur3D& v);
 Vecteur3D operator-(Vecteur3D v1, const Vecteur3D& v2);
-Vecteur3D operator^(Vecteur3D v1, const Vecteur3D& v2);
+Vecteur3D operator^(Vecteur3D v1, const Vecteur3D& v2); // produit vectoriel
 Vecteur3D operator/(const Vecteur3D& v, const double& k);
 Vecteur3D operator/(const double& k, const Vecteur3D& v);
-Vecteur3D operator~(const Vecteur3D& v);
-double operator|(const Vecteur3D& v1, const Vecteur3D& v2);
+Vecteur3D operator~(const Vecteur3D& v); // unitaire
+double operator|(const Vecteur3D& v1, const Vecteur3D& v2); // produit scalaire

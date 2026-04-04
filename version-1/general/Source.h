@@ -7,6 +7,7 @@
 #include "Vecteur3D.h"
 #include "Dessinable.h"
 #include "SupportADessin.h"
+#include <ostream>
 
 class Source : public Dessinable {
     public:
@@ -30,13 +31,15 @@ class Source : public Dessinable {
         
 
     private:
-        Particule const& modele;
         Vecteur3D position;
         Vecteur3D vitesse_moyenne;
         double ecart_type_vitesse;
         double ecart_type_rayon;
         double debit;
         bool etat;
+        Particule const& modele;
         Aleatoire& generateur;
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Source& s);

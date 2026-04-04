@@ -32,7 +32,7 @@ add_executable(testSource
 target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testSysteme
-  testSyseme.cc
+  testSysteme.cc
   Source.cc
   Vecteur3D.cc
   Aleatoire.cc

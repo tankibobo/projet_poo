@@ -3,20 +3,34 @@
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
     std::vector<Particule*> p(s.getParticules());
-    std::vector<Obstacle*> o(s.getObstacles());
+    std::vector<Plan*> o(s.getObstacles());
     std::vector<Source*> src(s.getSources());
-    os << "Temps :" << s.getTemps() << std::endl; 
-    os << "Particules : (quantité: " << p.size() << ")" <<  std::endl;
+
+    os << "Le système a " << p.size() << " particules, " << o.size() << " obstacles et " << src.size() << " sources." << std::endl;
+    os << std::endl;
+
+    os << "Particules : " <<  std::endl;
     for(size_t i(0); i < p.size(); i++) {
         os << "- " << *p[i] << std::endl;
     }
-    os << "Obstacles : (quantité: " << o.size() << ")" << std::endl;
+
+    os << std::endl;
+    os << "Obstacles : " << std::endl;
     for(size_t i(0); i < o.size(); i++) {
         os << "- " << *o[i] << std::endl;
     }
-    os << "Sources : (quantité: " << src.size() << ")" << std::endl;
+
+    os << std::endl;
+    os << "Sources : " << std::endl;
     for(size_t i(0); i < src.size(); i++) {
         os << "- " << *src[i] << std::endl;
     }
+
     return os;
 }	
+
+Systeme::~Systeme() {
+    for (Particule* p : particules) delete p;
+    for (Plan* o : obstacles) delete o;
+    for (Source* s : sources) delete s;
+}

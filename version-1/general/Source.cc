@@ -27,3 +27,8 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
         particules.push_back(p);
     }
 }
+
+std::ostream& operator<<(std::ostream& os, const Source& s) {
+    os << "Pos: " << s.getPosition() << ", Debit: " << s.getDebit() << ", Etat: " << (s.getEtat() ? "On" : "Off") << ", Vitesse Moyenne: " << s.getVitesseMoyenne() << ", Ecart Type Vitesse: " << s.getEcartTypeVitesse() << ", Ecart Type Rayon: " << s.getEcartTypeRayon();
+    return os;
+}

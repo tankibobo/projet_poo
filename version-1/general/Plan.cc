@@ -9,3 +9,8 @@ Vecteur3D Plan::PointPlusProche(Vecteur3D const& x_i) const {
     double d = x_i_p | normale;
     return x_i + d*normale;
 }
+
+ostream& operator<<(ostream& os, const Plan& p) {
+	os << "Plan d'origine: " << p.getPos() << " et de normale: (" << p.getNormale() << ")";
+	return os;
+}
