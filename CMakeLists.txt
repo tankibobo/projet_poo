@@ -26,3 +26,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # Ajoutez ici tous les sous-dossiers contenant des fichiers sources
 # que vous souhaitez voir compilés
 add_subdirectory(version-1)
+add_subdirectory(version-test)

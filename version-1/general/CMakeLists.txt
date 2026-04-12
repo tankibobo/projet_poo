@@ -34,10 +34,23 @@ target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})
 add_executable(testSysteme
   testSysteme.cc
   Source.cc
+  Obstacle.cc
   Vecteur3D.cc
   Aleatoire.cc
   Plan.cc
   Particule.cc
   Systeme.cc
 )
-target_compile_options(testSource PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(testSysteme PRIVATE ${PROJECT_WARNING_FLAGS})
+
+add_executable(exerciceP9
+  exerciceP9.cc
+  Source.cc
+  Vecteur3D.cc
+  Aleatoire.cc
+  Plan.cc
+  Obstacle.cc
+  Particule.cc
+  Systeme.cc
+)
+target_compile_options(exerciceP9 PRIVATE ${PROJECT_WARNING_FLAGS})

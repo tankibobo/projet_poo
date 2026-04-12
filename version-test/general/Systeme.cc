@@ -29,11 +29,19 @@ std::ostream& operator<<(std::ostream& os, const Systeme& s) {
 
     return os;
 }
-// il faut optimiser pour améliorer la complexité
+
 void Systeme::evolue() {
+    std::cout << "EVOLUE() : " << std::endl;
+    int i(1);
     for (Particule* p : particules) {
+        std::cout << "-------------------------------------- " << std::endl;
+        std::cout << "Particule " << i << " : " << *p << std::endl;
+        i++;
+        std::cout << "Force personelle : " << p->lambda_v() << std::endl;
         p->ajouteForce();
+        std::cout << "Force obstacle : " << p->lambda_v() << std::endl;
         for (Obstacle* o : obstacles) p->ajouteForce(*o);
+        std::cout << "Forces particules : " << p->lambda_v() << std::endl;
         for (Particule* p2 : particules) if (p != p2) p->ajouteForce(*p2);
     }
     for (Particule* p : particules) p->bouger(Constantes::dt);

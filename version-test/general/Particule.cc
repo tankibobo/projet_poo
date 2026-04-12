@@ -19,7 +19,7 @@ double Particule::f(const double& x) {
     if(x >= 2) {
         return 1;
     }
-    return ((puissance(x, 6)-2.0)/puissance(x, 13));
+    return ((puissance(x, 6)-2)/puissance(x, 13));
 }
 
 Vecteur3D Particule::lambda_v() const {
@@ -30,22 +30,37 @@ Vecteur3D Particule::lambda_v() const {
 }
 
 void Particule::ajouteForce() {
+    cout << "lambda*v: " << lambda_v() << endl;
+    cout << "lambda: ";
+    if(vitesse.norme() <= (80.0*viscosite)/(3.0*masse_v_milieu*rayon)) {
+        cout << (6.0*Constantes::pi*viscosite*rayon) << endl;
+    }
+    else {
+        cout << (((9.0*Constantes::pi)/40.0)*rayon*rayon*masse_v_milieu*vitesse.norme()) << endl;
+    }
+    cout << "v: " << vitesse.norme() << endl;
+    cout << "limite: " << (80.0*viscosite)/(3.0*masse_v_milieu*rayon) << endl;
+    cout << "masse_v_milieu: " << masse_v_milieu << ", viscosite: " << viscosite << ", rayon: " << rayon << endl;
     force += (getMasse() * Constantes::g - lambda_v());
+    cout << (getMasse() * Constantes::g - lambda_v()) << endl;
 }
 
 void Particule::ajouteForce(const Particule& p) {
     Vecteur3D e_i_j = p.get_position() - position;
     force += ((24.0*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j);
+    cout << ((24.0*epsilon*f(e_i_j.norme()/sigma))/(sigma*sigma))*(~e_i_j) << endl;
 }
 
-void Particule::ajouteForce(const Obstacle& obstacle) {;
+void Particule::ajouteForce(const Obstacle& obstacle) {
     Vecteur3D proche = obstacle.PointPlusProche(position);
     Vecteur3D e_i_p = proche - position;
-force += 2.0 * (24.0*epsilon*f(e_i_p.norme()/sigma)/(sigma*sigma)) * (~e_i_p);
+force += 2.0 * (24.0*epsilon*f(e_i_p.norme()/sigma))/(sigma*sigma) * (~e_i_p);
+cout << 2.0 * (24.0*epsilon*f(e_i_p.norme()/sigma))/(sigma*sigma) * (~e_i_p) << endl;
 }
 
-void Particule::bouger(double dt) {
-    vitesse += (dt/getMasse())*force;
-    position += {(dt*vitesse).getX(), (dt*vitesse).getY(), (dt*vitesse).getZ()};
+void Particule::bouger(double t) {
+    cout << "force: " << force << endl;
+    vitesse += (t/getMasse())*force;
+    position += {(t*vitesse).getX(), (t*vitesse).getY(), (t*vitesse).getZ()};
     force = Vecteur3D(0,0,0);
 }

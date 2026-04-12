@@ -6,17 +6,21 @@
 
 class Vecteur3D {
 	public:
+	// constructeurs
 	Vecteur3D(): vecteur({0,0,0}) {};
 	Vecteur3D(const double& x, const double& y, const double& z): vecteur({x,y,z}) {};
-	// Vecteur3D(const Vecteur3D& autre): vecteur(autre.vecteur) {}; constructeur de copie par def
+	// coordonnées (setters)
 	void def_coord(const double& x, const double& y, const double& z) {vecteur = {x,y,z};}
 	void set_coord(const double& x, const double& y);
+	// getters
 	double getX() const {return vecteur[0];}
 	double getY() const {return vecteur[1];}
 	double getZ() const {return vecteur[2];}
+	double getP() const {return p;}
+	// normes
 	double norme() const {return sqrt(vecteur[0]*vecteur[0] + vecteur[1]*vecteur[1] + vecteur[2]*vecteur[2]);}
 	double norme2() const {double x(norme()); return x*x;}
-	double getP() const {return p;}
+	// opérateurs
 	void operator+=(const Vecteur3D& autre) {vecteur = {autre.getX() + vecteur[0], autre.getY() + vecteur[1], autre.getZ() + vecteur[2]};}
 	void operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()};}
 	void operator*=(const double& k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]};}
