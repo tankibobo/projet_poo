@@ -30,7 +30,6 @@ Vecteur3D Particule::lambda_v() const {
 }
 
 void Particule::ajouteForce() {
-    cout << "lambda*v: " << lambda_v() << endl;
     cout << "lambda: ";
     if(vitesse.norme() <= (80.0*viscosite)/(3.0*masse_v_milieu*rayon)) {
         cout << (6.0*Constantes::pi*viscosite*rayon) << endl;
@@ -40,7 +39,11 @@ void Particule::ajouteForce() {
     }
     cout << "v: " << vitesse.norme() << endl;
     cout << "limite: " << (80.0*viscosite)/(3.0*masse_v_milieu*rayon) << endl;
+    cout << (vitesse.norme() < (80.0*viscosite)/(3.0*masse_v_milieu*rayon)) << endl;
+    cout << endl;
     cout << "masse_v_milieu: " << masse_v_milieu << ", viscosite: " << viscosite << ", rayon: " << rayon << endl;
+    cout << endl;
+    cout << "lambda*v: " << lambda_v() << endl;
     force += (getMasse() * Constantes::g - lambda_v());
     cout << (getMasse() * Constantes::g - lambda_v()) << endl;
 }
