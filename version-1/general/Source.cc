@@ -6,7 +6,7 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
     if (!etat) return;
 
     double fraction(debit * dt);
-    int nombre(fraction);
+    int nombre(static_cast<int>(fraction));
     fraction -= nombre;
     if (generateur.uniforme(0.0, 1.0) < fraction) ++nombre;
 
