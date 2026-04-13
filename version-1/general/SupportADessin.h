@@ -1,8 +1,8 @@
+#pragma once
 class Particule;
 class Obstacle;
 class Systeme;
 class Source;
-#pragma once
 
 class SupportADessin {
     public:

@@ -5,7 +5,7 @@
 using namespace std;
 
 void Vecteur3D::set_coord(const double& k, const double& x) {
-	for(size_t i(0); i < 2; i++) {
+	for(size_t i(0); i < 3; i++) {
 		if(abs(vecteur[i] - x) <= 0.00001) {
 			vecteur[i] = k;
 		}

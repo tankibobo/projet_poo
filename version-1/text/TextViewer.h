@@ -1,9 +1,9 @@
-#include "SupportADessin.h"
+#pragma once
+#include "../general/SupportADessin.h"
 #include <iostream>
-#include "Particule.h"
-#include "Systeme.h"
-#include "Obstacle.h"
-#pragma once;
+#include "../general/Particule.h"
+#include "../general/Systeme.h"
+#include "../general/Obstacle.h"
 
 class TextViewer : public SupportADessin {
     public:

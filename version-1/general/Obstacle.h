@@ -1,7 +1,7 @@
+#pragma once
 #include "Vecteur3D.h"
 #include "SupportADessin.h"
 #include "Dessinable.h"
-#pragma once
 
 class Obstacle : public Dessinable {
 public:

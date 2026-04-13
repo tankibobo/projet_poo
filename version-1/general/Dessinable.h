@@ -1,5 +1,5 @@
-#include "SupportADessin.h"
 #pragma once
+#include "SupportADessin.h"
 // sous classes de dessinable: particule, obstacle, source,
 
 class Dessinable {

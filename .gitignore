@@ -45,3 +45,6 @@ AUTRES
 
 # debug information files
 *.dwo
+
+# Claude Code memory (private, not part of project)
+.claude/

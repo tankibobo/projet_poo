@@ -1,8 +1,6 @@
-// AVANT DE COMMECNER: TAPER git.pull, , une fois fini taper git.push
-// inverser const et vecteur3d&: VECTEUR3D& CONST 
-#include <array>
-#include <iostream>
 #pragma once
+#include <array>
+#include <ostream>
 
 class Vecteur3D {
 	public:

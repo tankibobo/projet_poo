@@ -16,7 +16,7 @@ add_executable(testPlan
   testPlan.cc
   Plan.cc
   Vecteur3D.cc
-  Obstacle.h
+  Obstacle.cc
 )
 target_compile_options(testPlan PRIVATE ${PROJECT_WARNING_FLAGS})
 

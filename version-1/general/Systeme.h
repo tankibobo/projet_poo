@@ -1,10 +1,10 @@
+#pragma once
 #include "Particule.h"
 #include "Obstacle.h"
 #include "Source.h"
 #include <vector>
 #include <ostream>
 #include "Dessinable.h"
-#pragma once
 
 class Systeme: public Dessinable {
     public:

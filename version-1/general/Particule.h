@@ -1,10 +1,10 @@
+#pragma once
 #include "Vecteur3D.h"
 #include "Plan.h"
 #include <array>
 #include "Constantes.h"
 #include "SupportADessin.h"
 #include "Dessinable.h"
-#pragma once
 
 class Particule : public Dessinable {
     public:
@@ -28,7 +28,7 @@ class Particule : public Dessinable {
         double getMasseVMilieu() const {return masse_v_milieu;}
         double getMasse() const {return masse;}
         // fonctions
-        static double forceLJ(double const& x) {return (24*epsilon)/(sigma*sigma*f(x/sigma));}
+        static double forceLJ(double const& x) {return (24*epsilon)/(sigma*sigma) * f(x/sigma);}
         Vecteur3D lambda_v() const;
         void ajouteForce(const Vecteur3D& v) {force += v;}
         void ajouteForce();
