@@ -1,3 +1,3 @@
 add_subdirectory(general)
-add_subdirectory(text)
-add_subdirectory(graphical)
+add_subdirectory(texte)
+add_subdirectory(graphique)
