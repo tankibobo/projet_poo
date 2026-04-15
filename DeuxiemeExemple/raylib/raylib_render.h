@@ -12,6 +12,8 @@ public:
     void run();
 
     void dessine(Contenu const& a_dessiner) override;
+
+    
 private:
     Camera3D camera;
 

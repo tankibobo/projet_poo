@@ -19,6 +19,9 @@ raylibRender::raylibRender()
     camera.projection = CAMERA_PERSPECTIVE;
 
     SetTargetFPS(60);
+
+    cameraMode = CAMERA_FIRST_PERSON;
+
 }
 
 raylibRender::~raylibRender()
@@ -29,6 +32,61 @@ raylibRender::~raylibRender()
 void raylibRender::run()
 {
     while (!WindowShouldClose()) {
+
+        if (IsKeyPressed(KEY_ONE))
+        {
+            cameraMode = CAMERA_FREE;
+            camera.up = { 0.0f, 1.0f, 0.0f }; // Reset roll
+        }
+
+        if (IsKeyPressed(KEY_TWO))
+        {
+            cameraMode = CAMERA_FIRST_PERSON;
+            camera.up = { 0.0f, 1.0f, 0.0f }; // Reset roll
+        }
+
+        if (IsKeyPressed(KEY_THREE))
+        {
+            cameraMode = CAMERA_THIRD_PERSON;
+            camera.up = { 0.0f, 1.0f, 0.0f }; // Reset roll
+        }
+
+        if (IsKeyPressed(KEY_FOUR))
+        {
+            cameraMode = CAMERA_ORBITAL;
+            camera.up = { 0.0f, 1.0f, 0.0f }; // Reset roll
+        }
+
+        // Switch camera projection
+        if (IsKeyPressed(KEY_P))
+        {
+            if (camera.projection == CAMERA_PERSPECTIVE)
+            {
+                // Create isometric view
+                cameraMode = CAMERA_THIRD_PERSON;
+                // Note: The target distance is related to the render distance in the orthographic projection
+                camera.position = { 0.0f, 2.0f, -100.0f };
+                camera.target = { 0.0f, 2.0f, 0.0f };
+                camera.up = { 0.0f, 1.0f, 0.0f };
+                camera.projection = CAMERA_ORTHOGRAPHIC;
+                camera.fovy = 20.0f; // near plane width in CAMERA_ORTHOGRAPHIC
+                CameraYaw(&camera, -135*DEG2RAD, true);
+                CameraPitch(&camera, -45*DEG2RAD, true, true, false);
+            }
+            else if (camera.projection == CAMERA_ORTHOGRAPHIC)
+            {
+                // Reset to default view
+                cameraMode = CAMERA_THIRD_PERSON;
+                camera.position = { 0.0f, 2.0f, 10.0f };
+                camera.target = { 0.0f, 2.0f, 0.0f };
+                camera.up = { 0.0f, 1.0f, 0.0f };
+                camera.projection = CAMERA_PERSPECTIVE;
+                camera.fovy = 60.0f;
+            }
+        }
+
+        
+        UpdateCamera(&camera, cameraMode);
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);

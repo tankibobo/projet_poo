@@ -1,8 +1,9 @@
 #include "raylib_render.h"
+#include "raylib.h"
 
 raylibRender::raylibRender()
 {
-    // parmétres de la fenêtre
+    // paramétres de la fenêtre
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
     InitWindow(800, 600, "Un cube");
 
@@ -13,6 +14,9 @@ raylibRender::raylibRender()
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
+    
+
+    DisableCursor();
     SetTargetFPS(60);
 }
 
@@ -24,7 +28,7 @@ raylibRender::~raylibRender()
 void raylibRender::run()
 {
     while (!WindowShouldClose()) {
-        UpdateCamera(&camera, CAMERA_FREE);
+        
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
