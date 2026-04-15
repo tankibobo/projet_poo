@@ -23,6 +23,14 @@ set(PROJECT_WARNING_FLAGS
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
+# MacPorts prefix pour trouver raylib
+list(APPEND CMAKE_PREFIX_PATH /opt/local)
+find_package(raylib REQUIRED)
+
 # Ajoutez ici tous les sous-dossiers contenant des fichiers sources
 # que vous souhaitez voir compilés
 add_subdirectory(version-1)
+add_subdirectory(PremierExemple)
+add_subdirectory(DeuxiemeExemple)
+add_subdirectory(TroisiemeExemple)
+add_subdirectory(CinquiemeExemple)
