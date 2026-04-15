@@ -3,6 +3,7 @@
 #include "support_a_dessin.h"
 #include "contenu.h"
 #include <raylib.h>
+#include <vector>
 
 class raylibRender : public SupportADessin {
 public:
@@ -15,5 +16,5 @@ public:
 private:
     Camera3D camera;
 
-    Contenu c;
+    std::vector<Contenu> liste_contenus;
 };

@@ -1,11 +1,6 @@
 #include "raylib_render.h"
 
 raylibRender::raylibRender()
-: liste_contenus({
-      Contenu(),
-      Contenu({-1,1,1}, VERT),
-      Contenu({-1,0,1}, ROUGE)
-  })
 {
     // parmétres de la fenêtre
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
@@ -29,6 +24,7 @@ raylibRender::~raylibRender()
 void raylibRender::run()
 {
     while (!WindowShouldClose()) {
+        UpdateCamera(&camera, CAMERA_FREE);
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);

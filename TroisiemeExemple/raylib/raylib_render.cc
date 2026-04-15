@@ -1,6 +1,11 @@
 #include "raylib_render.h"
 
 raylibRender::raylibRender()
+: liste_contenus({
+      Contenu(),
+      Contenu({-1,1,1}, VERT),
+      Contenu({-1,0,1}, ROUGE)
+  })
 {
     // parmétres de la fenêtre
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
@@ -24,7 +29,6 @@ raylibRender::~raylibRender()
 void raylibRender::run()
 {
     while (!WindowShouldClose()) {
-        UpdateCamera(&camera, CAMERA_FREE);
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
@@ -32,7 +36,9 @@ void raylibRender::run()
                 DrawGrid(200, 0.5f);
 
                 // Et on dessine le contenu.
-                c.dessine_sur(*this);
+                for (auto const& contenu : liste_contenus) {
+                    contenu.dessine_sur(*this);
+                }
             EndMode3D();
         EndDrawing();
     }
@@ -40,7 +46,23 @@ void raylibRender::run()
 
 void raylibRender::dessine(Contenu const& a_dessiner)
 {
-    constexpr Vector3 position({ 0.0f, 1.0f, 0.0f });
-    DrawCube(position, 2.0f, 2.0f, 2.0f, LIME);
-    DrawCubeWires(position, 2.0f, 2.0f, 2.0f, DARKGREEN);
+    const auto [x, y, z] = a_dessiner.get_position();
+    const Vector3 position = { static_cast<float>(x), static_cast<float>(y), static_cast<float>(z) };
+    auto color = WHITE;
+    switch (a_dessiner.get_color()) {
+        case ROUGE:
+            color = RED;
+            break;
+        case VERT:
+            color = GREEN;
+            break;
+        case BLEU:
+            color = BLUE;
+            break;
+        default:
+            color = WHITE;
+            break;
+    }
+    DrawCube(position, 1.0f, 1.0f, 1.0f, color);
+    DrawCubeWires(position, 1.0f, 1.0f, 1.0f, BLACK);
 }
