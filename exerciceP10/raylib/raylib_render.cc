@@ -55,6 +55,30 @@ void raylibRender::run(Systeme& systeme)
 
         systeme.evolue();
 
+        // Make the camera target track the centre of mass of all particles
+        // so they stay visible even as they fall through the floor (known
+        // physics limitation: LJ repulsion < gravity with the given epsilon).
+        {
+            auto const& particules = systeme.getParticules();
+            if (!particules.empty()) {
+                double cx = 0, cy = 0, cz = 0;
+                for (auto const* p : particules) {
+                    cx += p->get_position().getX();
+                    cy += p->get_position().getY();
+                    cz += p->get_position().getZ();
+                }
+                double n = static_cast<double>(particules.size());
+                Vector3 centre = simToRay(cx/n, cy/n, cz/n);
+                Vector3 offset = { camera.position.x - camera.target.x,
+                                   camera.position.y - camera.target.y,
+                                   camera.position.z - camera.target.z };
+                camera.target   = centre;
+                camera.position = { centre.x + offset.x,
+                                    centre.y + offset.y,
+                                    centre.z + offset.z };
+            }
+        }
+
         UpdateCamera(&camera, cameraMode);
 
         BeginDrawing();
@@ -64,6 +88,7 @@ void raylibRender::run(Systeme& systeme)
                 systeme.dessine_sur(*this);
             EndMode3D();
             DrawFPS(10, 10);
+            DrawText("Note: epsilon=25 too small to bounce off Plan", 10, 30, 14, GRAY);
         EndDrawing();
     }
 }
