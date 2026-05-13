@@ -33,3 +33,14 @@ pour le git:
 git add .
 git commit -m "modifs"
 git push
+
+ton truc qui empeche la compilation:
+add_subdirectory(PremierExemple)
+add_subdirectory(DeuxiemeExemple)
+add_subdirectory(TroisiemeExemple)
+add_subdirectory(CinquiemeExemple)
+add_subdirectory(exerciceP10)
+
+# MacPorts prefix pour trouver raylib
+list(APPEND CMAKE_PREFIX_PATH /opt/local)
+find_package(raylib REQUIRED)
