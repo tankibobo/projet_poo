@@ -17,6 +17,6 @@ class ParticuleRoche : public Particule {
         virtual double getEpsilon() const override {return epsilon;}
         virtual double getSigma() const override {return sigma;}
     private:
-        static constexpr double epsilon = 70;
+        static constexpr double epsilon = 35;
         static constexpr double sigma = 0.5;
 };

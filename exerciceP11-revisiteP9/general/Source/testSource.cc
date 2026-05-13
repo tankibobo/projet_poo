@@ -1,6 +1,8 @@
 // fonctionne et cmake verifié
 #include <iostream>
 #include "Source.h"
+#include "../Particule/Particule.h"
+#include "../ParticuleNeige/ParticuleNeige.h"
 #include "../Aleatoire/Aleatoire.h"
 using namespace std;
 

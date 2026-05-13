@@ -2,6 +2,7 @@
 #include "Systeme.h"
 #include <cmath>
 #include <iostream>
+#include "../ParticuleNeige/ParticuleNeige.h"
 
 int main() {
     ParticuleNeige* p1 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_eau);

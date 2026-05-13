@@ -10,7 +10,6 @@ class ParticuleNeige : public Particule {
         ParticuleNeige(double mv, double r, double visc, double masse_v_milieu) : Particule(mv,r,visc,masse_v_milieu) {};
         virtual void ajouteForce(Agent& autre) override {autre.opere_sur(*this);}
         virtual void opere_sur(ParticuleNeige& p) override;
-        virtual void opere_sur(ParticuleRoche& p) override;
         virtual Particule* copie() const override {return new ParticuleNeige(*this);}
         // getters virtuels
         virtual double getEpsilon() const override {return epsilon;}

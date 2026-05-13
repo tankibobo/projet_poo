@@ -7,6 +7,7 @@
  
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h"
+#include "ParticuleNeige/ParticuleNeige.h"
 #include <iostream>
  
 int main() {

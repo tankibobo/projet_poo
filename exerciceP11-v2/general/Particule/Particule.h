@@ -34,7 +34,7 @@ class Particule : public Dessinable, public Agent {
         virtual double getEpsilon() const = 0;
         virtual double getSigma() const = 0;
         // fonctions
-        static double forceLJ(double const& x, double const& epsilon, double const& sigma) {return (24*epsilon)/(sigma*sigma) * f(x/sigma);}
+        static double forceLJ(double const& norme, double const& epsilon, double const& sigma) {return (24*epsilon)/(sigma*sigma) * f(norme/sigma);}
         Vecteur3D lambda_v() const;
         void ajouteForce(const Vecteur3D& v) {force += v;}
         void ajouteForce();

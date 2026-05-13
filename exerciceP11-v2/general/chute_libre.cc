@@ -7,18 +7,12 @@
  
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h"
+#include "ParticuleRoche/ParticuleRoche.h"
 #include <iostream>
  
 int main() {
     // Particule : pos=(0,0,0), v=(5,0,7) mm/s, ρ=1 mg/mm³, r=0.4 mm, milieu=air
-    ParticuleNeige* p = new ParticuleNeige(
-        0.0, 0.0, 0.0,              // position initiale
-        5.0, 0.0, 7.0,              // vitesse initiale (mm/s)
-        1.0,                        // ρ_grain = 1 mg/mm³  (= mv_eau)
-        0.4,                        // rayon (mm)
-        Constantes::viscosite_air,  // η_milieu
-        Constantes::mv_air          // ρ_milieu
-    );
+    ParticuleRoche* p = new ParticuleRoche(0.0, 0.0, 0.0, 5.0, 0.0, 7.0, 1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
  
     Systeme s;
     s.ajoute_particule(p);

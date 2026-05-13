@@ -28,6 +28,7 @@ Vecteur3D operator*(const Vecteur3D& v, const double& k) {
 	return Vecteur3D(k*v.getX(), k*v.getY(), k*v.getZ());
 }
 Vecteur3D operator~( const Vecteur3D& v) {
+	if(v.norme() == 0) {return Vecteur3D(0,0,0);}
 	return v/(v.norme());
 }
 double operator|(const Vecteur3D& v1, const Vecteur3D& v2) {

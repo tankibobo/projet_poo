@@ -27,3 +27,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # que vous souhaitez voir compilés
 add_subdirectory(version-1)
 add_subdirectory(exerciceP11-revisiteP9)
+add_subdirectory(exerciceP11-v2)

@@ -1,10 +1,4 @@
-add_executable(testVecteur3D_v2
-  Vecteur3D/testVecteur3D.cc
-  Vecteur3D/Vecteur3D.cc
-)
-target_compile_options(testVecteur3D PRIVATE ${PROJECT_WARNING_FLAGS})
-
-add_executable(testParticuleNeige_v2
+add_executable(testParticuleNeige
   ParticuleNeige/testParticuleNeige.cc
   Particule/Particule.cc
   Vecteur3D/Vecteur3D.cc
@@ -13,17 +7,6 @@ add_executable(testParticuleNeige_v2
   ParticuleNeige/ParticuleNeige.cc
 )
 target_compile_options(testParticule PRIVATE ${PROJECT_WARNING_FLAGS})
-
-add_executable(testPlan_v2
-  Plan/testPlan.cc
-  Plan/Plan.cc
-  Vecteur3D/Vecteur3D.cc
-  Obstacle/Obstacle.cc
-  ParticuleNeige/ParticuleNeige.cc
-  Particule/Particule.cc
-)
-target_compile_options(testPlan PRIVATE ${PROJECT_WARNING_FLAGS})
-
 
 add_executable(testSource_v2
   Source/testSource.cc
