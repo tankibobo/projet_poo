@@ -7,3 +7,4 @@ listes des choses à faire impt
 - faire notebook + fichier test exo 1 semaine 6
 - faire un constructeur de copie pour systeme
 - faire un unique_ptr dans les listes de systeme
+- creer un constructeur de copie pour "systeme"
