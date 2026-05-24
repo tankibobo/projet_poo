@@ -3,7 +3,10 @@
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h" 
 #include "Particule/Particule.h"
-#include <cmath>
+#include "../Obstacle/Obstacle.h"
+#include "Constantes.h"
+#include "../ParticuleNeige/ParticuleNeige.h"
+#include "../ParticuleRoche/ParticuleRoche.h"
 #include <iostream>
  
 int main() {

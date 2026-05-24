@@ -1,10 +1,11 @@
 #pragma once
 #include <array>
-#include "../SupportADessin/SupportADessin.h"
-#include "../Dessinable/Dessinable.h"
-#include "../Vecteur3D/Vecteur3D.h"
-#include "../Constantes.h"
+#include "SupportADessin/SupportADessin.h"
+#include "Dessinable/Dessinable.h"
+#include "Vecteur3D/Vecteur3D.h"
+#include "Constantes.h"
 #include "../Agent/Agent.h"
+
 class ParticuleNeige;
 class ParticuleRoche;
 
@@ -12,15 +13,10 @@ class Particule : public Dessinable, public Agent {
     public:
         // constructeurs
         Particule() = delete;
-        Particule(double x, double y, double z, double vx, double vy, double vz, double mv, double r, double visc, double masse_v_milieu): position(x,y,z), vitesse(vx,vy,vz), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
-        Particule(double x, double y, double z, double mv, double r, double visc, double masse_v_milieu): position(x,y,z), vitesse(0,0,0), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
-        Particule(double mv, double r, double visc, double masse_v_milieu): position(0,0,0), vitesse(0,0,0), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
-        // setters
-        void setPosition(const double& x, const double& y, const double& z) {position = Vecteur3D(x,y,z);}
-        void setVitesse(const double& vx, const double& vy, const double& vz) {vitesse = Vecteur3D(vx,vy,vz);}
+        Particule(double mv, double r, double visc, double masse_v_milieu, Vecteur3D position = {0,0,0}, Vecteur3D vitesse = {0,0,0}): position(position), vitesse(vitesse), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
+        void setMasseV(const double& mv) {masse_v = mv; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
+        void setRayon(const double& r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
         void setVitesse(const Vecteur3D& v) {vitesse = v;}
-        void setMasseV(const double& mv) {masse_v = mv;}
-        void setRayon(const double& r) {rayon = r;}
         void setForce(const Vecteur3D& f) {force = f;}
         // getters
         Vecteur3D get_position() const {return position;}

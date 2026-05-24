@@ -6,9 +6,7 @@ class ParticuleRoche;
 class ParticuleNeige : public Particule {
     public:
         using Particule::ajouteForce;
-        ParticuleNeige(double x, double y, double z, double vx, double vy, double vz, double mv, double r, double visc, double masse_v_milieu) : Particule(x,y,z,vx,vy,vz,mv,r,visc,masse_v_milieu) {};
-        ParticuleNeige(double x, double y, double z, double mv, double r, double visc, double masse_v_milieu) : Particule(x,y,z,mv,r,visc,masse_v_milieu) {};
-        ParticuleNeige(double mv, double r, double visc, double masse_v_milieu) : Particule(mv,r,visc,masse_v_milieu) {};
+        ParticuleNeige(double mv, double r, double visc, double masse_v_milieu, Vecteur3D position = {0,0,0}, Vecteur3D vitesse = {0,0,0}): Particule(mv, r, visc, masse_v_milieu, position, vitesse) {};
         virtual void ajouteForce(Agent& autre) override {autre.opere_sur(*this);}
         virtual void opere_sur(ParticuleNeige& p) override;
         virtual void opere_sur(ParticuleRoche& p) override;

@@ -1,6 +1,6 @@
-#include "../Aleatoire/Aleatoire.h"
-#include "../Vecteur3D/Vecteur3D.h"
-#include "Source.h"
+#include "Vecteur3D/Vecteur3D.h"
+#include "../Particule/Particule.h"
+#include "Source/Source.h"
 
 void Source::creation(std::vector<Particule*>& particules, double dt) {
     if (!etat) return;

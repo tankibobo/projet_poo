@@ -1,7 +1,9 @@
 #pragma once
-#include "../Vecteur3D/Vecteur3D.h"
-#include "../Obstacle/Obstacle.h"
 #include <ostream>
+
+#include "Vecteur3D/Vecteur3D.h"
+#include "../Obstacle/Obstacle.h"
+#include "SupportADessin/SupportADessin.h"
 
 class Plan : public Obstacle {
     public:

@@ -2,6 +2,9 @@
 // fonctionne et cmake verifié
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h" 
+#include "Particule/Particule.h"
+#include "Plan/Plan.h"
+#include "Constantes.h"
 #include <cmath>
 #include <iostream>
  

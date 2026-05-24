@@ -1,6 +1,6 @@
 #include "ParticuleRoche.h"
 #include "../ParticuleNeige/ParticuleNeige.h"
-#include "../Constantes.h"
+#include "Constantes.h"
 
 void ParticuleRoche::opere_sur(ParticuleNeige& p) {
     Vecteur3D e_i_j = this->get_position() - p.get_position();

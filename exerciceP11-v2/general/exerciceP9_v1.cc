@@ -1,8 +1,11 @@
 // SIMULATION D'EVOLUTION, DEBUT SEMAINE 6
 // fonctionne avec qq erreurs notam. approximation de double (donc c normal) et cmake verifié
 #include "Systeme/Systeme.h"
-#include <cmath>
 #include "Particule/Particule.h"
+#include "../Obstacle/Obstacle.h"
+#include "Constantes.h"
+#include "../ParticuleNeige/ParticuleNeige.h"
+#include "../ParticuleRoche/ParticuleRoche.h"
 #include <iostream>
 
 int main() {

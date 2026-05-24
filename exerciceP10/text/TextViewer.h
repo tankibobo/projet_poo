@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
-#include "../general/SupportADessin/SupportADessin.h"
+#include "SupportADessin/SupportADessin.h"
 #include "../general/Particule/Particule.h"
-#include "../general/Systeme/Systeme.h"
-#include "../general/Obstacle/Obstacle.h"
-#include "../general/Source/Source.h"
+#include "Systeme/Systeme.h"
+#include "Obstacle/Obstacle.h"
+#include "Source/Source.h"
 
 class TextViewer : public SupportADessin {
 public:

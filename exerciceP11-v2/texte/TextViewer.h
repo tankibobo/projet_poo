@@ -1,16 +1,16 @@
 #pragma once
-#include <iostream>
-#include "../general/SupportADessin/SupportADessin.h"
+#include <ostream>
+#include "SupportADessin/SupportADessin.h"
 #include "../general/Particule/Particule.h"
-#include "../general/Systeme/Systeme.h"
+#include "Systeme/Systeme.h"
 #include "../general/Obstacle/Obstacle.h"
 
 class TextViewer : public SupportADessin {
     public:
-        virtual void dessine(Particule const& p) {os << p;};
-        virtual void dessine(Systeme const& s) {os << s;};
-        virtual void dessine(Obstacle const& p) {os << p;};
-        virtual void dessine(Source const& s) {os << s;};
+        virtual void dessine(Particule const& p) override {os << p;};
+        virtual void dessine(Systeme const& s) override {os << s;};
+        virtual void dessine(Obstacle const& p) override {os << p;};
+        virtual void dessine(Source const& s) override {os << s;};
 
         //cons et destr et copie
         explicit TextViewer(std::ostream& os_) : os(os_) {} //explicit poir les constructeur à un argument (conversions "implicites")

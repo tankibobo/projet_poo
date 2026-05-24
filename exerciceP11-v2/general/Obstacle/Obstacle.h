@@ -1,7 +1,7 @@
 #pragma once
-#include "../Vecteur3D/Vecteur3D.h"
-#include "../SupportADessin/SupportADessin.h"
-#include "../Dessinable/Dessinable.h"
+#include "Vecteur3D/Vecteur3D.h"
+#include "SupportADessin/SupportADessin.h"
+#include "Dessinable/Dessinable.h"
 #include "../Particule/Particule.h"
 #include "../ParticuleRoche/ParticuleRoche.h"
 #include "../ParticuleNeige/ParticuleNeige.h"

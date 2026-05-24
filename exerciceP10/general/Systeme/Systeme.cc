@@ -1,6 +1,9 @@
-#include "Systeme.h"
+#include "Systeme/Systeme.h"
 #include <iostream>
-#include "../Constantes.h"
+#include "Constantes.h"
+#include "../Particule/Particule.h"
+#include "Obstacle/Obstacle.h"
+#include "Source/Source.h"
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
     std::vector<Particule*> p(s.getParticules());
@@ -29,31 +32,21 @@ std::ostream& operator<<(std::ostream& os, const Systeme& s) {
 
     return os;
 }
-// Optimisation par la 3e loi de Newton :
-// chaque paire (i, j) n'est calculée qu'une seule fois → N(N-1)/2 calculs
-// au lieu de N(N-1), soit un facteur 2 sur les forces inter-particulaires.
+
 void Systeme::evolue() {
-    // ── Étape 1 : forces individuelles (poids + frottement) et obstacles ─────
     for (Particule* p : particules) {
-        p->ajouteForce();                               // force perso
-        for (Obstacle* o : obstacles) p->ajouteForce(*o); // force de chaque obstacle
+        p->ajouteForce();                       
+        for (Obstacle* o : obstacles) p->ajouteForce(*o); 
     }
 
-    // ── Étape 2 : forces inter-particulaires (3e loi de Newton) ──────────────
-    // F_{j→i} = forceLJ(|e_ij|) * ê_ij
-    // F_{i→j} = −F_{j→i}   (action-réaction)
     for (size_t i(0); i < particules.size(); ++i) {
         for (size_t j(i + 1); j < particules.size(); ++j) {
-            Vecteur3D e_ij = particules[j]->get_position()
-                           - particules[i]->get_position();
-            Vecteur3D f_ij = Particule::forceLJ(e_ij.norme()) * (~e_ij);
-            particules[i]->ajouteForce( f_ij);  // force de j sur i
-            particules[j]->ajouteForce(-f_ij);  // force de i sur j  (Newton 3)
+            particules[i]->ajouteForce(*particules[j]); //3e loi Newton deja incluse
         }
     }
 
-    // ── Étape 3 : déplacement Euler-Cromer ───────────────────────────────────
     for (Particule* p : particules) p->bouger(Constantes::dt);
+    temps += Constantes::dt
 }
 
 Systeme::~Systeme() {

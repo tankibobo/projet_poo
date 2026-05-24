@@ -11,6 +11,9 @@
 *.dSYM/
 a.out
 build
+html/
+latex/
+Doxyfile
 
 # Precompiled Headers
 *.gch

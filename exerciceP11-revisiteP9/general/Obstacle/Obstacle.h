@@ -1,8 +1,8 @@
 #pragma once
 #include <ostream>
-#include "../Vecteur3D/Vecteur3D.h"
-#include "../SupportADessin/SupportADessin.h"
-#include "../Dessinable/Dessinable.h"
+#include "Vecteur3D/Vecteur3D.h"
+#include "SupportADessin/SupportADessin.h"
+#include "Dessinable/Dessinable.h"
 #include "../Agent/Agent.h"
 
 class Particule;
@@ -15,6 +15,5 @@ public:
     virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); };
     virtual std::ostream& affiche(std::ostream& os) const = 0;
     virtual void opere_sur(ParticuleNeige& p) override;
-    void force(Particule& p) const;
 };
 std::ostream& operator<<(std::ostream& os, const Obstacle& o);

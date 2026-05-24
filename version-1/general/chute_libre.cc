@@ -1,12 +1,7 @@
-// Test de chute libre : une seule particule isolée dans l'air.
-// ρ_grain = 1 mg/mm³, r = 0.4 mm, v₀ = (5, 0, 7) mm/s, milieu = air.
-// Pas de temps dt = 0.01 s (plus grand que Constantes::dt pour voir la parabole).
-//
-// On n'utilise pas Systeme::evolue() car celui-ci impose Constantes::dt = 0.001 s.
-// On appelle directement ajouteForce() et bouger(dt) sur la particule.
- 
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h"
+#include "../Particule/Particule.h"
+#include "Constantes.h"
 #include <iostream>
  
 int main() {

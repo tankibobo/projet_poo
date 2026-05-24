@@ -1,52 +1,81 @@
 add_executable(testParticules
   Particule/testParticules.cc
   Particule/Particule.cc
-  Vecteur3D/Vecteur3D.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
   Plan/Plan.cc
   Obstacle/Obstacle.cc
   ParticuleNeige/ParticuleNeige.cc
   ParticuleRoche/ParticuleRoche.cc
 )
-target_compile_options(testParticule PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(testParticules PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(exerciceP9_v1_v3
+add_executable(exerciceP9_v1_P11-v2
   exerciceP9_v1.cc
-  Source/Source.cc
-  Vecteur3D/Vecteur3D.cc
-  Aleatoire/Aleatoire.cc
-  Plan/Plan.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
+  ../../commun/Aleatoire/Aleatoire.cc
   Obstacle/Obstacle.cc
   Particule/Particule.cc
-  Systeme/Systeme.cc
   ParticuleNeige/ParticuleNeige.cc
   ParticuleRoche/ParticuleRoche.cc
+  Plan/Plan.cc
+  Source/Source.cc
+  Systeme/Systeme.cc
 )
-target_compile_options(exerciceP9_v1 PRIVATE ${PROJECT_WARNING_FLAGS})
+)
+target_compile_options(exerciceP9_v1_P11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(exerciceP9_v2_v3
+add_executable(exerciceP9_v2_P11-v2
   exerciceP9_v2.cc
-  Source/Source.cc
-  Vecteur3D/Vecteur3D.cc
-  Aleatoire/Aleatoire.cc
-  Plan/Plan.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
+  ../../commun/Aleatoire/Aleatoire.cc
   Obstacle/Obstacle.cc
   Particule/Particule.cc
-  Systeme/Systeme.cc
   ParticuleNeige/ParticuleNeige.cc
   ParticuleRoche/ParticuleRoche.cc
+  Plan/Plan.cc
+  Source/Source.cc
+  Systeme/Systeme.cc
 )
-target_compile_options(exerciceP9_v2 PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(exerciceP9_v2_P11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(chute_libre_v3
+add_executable(chute_libre_P11-v2
   chute_libre.cc
-  Source/Source.cc
-  Vecteur3D/Vecteur3D.cc
-  Aleatoire/Aleatoire.cc
-  Plan/Plan.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
+  ../../commun/Aleatoire/Aleatoire.cc
   Obstacle/Obstacle.cc
   Particule/Particule.cc
-  Systeme/Systeme.cc
   ParticuleNeige/ParticuleNeige.cc
   ParticuleRoche/ParticuleRoche.cc
+  Plan/Plan.cc
+  Source/Source.cc
+  Systeme/Systeme.cc
 )
-target_compile_options(chute_libre PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(chute_libre_P11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})
+
+add_executable(testSourceP11-v2
+  Source/testSource.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
+  ../../commun/Aleatoire/Aleatoire.cc
+  Obstacle/Obstacle.cc
+  Particule/Particule.cc
+  ParticuleNeige/ParticuleNeige.cc
+  ParticuleRoche/ParticuleRoche.cc
+  Plan/Plan.cc
+  Source/Source.cc
+  Systeme/Systeme.cc
+)
+target_compile_options(testSourceP11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})
+
+add_executable(testSystemeP11-v2
+  Systeme/testSysteme.cc
+  ../../commun/Vecteur3D/Vecteur3D.cc
+  ../../commun/Aleatoire/Aleatoire.cc
+  Obstacle/Obstacle.cc
+  Particule/Particule.cc
+  ParticuleNeige/ParticuleNeige.cc
+  ParticuleRoche/ParticuleRoche.cc
+  Plan/Plan.cc
+  Source/Source.cc
+  Systeme/Systeme.cc
+)
+target_compile_options(testSystemeP11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})

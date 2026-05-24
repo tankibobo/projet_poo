@@ -12,7 +12,7 @@
  
 int main() {
     // Particule : pos=(0,0,0), v=(5,0,7) mm/s, ρ=1 mg/mm³, r=0.4 mm, milieu=air
-    ParticuleRoche* p = new ParticuleRoche(0.0, 0.0, 0.0, 5.0, 0.0, 7.0, 1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
+    ParticuleRoche* p = new ParticuleRoche(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {0,0,0},{5.0, 0.0, 7.0});
  
     Systeme s;
     s.ajoute_particule(p);

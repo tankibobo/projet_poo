@@ -1,6 +1,8 @@
 #include "Obstacle.h"
 #include "../Particule/Particule.h"
-#include "../Vecteur3D/Vecteur3D.h"
+#include "../ParticuleRoche/ParticuleRoche.h"
+#include "../ParticuleNeige/ParticuleNeige.h"
+#include "Vecteur3D/Vecteur3D.h"
 #include <ostream>
 
 std::ostream& operator<<(std::ostream& os, const Obstacle& o) {

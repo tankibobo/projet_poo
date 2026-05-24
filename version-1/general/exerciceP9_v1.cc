@@ -1,6 +1,9 @@
 // SIMULATION D'EVOLUTION, DEBUT SEMAINE 6
 // fonctionne avec qq erreurs notam. approximation de double (donc c normal) et cmake verifié
 #include "Systeme/Systeme.h"
+#include "Particule/Particule.h"
+#include "Plan/Plan.h"
+#include "Constantes.h"
 #include <cmath>
 #include <iostream>
 

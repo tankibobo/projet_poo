@@ -1,7 +1,10 @@
 // fonctionne et cmake verifié
-#include "Systeme.h"
 #include <cmath>
 #include <iostream>
+#include "Systeme/Systeme.h"
+#include "../Particule/Particule.h"
+#include "Constantes.h"
+#include "Plan/Plan.h"
 
 int main() {
     Particule* p1 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_eau);

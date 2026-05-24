@@ -1,10 +1,9 @@
 listes des choses à faire impt
 
-- écrire notebook et réponses pour la semaine 5 (romain)
-- passer en revu les warnings de la semaine 5 (romain)
-- systeme.h ligne 14 est-ce qu'on fait une liste différente pour chauqe objet ou est-ce qu'on fait une liste pour tout? y a t il une fonction inhérente a c++ qui peut les trier
 - terminer obstacle.h (romain)
-- faire notebook + fichier test exo 1 semaine 6
-- faire un constructeur de copie pour systeme
-- faire un unique_ptr dans les listes de systeme
-- creer un constructeur de copie pour "systeme"
+- faire un unique_ptr dans les listes de systeme?
+- creer un constructeur de copie pour "systeme"?
+- ne pas copier les fichiers comme vecteur3d
+- refaire les tests sources qui ne sotn pas adaptés dans les classes
+- refaire les tests systeme
+- bonus: faire des systèmes qui peuvent a la fois accueillir des particules de différents milieux.
