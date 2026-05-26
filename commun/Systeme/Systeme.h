@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 #include <ostream>
-#include "../Obstacle/Obstacle.h"
-#include "../Source/Source.h"
-#include "../Dessinable/Dessinable.h"
-#include "../SupportADessin/SupportADessin.h"
+#include "Obstacle/Obstacle.h"
+#include "Source/Source.h"
+#include "Dessinable/Dessinable.h"
+#include "SupportADessin/SupportADessin.h"
 
 class Particule;
 

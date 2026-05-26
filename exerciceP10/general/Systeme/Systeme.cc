@@ -46,7 +46,7 @@ void Systeme::evolue() {
     }
 
     for (Particule* p : particules) p->bouger(Constantes::dt);
-    temps += Constantes::dt
+    temps += Constantes::dt;
 }
 
 Systeme::~Systeme() {

@@ -7,9 +7,9 @@
  
 int main() {
 
-    ParticuleNeige* p1 = new ParticuleNeige(0.0, 0.0, 0.0,  0.0, 0.0,   0.0,1.0,  0.4,  Constantes::viscosite_air, Constantes::mv_air);
-    ParticuleNeige* p2 = new ParticuleNeige(1.0, 0.0, 0.0,  0.0, 0.2,   0.0,12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air);
-    ParticuleNeige* p3 = new ParticuleNeige(0.0, 0.0, 1.0,  0.0, 0.0,  -0.05,12.5, 0.1,  Constantes::viscosite_air, Constantes::mv_air);
+    ParticuleNeige* p1 = new ParticuleNeige(1.0,  0.4,  Constantes::viscosite_air, Constantes::mv_air);
+    ParticuleNeige* p2 = new ParticuleNeige(12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 0.0}, {0.0, 0.2, 0.0});
+    ParticuleNeige* p3 = new ParticuleNeige(12.5, 0.1,  Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 1.0}, {0.0, 0.0, -0.05});
  
 
     Systeme s({p1, p2, p3}, {}, {});

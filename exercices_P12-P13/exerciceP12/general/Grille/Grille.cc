@@ -1,7 +1,7 @@
 #include "Grille.h"
 #include <algorithm>
 #include <vector>
-#include "../../Particule/Particule.h"
+#include "Particule/Particule.h"
 
 void Grille::ajouterParticule(Particule* particule) {
     int x = (int)(particule->get_position().getX()/taille_case - decalage_x);

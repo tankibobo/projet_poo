@@ -1,3 +1,5 @@
+include_directories(.)
+
 add_executable(testVecteur3DCommun
   Vecteur3D/testVecteur3D.cc
   Vecteur3D/Vecteur3D.cc

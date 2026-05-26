@@ -10,9 +10,9 @@
  
 int main() {
     ParticuleNeige* p1 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
-    ParticuleNeige* p2 = new ParticuleNeige(1.0, 0.0, 0.0,1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
-    ParticuleNeige* p3 = new ParticuleNeige(0.5, sqrt(3.0)/2.0, 0.0,1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air); 
-    ParticuleNeige* p4 = new ParticuleNeige(0.5, sqrt(3.0)/6.0, sqrt(6.0)/3.0,1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);  // pos = (1/2, √3/6, √6/3)
+    ParticuleNeige* p2 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 0.0});
+    ParticuleNeige* p3 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {0.5, sqrt(3.0)/2.0, 0.0});
+    ParticuleNeige* p4 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {0.5, sqrt(3.0)/6.0, sqrt(6.0)/3.0});  // pos = (1/2, √3/6, √6/3)
  
     Plan* o1 = new Plan(0.0, 0.0, -0.9, 0.0, 0.0, 1.0);
  

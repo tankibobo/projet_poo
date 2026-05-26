@@ -1,3 +1,5 @@
+include_directories(../../commun)
+
 add_library(SimulationP10 STATIC
     ../../commun/Vecteur3D/Vecteur3D.cc
     ../../commun/Aleatoire/Aleatoire.cc
@@ -8,7 +10,7 @@ add_library(SimulationP10 STATIC
     Systeme/Systeme.cc
 )
 
-target_include_directories(SimulationP10 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(SimulationP10 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/../../commun)
 target_compile_options(SimulationP10 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testParticuleP10

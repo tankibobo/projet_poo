@@ -1,9 +1,8 @@
 #include "Aleatoire/Aleatoire.h"
 #include "Vecteur3D/Vecteur3D.h"
-#include "../Particule/Particule.h"
+#include "Particule/Particule.h"
 #include "Source/Source.h"
-#include "../Particule/Particule.h"
-#include "../ParticuleNeige/ParticuleNeige.h"
+#include "ParticuleNeige/ParticuleNeige.h"
 
 void Source::creation(std::vector<Particule*>& particules, double dt) {
     if (!etat) return;
@@ -14,7 +13,7 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
     if (generateur.uniforme(0.0, 1.0) < fraction) ++nombre;
 
     for (int i(0); i < nombre; ++i) {
-        Particule* p = new Particule(modele);
+        Particule* p = modele.copie();
 
         Vecteur3D v(
             generateur.gaussienne(vitesse_moyenne.getX(), ecart_type_vitesse),

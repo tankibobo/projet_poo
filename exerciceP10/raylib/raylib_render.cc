@@ -1,8 +1,10 @@
 #include "raylib_render.h"
-#include "../general/Plan/Plan.h"
+#include "Plan/Plan.h"
 #include <raylib.h>
+#include <string>
 
-// Coordinate mapping: simulation uses Z-up, raylib uses Y-up
+// Correspondance de coordonnées : la simulation utilise Z vers le haut,
+// raylib utilise Y vers le haut.
 // sim(x, y, z)  ->  ray(x, z_sim, y_sim)
 static Vector3 simToRay(double x, double y, double z) {
     return { static_cast<float>(x),
@@ -11,6 +13,7 @@ static Vector3 simToRay(double x, double y, double z) {
 }
 
 raylibRender::raylibRender()
+    : deplacement(false)
 {
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
     InitWindow(800, 600, "Simulation P10");
@@ -21,9 +24,6 @@ raylibRender::raylibRender()
     camera.fovy       = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
-    cameraMode = CAMERA_ORBITAL;
-
-    DisableCursor();
     SetTargetFPS(60);
 }
 
@@ -36,50 +36,16 @@ void raylibRender::run(Systeme& systeme)
 {
     while (!WindowShouldClose()) {
 
-        if (IsKeyPressed(KEY_ONE)) {
-            cameraMode = CAMERA_FREE;
-            camera.up  = { 0.0f, 1.0f, 0.0f };
+        // Touche L : activer/désactiver le mouvement libre de la caméra
+        if (IsKeyPressed(KEY_L)) {
+            deplacement = !deplacement;
         }
-        if (IsKeyPressed(KEY_TWO)) {
-            cameraMode = CAMERA_FIRST_PERSON;
-            camera.up  = { 0.0f, 1.0f, 0.0f };
-        }
-        if (IsKeyPressed(KEY_THREE)) {
-            cameraMode = CAMERA_THIRD_PERSON;
-            camera.up  = { 0.0f, 1.0f, 0.0f };
-        }
-        if (IsKeyPressed(KEY_FOUR)) {
-            cameraMode = CAMERA_ORBITAL;
-            camera.up  = { 0.0f, 1.0f, 0.0f };
+        if (deplacement) {
+            UpdateCamera(&camera, CAMERA_FREE);
         }
 
+        // Avancer la simulation d'un pas de temps
         systeme.evolue();
-
-        // Make the camera target track the centre of mass of all particles
-        // so they stay visible even as they fall through the floor (known
-        // physics limitation: LJ repulsion < gravity with the given epsilon).
-        {
-            auto const& particules = systeme.getParticules();
-            if (!particules.empty()) {
-                double cx = 0, cy = 0, cz = 0;
-                for (auto const* p : particules) {
-                    cx += p->get_position().getX();
-                    cy += p->get_position().getY();
-                    cz += p->get_position().getZ();
-                }
-                double n = static_cast<double>(particules.size());
-                Vector3 centre = simToRay(cx/n, cy/n, cz/n);
-                Vector3 offset = { camera.position.x - camera.target.x,
-                                   camera.position.y - camera.target.y,
-                                   camera.position.z - camera.target.z };
-                camera.target   = centre;
-                camera.position = { centre.x + offset.x,
-                                    centre.y + offset.y,
-                                    centre.z + offset.z };
-            }
-        }
-
-        UpdateCamera(&camera, cameraMode);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -87,8 +53,12 @@ void raylibRender::run(Systeme& systeme)
                 DrawGrid(20, 1.0f);
                 systeme.dessine_sur(*this);
             EndMode3D();
-            DrawFPS(10, 10);
-            DrawText("Note: epsilon=25 too small to bounce off Plan", 10, 30, 14, GRAY);
+
+            // Affichage des instructions (hors mode 3D)
+            DrawText("Appuyez sur 'L' pour activer/désactiver le mouvement de la caméra", 10, 10, 16, DARKGRAY);
+            DrawText((std::string("Caméra ") + (deplacement ? "libre (WASD + souris)" : "fixe")).c_str(),
+                     10, 32, 16, DARKGRAY);
+            DrawFPS(10, 54);
         EndDrawing();
     }
 }
@@ -117,12 +87,11 @@ void raylibRender::dessine(Systeme const& s)
 
 void raylibRender::dessine(Obstacle const& o)
 {
-    // Try to draw Plan as a flat surface
+    // Dessiner un Plan comme une surface plate
     Plan const* plan = dynamic_cast<Plan const*>(&o);
     if (plan != nullptr) {
         Vecteur3D pos = plan->getPos();
         Vector3 rPos  = simToRay(pos.getX(), pos.getY(), pos.getZ());
-        // Draw a large flat plane; raylib DrawPlane uses Y-up normal
         DrawPlane(rPos, { 20.0f, 20.0f }, LIGHTGRAY);
     }
 }

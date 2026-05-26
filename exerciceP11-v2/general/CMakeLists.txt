@@ -1,3 +1,5 @@
+include_directories(. ../../commun)
+
 add_executable(testParticules
   Particule/testParticules.cc
   Particule/Particule.cc
@@ -20,7 +22,6 @@ add_executable(exerciceP9_v1_P11-v2
   Plan/Plan.cc
   Source/Source.cc
   Systeme/Systeme.cc
-)
 )
 target_compile_options(exerciceP9_v1_P11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})
 
@@ -78,4 +79,3 @@ add_executable(testSystemeP11-v2
   Source/Source.cc
   Systeme/Systeme.cc
 )
-target_compile_options(testSystemeP11-v2 PRIVATE ${PROJECT_WARNING_FLAGS})

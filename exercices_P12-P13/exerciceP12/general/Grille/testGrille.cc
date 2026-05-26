@@ -4,9 +4,9 @@
 #include <iostream>
 
 int main() {
-    Particule* p1 = new Particule(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.5, 1.0, 1.0); //vérifie en même temps "agrandirGrille" puisque la grille n'a pas de taille a la base
-    Particule* p2 = new Particule(0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 1.0, 0.5, 1.0, 1.0);
-    Particule* p3 = new Particule(1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.5, 1.0, 1.0);
+    Particule* p1 = new Particule(1.0, 0.5, 1.0, 1.0); //vérifie en même temps "agrandirGrille" puisque la grille n'a pas de taille a la base
+    Particule* p2 = new Particule(1.0, 0.5, 1.0, 1.0, {0.5, 0.5, 0.5});
+    Particule* p3 = new Particule(1.0, 0.5, 1.0, 1.0, {1.0, 1.0, 1.0});
     Grille g({p1, p2, p3});
     std::vector<Particule*> voisins_p1 = g.getVoisins(p1);
     std::cout << "Voisins de p1 : " << voisins_p1.size() << std::endl;

@@ -1,6 +1,6 @@
+include_directories(. ../commun/)
 add_subdirectory(exerciceP12)
 add_subdirectory(exerciceP13)
-include_directories(. ../commun/)
 
 add_executable(testSourceP12-P13
   Source/testSource.cc
@@ -15,7 +15,7 @@ target_compile_options(testSourceP12-P13 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testSystemeP12-P13
   Systeme/testSysteme.cc
-  ../commun/Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../commun/Vecteur3D/Vecteur3D.cc
   ../commun/Aleatoire/Aleatoire.cc
   ../commun/Plan/Plan.cc

@@ -1,6 +1,6 @@
 #include "Aleatoire/Aleatoire.h"
 #include "Vecteur3D/Vecteur3D.h"
-#include "../Particule/Particule.h"
+#include "Particule/Particule.h"
 #include "Source/Source.h"
 #include <vector>
 #include <ostream>

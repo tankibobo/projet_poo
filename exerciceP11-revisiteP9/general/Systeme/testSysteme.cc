@@ -2,7 +2,7 @@
 #include "Systeme/Systeme.h"
 #include "../Particule/Particule.h"
 #include "../ParticuleNeige/ParticuleNeige.h"
-#include "../Plan/Plan.h"
+#include "Plan/Plan.h"
 #include "Constantes.h"
 #include <cmath>
 #include <iostream>

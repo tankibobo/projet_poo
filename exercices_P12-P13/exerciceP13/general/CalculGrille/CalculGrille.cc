@@ -2,7 +2,7 @@
 #include "../Grille/Grille.h"
 #include "../../../Calcul/CalculGrille.h"
 #include <vector>
-#include "../Particule/Particule.h"
+#include "Particule/Particule.h"
 
 void CalculGrille::calculerForce(const std::vector<Particule*>& particules) {
     for (Particule* p : particules) {

@@ -1,12 +1,11 @@
 #pragma once
 
-#include "../general/SupportADessin/SupportADessin.h"
-#include "../general/Particule/Particule.h"
-#include "../general/Systeme/Systeme.h"
-#include "../general/Obstacle/Obstacle.h"
-#include "../general/Source/Source.h"
+#include "SupportADessin/SupportADessin.h"
+#include "Particule/Particule.h"
+#include "Systeme/Systeme.h"
+#include "Obstacle/Obstacle.h"
+#include "Source/Source.h"
 #include <raylib.h>
-#include "rcamera.h"
 
 class raylibRender : public SupportADessin {
 public:
@@ -20,8 +19,7 @@ public:
     void dessine(Obstacle const& o)  override;
     void dessine(Source const& s)    override;
 
-    int cameraMode;
-
 private:
     Camera3D camera;
+    bool deplacement;  // caméra libre activée ou non (touche L)
 };

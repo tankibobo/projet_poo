@@ -22,6 +22,20 @@ set(PROJECT_WARNING_FLAGS
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)  # pour l'IDE (IntelliSense)
+
+# --- Raylib (téléchargement automatique si non installé) ---
+include(FetchContent)
+find_package(raylib 5.0 QUIET)
+if (NOT raylib_FOUND)
+    FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG        5.5
+        GIT_SHALLOW    TRUE
+    )
+    FetchContent_MakeAvailable(raylib)
+endif()
 
 # Ajoutez ici tous les sous-dossiers contenant des fichiers sources
 # que vous souhaitez voir compilés

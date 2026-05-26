@@ -1,3 +1,5 @@
+include_directories(. ../../commun)
+
 add_executable(testParticuleNeige
   ParticuleNeige/testParticuleNeige.cc
   ../../commun/Vecteur3D/Vecteur3D.cc
@@ -70,7 +72,7 @@ add_executable(chute_libre_P11
   Source/Source.cc
   Systeme/Systeme.cc
 )
-target_compile_options(chute_libreP11 PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(chute_libre_P11 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testP5_P11
   testP5.cc

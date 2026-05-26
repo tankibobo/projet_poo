@@ -10,16 +10,15 @@ int main() {
     // ── Création des particules ───────────────────────────────────────────────
     // Constructeur : Particule(x, y, z, vx, vy, vz, mv, r, visc, mv_milieu)
     Particule* p1 = new Particule(
-        0.0, 0.0, 0.0,  0.0, 0.0,   0.0,
         1.0,  0.4,  Constantes::viscosite_air, Constantes::mv_air
     );
     Particule* p2 = new Particule(
-        1.0, 0.0, 0.0,  0.0, 0.2,   0.0,
-        12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air
+        12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air,
+        {1.0, 0.0, 0.0}, {0.0, 0.2, 0.0}
     );
     Particule* p3 = new Particule(
-        0.0, 0.0, 1.0,  0.0, 0.0,  -0.05,
-        12.5, 0.1,  Constantes::viscosite_air, Constantes::mv_air
+        12.5, 0.1,  Constantes::viscosite_air, Constantes::mv_air,
+        {0.0, 0.0, 1.0}, {0.0, 0.0, -0.05}
     );
  
     // Pas d'obstacle ni de source pour ce test

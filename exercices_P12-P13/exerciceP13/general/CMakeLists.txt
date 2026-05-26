@@ -67,4 +67,3 @@ add_executable(testGrilleP13
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc
 )
-target_compile_options(testGrilleP13 PRIVATE ${PROJECT_WARNING_FLAGS})

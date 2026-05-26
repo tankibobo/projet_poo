@@ -1,8 +1,8 @@
 #include "Systeme/Systeme.h"
 #include <iostream>
 #include "Constantes.h"
-#include "../Particule/Particule.h"
-#include "../Obstacle/Obstacle.h"
+#include "Particule/Particule.h"
+#include "Obstacle/Obstacle.h"
 #include "Source/Source.h"
 #include "../Agent/Agent.h"
 

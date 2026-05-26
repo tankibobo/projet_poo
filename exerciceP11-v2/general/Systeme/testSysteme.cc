@@ -1,9 +1,9 @@
 // fonctionne et cmake verifié
 #include "Systeme/Systeme.h"
 #include "../Particule/Particule.h"
-#include "../Obstacle/Obstacle.h"
+#include "Obstacle/Obstacle.h"
 #include "Source/Source.h"
-#include "../Plan/Plan.h"
+#include "Plan/Plan.h"
 #include <iostream>
 #include <cmath>
 #include <iostream>

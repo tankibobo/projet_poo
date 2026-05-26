@@ -1,7 +1,7 @@
 #pragma once
 #include <ostream>
 #include "SupportADessin/SupportADessin.h"
-#include "../general/Particule/Particule.h"
+#include "Particule/Particule.h"
 #include "../../Systeme/Systeme.h"
 #include "Obstacle/Obstacle.h"
 #include "Source/Source.h"

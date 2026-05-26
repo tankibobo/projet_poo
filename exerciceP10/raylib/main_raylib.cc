@@ -1,8 +1,6 @@
 #include "raylib_render.h"
-#include "../general/Systeme/Systeme.h"
-#include "../general/Particule/Particule.h"
-#include "../general/Plan/Plan.h"
-#include "../general/Constantes.h"
+#include "Plan/Plan.h"
+#include "Constantes.h"
 #include <cmath>
 
 int main() {

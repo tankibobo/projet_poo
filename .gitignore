@@ -52,3 +52,4 @@ afaire
 
 # Claude Code memory (private, not part of project)
 .claude/
+compile_commands.json
