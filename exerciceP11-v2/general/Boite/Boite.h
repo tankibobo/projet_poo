@@ -8,10 +8,10 @@
 // Parallélépipède rectangle. dir_profondeur est déduit par dir_longueur ^ dir_largeur.
 class Boite : public Obstacle {
 public:
-    Boite(Vecteur3D const& centre,
+    Boite(Vecteur3D const& centre_,
           double longueur, double largeur, double profondeur,
-          Vecteur3D const& dir_longueur,
-          Vecteur3D const& dir_largeur);
+          Vecteur3D const& dir_longueur_,
+          Vecteur3D const& dir_largeur_);
 
     virtual void opere_sur(ParticuleNeige& p) override { force(p); }
     virtual void opere_sur(ParticuleRoche& p) override { force(p); }

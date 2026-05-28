@@ -7,10 +7,7 @@
 // Force LJ via PointPlusProche() ; choc élastique via collision() après bouger().
 class Boite : public Obstacle {
 public:
-    Boite(Vecteur3D const& centre,
-          double longueur, double largeur, double profondeur,
-          Vecteur3D const& dir_longueur,
-          Vecteur3D const& dir_largeur);
+    Boite(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_);
 
     Vecteur3D PointPlusProche(Vecteur3D const& x_i) const override;
     void collision(Particule& p) override;

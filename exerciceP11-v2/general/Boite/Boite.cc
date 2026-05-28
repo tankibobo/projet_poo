@@ -2,14 +2,11 @@
 #include "Vecteur3D/Vecteur3D.h"
 #include <ostream>
 
-Boite::Boite(Vecteur3D const& centre,
-             double longueur, double largeur, double profondeur,
-             Vecteur3D const& dir_longueur,
-             Vecteur3D const& dir_largeur)
-    : centre(centre)
+Boite::Boite(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_)
+    : centre(centre_)
     , demi_longueur(longueur/2.0), demi_largeur(largeur/2.0), demi_profondeur(profondeur/2.0)
-    , dir_longueur(~dir_longueur), dir_largeur(~dir_largeur)
-    , dir_profondeur(~(dir_longueur ^ dir_largeur))
+    , dir_longueur(~dir_longueur_), dir_largeur(~dir_largeur_)
+    , dir_profondeur(~(dir_longueur_ ^ dir_largeur_))
 {}
 
 // Indice de la face la plus proche : 0/1=±longueur, 2/3=±largeur, 4/5=±profondeur

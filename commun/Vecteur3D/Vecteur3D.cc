@@ -10,7 +10,7 @@ std::ostream& operator<<(std::ostream& os, const Vecteur3D& v) {
 	return os;
 }	
 bool operator==(const Vecteur3D& v1, const Vecteur3D& v2) {
-	if((abs(v1.getX() - v2.getX()) <= v1.getP()) and (abs(v1.getY() - v2.getY()) <= v1.getP()) and (abs(v1.getZ() - v2.getZ()) <= v1.getP())) {
+	if((std::abs(v1.getX() - v2.getX()) <= v1.getP()) and (std::abs(v1.getY() - v2.getY()) <= v1.getP()) and (std::abs(v1.getZ() - v2.getZ()) <= v1.getP())) {
 		return true;
 	}
 	return false;
