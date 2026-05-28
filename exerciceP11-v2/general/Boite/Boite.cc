@@ -49,14 +49,12 @@ Vecteur3D Boite::PointPlusProche(Vecteur3D const& x_i) const {
             demi_longueur - proj_longueur,   demi_longueur + proj_longueur,
             demi_largeur  - proj_largeur,    demi_largeur  + proj_largeur,
             demi_profondeur - proj_profondeur, demi_profondeur + proj_profondeur);
-        switch (face) {
-            case 0: proj_longueur   =  demi_longueur;   break;
-            case 1: proj_longueur   = -demi_longueur;   break;
-            case 2: proj_largeur    =  demi_largeur;    break;
-            case 3: proj_largeur    = -demi_largeur;    break;
-            case 4: proj_profondeur =  demi_profondeur; break;
-            default: proj_profondeur = -demi_profondeur; break;
-        }
+        if      (face == 0) proj_longueur   =  demi_longueur;
+        else if (face == 1) proj_longueur   = -demi_longueur;
+        else if (face == 2) proj_largeur    =  demi_largeur;
+        else if (face == 3) proj_largeur    = -demi_largeur;
+        else if (face == 4) proj_profondeur =  demi_profondeur;
+        else                proj_profondeur = -demi_profondeur;
     }
     return centre + proj_longueur*dir_longueur + proj_largeur*dir_largeur + proj_profondeur*dir_profondeur;
 }
@@ -76,14 +74,12 @@ void Boite::collision(Particule& p) {
         demi_largeur  - proj_largeur,    demi_largeur  + proj_largeur,
         demi_profondeur - proj_profondeur, demi_profondeur + proj_profondeur);
     Vecteur3D n;
-    switch (face) {
-        case 0: n =  dir_longueur;   break;
-        case 1: n = -dir_longueur;   break;
-        case 2: n =  dir_largeur;    break;
-        case 3: n = -dir_largeur;    break;
-        case 4: n =  dir_profondeur; break;
-        default: n = -dir_profondeur; break;
-    }
+    if      (face == 0) n =  dir_longueur;
+    else if (face == 1) n = -dir_longueur;
+    else if (face == 2) n =  dir_largeur;
+    else if (face == 3) n = -dir_largeur;
+    else if (face == 4) n =  dir_profondeur;
+    else                n = -dir_profondeur;
 
     // Réflexion élastique : v' = v - 2(v·n̂)n̂
     Vecteur3D vitesse = p.get_vitesse();

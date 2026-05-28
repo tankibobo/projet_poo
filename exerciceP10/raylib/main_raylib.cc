@@ -18,9 +18,7 @@ int main() {
     // On a ajouté une source pour que ce soit plus joli et compréhensible
     Aleatoire gen(42);
     Particule modele(1.0, 0.3, Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 6.0});
-    Source* s1 = new Source(modele, 0.0, 0.0, 6.0,
-                             /*ecart_v=*/0.2, /*ecart_r=*/0.05,
-                             /*debit=*/17.0,  /*etat=*/true, gen);
+    Source* s1 = new Source(modele, 0.0, 0.0, 6.0, 0.2, 0.05, 17.0, true, gen);
 
     Systeme systeme({p1, p2, p3, p4}, {o1}, {s1});
 
