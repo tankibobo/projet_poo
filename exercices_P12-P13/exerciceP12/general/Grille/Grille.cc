@@ -4,36 +4,40 @@
 #include "Particule/Particule.h"
 
 void Grille::ajouterParticule(Particule* particule) {
-    int x = static_cast<int>(particule->get_position().getX()/taille_case - decalage_x);
-    int y = static_cast<int>(particule->get_position().getY()/taille_case - decalage_y);
-    int z = static_cast<int>(particule->get_position().getZ()/taille_case - decalage_z);
-    particule->setX(x);
-    particule->setY(y);
-    particule->setZ(z);
+    int x = troncature(particule->get_position().getX()/taille_case + decalage_x);
+    int y = troncature(particule->get_position().getY()/taille_case + decalage_y);
+    int z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
     if (x < 0 or y < 0 or z < 0) {
         int minX = x;
         int minY = y;
         int minZ = z;
         for(Particule* p : getParticules()) {
-            minX = std::min(minX, p->getX());
-            minY = std::min(minY, p->getY());
-            minZ = std::min(minZ, p->getZ());
+            minX = std::min(minX, static_cast<int>(p->getX()));
+            minY = std::min(minY, static_cast<int>(p->getY()));
+            minZ = std::min(minZ, static_cast<int>(p->getZ()));
         }
+        grille[0][0][0].push_back(particule);
         decaler(minX, minY, minZ);
+        x = troncature(particule->get_position().getX()/taille_case + decalage_x);
+        y = troncature(particule->get_position().getY()/taille_case + decalage_y);
+        z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
     }
-    else if (x>=0 and y>=0 and z>=0 and x < grille.size() and y < grille[x].size() and z < grille[x][y].size()) {
-        grille[x][y][z].push_back(particule);
+    else if (x>=0 and y>=0 and z>=0 and static_cast<size_t>(x) < grille.size() and static_cast<size_t>(y) < grille[static_cast<size_t>(x)].size() and static_cast<size_t>(z) < grille[static_cast<size_t>(x)][static_cast<size_t>(y)].size()) {
+        grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)].push_back(particule);
     }
     else {
         agrandirGrille(particule);
     }
+    particule->setX(x);
+    particule->setY(y);
+    particule->setZ(z);
 }
 
 void Grille::retirerParticule(Particule* particule) {
     int x = particule->getX();
     int y = particule->getY();
     int z = particule->getZ();
-    std::vector<Particule*>& caze = grille[x][y][z];
+    std::vector<Particule*>& caze = grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)];
     caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end());
     }
 
@@ -46,8 +50,8 @@ std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
     for(int i = x-1; i <= x+1; i++) {
         for(int j = y-1; j <= y+1; j++) {
             for(int k = z-1; k <= z+1; k++) {
-                if(i >= 0 and i < grille.size() and j >= 0 and j < grille[i].size() and k >= 0 and k < grille[i][j].size()) {
-                    for(Particule* p : grille[i][j][k]) {
+                if(i >= 0 and static_cast<size_t>(i) < grille.size() and j >= 0 and static_cast<size_t>(j) < grille[static_cast<size_t>(i)].size() and k >= 0 and static_cast<size_t>(k) < grille[static_cast<size_t>(i)][static_cast<size_t>(j)].size()) {
+                    for(Particule* p : grille[static_cast<size_t>(i)][static_cast<size_t>(j)][static_cast<size_t>(k)]) {
                         if(p != nullptr and p != particule) {
                             voisins.push_back(p);
                         }
@@ -60,29 +64,30 @@ std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
 }
 
 void Grille::agrandirGrille(Particule* particule) {
-    int x = particule->getX();
-    int y = particule->getY();
-    int z = particule->getZ();
-    if(x >= grille.size()) {
-        grille.resize(x+1);
+    int x = (troncature(particule->get_position().getX()/taille_case + decalage_x));
+    int y = (troncature(particule->get_position().getY()/taille_case + decalage_y));
+    int z = (troncature(particule->get_position().getZ()/taille_case + decalage_z));
+    if(static_cast<size_t>(x) >= grille.size()) {
+        grille.resize(static_cast<size_t>(x+1));
     }
-    if(y >= grille[x].size()) {
-        grille[x].resize(y+1);
+    if(static_cast<size_t>(y) >= grille[static_cast<size_t>(x)].size()) {
+        grille[static_cast<size_t>(x)].resize(static_cast<size_t>(y+1));
     }
-    if(z >= grille[x][y].size()) {
-        grille[x][y].resize(z+1);
+    if(static_cast<size_t>(z) >= grille[static_cast<size_t>(x)][static_cast<size_t>(y)].size()) {
+        grille[static_cast<size_t>(x)][static_cast<size_t>(y)].resize(static_cast<size_t>(z+1));
     }
-    ajouterParticule(particule);
+    grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)].push_back(particule);
+    particule->setX(x);
+    particule->setY(y);
+    particule->setZ(z);
 }
 
 //cette fonction gère les cas où les coordonnées sont négatives O(n)
-void Grille::decaler(int dx, int dy, int dz) {
+void Grille::decaler(int x, int y, int z) {
     std::vector<Particule*> particules = getParticules();
-    for(Particule* p : particules) {
-        p->setX(p->getX() - dx);
-        p->setY(p->getY() - dy);
-        p->setZ(p->getZ() - dz);
-    }
+    decalage_x -= x;
+    decalage_y -= y;
+    decalage_z -= z;
     grille.clear();
     for(Particule* p : particules) {
         ajouterParticule(p);

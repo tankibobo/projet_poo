@@ -17,6 +17,7 @@ class Particule : public Dessinable {
         void setX(const int& x) {x_grille = x;}
         void setY(const int& y) {y_grille = y;}
         void setZ(const int& z) {z_grille = z;}
+        void setPosition(const Vecteur3D& p) {position = p;}
         // getters
         Vecteur3D get_position() const {return position;}
         Vecteur3D get_vitesse() const {return vitesse;}

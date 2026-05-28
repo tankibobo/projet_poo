@@ -11,16 +11,24 @@ class Grille {
         int decalage_z;
     public:
         Grille() = delete;
-        Grille(std::vector<Particule*> particules, int dec_x = 0, int dec_y = 0, int dec_z = 0): taille_case(2*particules[0]->getSigma()), decalage_x(dec_x), decalage_y(dec_y), decalage_z(dec_z) {
-            int maxX(0);
-            int maxY(0); 
-            int maxZ(0); 
+        Grille(std::vector<Particule*> particules, int dX = 0, int dY = 0, int dZ = 0): taille_case(2*particules[0]->getSigma()), decalage_x(dX), decalage_y(dY), decalage_z(dZ) {
+            int minX(0), minY(0), minZ(0);
+            int maxX(0), maxY(0), maxZ(0);
             for (Particule* p : particules) {
-                maxX = std::max(maxX, static_cast<int>(p->get_position().getX()/taille_case));
-                maxY = std::max(maxY, static_cast<int>(p->get_position().getY()/taille_case));
-                maxZ = std::max(maxZ, static_cast<int>(p->get_position().getZ()/taille_case));
+                int x = troncature(p->get_position().getX()/taille_case);
+                int y = troncature(p->get_position().getY()/taille_case);
+                int z = troncature(p->get_position().getZ()/taille_case);
+                minX = std::min(minX, x);
+                minY = std::min(minY, y);
+                minZ = std::min(minZ, z);
+                maxX = std::max(maxX, x);
+                maxY = std::max(maxY, y);
+                maxZ = std::max(maxZ, z);
             }
-            grille.resize(maxX+1, std::vector<std::vector<std::vector<Particule*>>>(maxY+1, std::vector<std::vector<Particule*>>(maxZ+1)));
+            decalage_x -= minX;
+            decalage_y -= minY;
+            decalage_z -= minZ;
+            grille.resize(static_cast<size_t>(maxX - minX + 1), std::vector<std::vector<std::vector<Particule*>>>(static_cast<size_t>(maxY - minY + 1), std::vector<std::vector<Particule*>>(static_cast<size_t>(maxZ - minZ + 1))));
             for (Particule* p : particules) ajouterParticule(p);
         } //done
         void ajouterParticule(Particule* particule); // done 
@@ -30,4 +38,5 @@ class Grille {
         void agrandirGrille(Particule* particule); // done
         void decaler(int x, int y, int z); // done
         std::vector<Particule*> getParticules() const; // done
+        int troncature(double x) { int q = static_cast<int>(x); if(q>x) q--;return q;}
 };
