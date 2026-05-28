@@ -46,6 +46,10 @@ void Systeme::evolue() {
     }
 
     for (Particule* p : particules) p->bouger(Constantes::dt);
+
+    // Sources : création de nouvelles particules à chaque pas de temps
+    for (Source* s : sources) s->creation(particules, Constantes::dt);
+
     temps += Constantes::dt;
 }
 

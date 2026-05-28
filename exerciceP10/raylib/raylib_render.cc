@@ -18,9 +18,9 @@ raylibRender::raylibRender()
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
     InitWindow(800, 600, "Simulation P10");
 
-    camera.position   = { 5.0f, 5.0f, 5.0f };
-    camera.target     = { 0.0f, 0.0f, 0.0f };
-    camera.up         = { 0.0f, 1.0f, 0.0f };
+    camera.position   = { 4.0f, 6.0f, 12.0f };
+    camera.target     = { 0.5f, 1.5f,  0.0f };
+    camera.up         = { 0.0f, 1.0f,  0.0f };
     camera.fovy       = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 

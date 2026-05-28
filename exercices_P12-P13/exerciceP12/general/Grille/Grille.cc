@@ -4,9 +4,9 @@
 #include "Particule/Particule.h"
 
 void Grille::ajouterParticule(Particule* particule) {
-    int x = (int)(particule->get_position().getX()/taille_case - decalage_x);
-    int y = (int)(particule->get_position().getY()/taille_case - decalage_y);
-    int z = (int)(particule->get_position().getZ()/taille_case - decalage_z);
+    int x = static_cast<int>(particule->get_position().getX()/taille_case - decalage_x);
+    int y = static_cast<int>(particule->get_position().getY()/taille_case - decalage_y);
+    int z = static_cast<int>(particule->get_position().getZ()/taille_case - decalage_z);
     particule->setX(x);
     particule->setY(y);
     particule->setZ(z);

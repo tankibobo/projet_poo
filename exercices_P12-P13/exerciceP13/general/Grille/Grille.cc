@@ -5,9 +5,9 @@
 #include "../Triplet/Triplet.h"
 
 void Grille::ajouterParticule(Particule* particule) {
-    int x = (int)(particule->get_position().getX()/taille_case);
-    int y = (int)(particule->get_position().getY()/taille_case);
-    int z = (int)(particule->get_position().getZ()/taille_case);
+    int x = static_cast<int>(particule->get_position().getX()/taille_case);
+    int y = static_cast<int>(particule->get_position().getY()/taille_case);
+    int z = static_cast<int>(particule->get_position().getZ()/taille_case);
     particule->setX(x);
     particule->setY(y);
     particule->setZ(z);

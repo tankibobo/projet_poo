@@ -16,9 +16,9 @@ class Grille {
             int maxY(0); 
             int maxZ(0); 
             for (Particule* p : particules) {
-                maxX = std::max(maxX, (int)(p->get_position().getX()/taille_case)); 
-                maxY = std::max(maxY, (int)(p->get_position().getY()/taille_case)); 
-                maxZ = std::max(maxZ, (int)(p->get_position().getZ()/taille_case));
+                maxX = std::max(maxX, static_cast<int>(p->get_position().getX()/taille_case));
+                maxY = std::max(maxY, static_cast<int>(p->get_position().getY()/taille_case));
+                maxZ = std::max(maxZ, static_cast<int>(p->get_position().getZ()/taille_case));
             }
             grille.resize(maxX+1, std::vector<std::vector<std::vector<Particule*>>>(maxY+1, std::vector<std::vector<Particule*>>(maxZ+1)));
             for (Particule* p : particules) ajouterParticule(p);

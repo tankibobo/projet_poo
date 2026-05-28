@@ -7,7 +7,7 @@ class Aleatoire
 public:
   // constructeurs
   Aleatoire(int graine)
-  : generateur(graine)
+  : generateur(static_cast<unsigned int>(graine))
   {}
 
   Aleatoire()
