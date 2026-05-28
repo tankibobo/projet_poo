@@ -6,10 +6,8 @@
 #include <cmath>
 
 int main() {
-    // Plan horizontal à z = -0.5 (bien visible sous les particules)
     Plan* o1 = new Plan(0.0, 0.0, -0.5, 0.0, 0.0, 1.0);
 
-    // 4 particules initiales en tétraèdre, en hauteur (z=3) pour voir la chute
     Particule* p1 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 3.0});
     Particule* p2 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 3.0});
     Particule* p3 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {0.5, sqrt(3.0)/2.0, 3.0});
