@@ -1,9 +1,15 @@
 listes des choses à faire impt
 
-- terminer obstacle.h (romain)
-- faire un unique_ptr dans les listes de systeme?
-- creer un constructeur de copie pour "systeme"?
-- ne pas copier les fichiers comme vecteur3d
-- refaire les tests sources qui ne sotn pas adaptés dans les classes
-- refaire les tests systeme
-- bonus: faire des systèmes qui peuvent a la fois accueillir des particules de différents milieux.
+CHOSES A FAIRE AVANT DE RENDRE AU MOINS:
+- enlever toute trace de claude et re organiser le code (ajouter des commentaires)
+- refaire tous les fichiers et voir les erreurs de base possibles (destructeur virtuel, ownership, etc?)
+- vérifier l'ownership dnas la classe système
+- refaire/revérifier tous les tests
+
+BONUS:
+- faire des systèmes qui peuvent a la fois accueillir des particules de différents milieux (utiliser pour cela les grilles (avec une map?), en mettant différentes cases dans différents milieux)
+- ajouter plusieurs types de particules dans la grille avec sigma_max (prendre le sigma maximal)
+- ajouter d'autres types de particules
+- ajouter deux-trois obstacles
+- changer la couleur des particules e focntion d'une grandeur physqieu (vitesse, force, etc)
+- autre idées potentielles
