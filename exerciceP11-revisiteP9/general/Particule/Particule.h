@@ -13,7 +13,7 @@ class Particule : public Dessinable, public Agent {
     public:
         // constructeurs
         Particule() = delete;
-        Particule(double mv, double r, double visc, double masse_v_milieu, Vecteur3D position = {0,0,0}, Vecteur3D vitesse = {0,0,0}): position(position), vitesse(vitesse), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
+        Particule(double mv, double r, double visc, double masse_v_milieu, Vecteur3D pos_ = {0,0,0}, Vecteur3D vit_ = {0,0,0}): position(pos_), vitesse(vit_), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(masse_v_milieu), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
         // setters
         void setMasseV(const double& mv) {masse_v = mv; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
         void setRayon(const double& r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}

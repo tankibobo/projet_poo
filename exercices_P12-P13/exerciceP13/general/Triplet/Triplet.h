@@ -2,7 +2,7 @@
 
 class Triplet {
     public:
-        Triplet(int x, int y, int z) : x(x), y(y), z(z) {}
+        Triplet(int x_, int y_, int z_) : x(x_), y(y_), z(z_) {}
         bool operator<(const Triplet& autre) const {
             if (x != autre.x) return x < autre.x;
             if (y != autre.y) return y < autre.y;

@@ -1,6 +1,7 @@
 // fonctionne et cmake verifié
 #include "Plan.h"
 #include <iostream>
+#include <vector>
 
 int main() {
     Plan p1(0, 0, 2);

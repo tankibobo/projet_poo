@@ -2,6 +2,7 @@
 // a voir si on rajoute des setters pour les attributs, j'ai pas trop compris le truc Aleatoire
 
 #pragma once
+#include <vector>
 #include "../Aleatoire/Aleatoire.h"
 #include "../Vecteur3D/Vecteur3D.h"
 #include "../Dessinable/Dessinable.h"
@@ -12,8 +13,8 @@ class Particule;
 
 class Source : public Dessinable {
     public:
-        Source(Particule const& modele, double x, double y, double z, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(1), ecart_type_rayon(1), debit(1), etat(true), modele(modele), generateur(generateur) {};
-        Source(Particule const& modele, double x, double y, double z, double ecart_v, double ecart_r, double debit, bool etat, Aleatoire& generateur) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit), etat(etat), modele(modele), generateur(generateur) {};
+        Source(Particule const& modele_, double x, double y, double z, Aleatoire& generateur_) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(1), ecart_type_rayon(1), debit(1), etat(true), modele(modele_), generateur(generateur_) {};
+        Source(Particule const& modele_, double x, double y, double z, double ecart_v, double ecart_r, double debit_, bool etat_, Aleatoire& generateur_) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit_), etat(etat_), modele(modele_), generateur(generateur_) {};
 
         void on() {etat = true;}
         void off() {etat = false;}

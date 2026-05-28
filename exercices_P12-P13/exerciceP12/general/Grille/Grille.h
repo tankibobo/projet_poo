@@ -11,7 +11,7 @@ class Grille {
         int decalage_z;
     public:
         Grille() = delete;
-        Grille(std::vector<Particule*> particules, int decalage_x = 0, int decalage_y = 0, int decalage_z = 0): taille_case(2*particules[0]->getSigma()), decalage_x(decalage_x), decalage_y(decalage_y), decalage_z(decalage_z) {
+        Grille(std::vector<Particule*> particules, int dec_x = 0, int dec_y = 0, int dec_z = 0): taille_case(2*particules[0]->getSigma()), decalage_x(dec_x), decalage_y(dec_y), decalage_z(dec_z) {
             int maxX(0);
             int maxY(0); 
             int maxZ(0); 

@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "../Particule/Particule.h"
 
 class Calcul {
