@@ -3,7 +3,9 @@
 #include "Obstacle/Obstacle.h"
 #include "SupportADessin/SupportADessin.h"
 
+
 #include <ostream>
+
 
 class Plan : public Obstacle {
     public:
@@ -24,6 +26,7 @@ class Plan : public Obstacle {
             normale = ~normale;
         };
     
+
         // Plan(const Plan& autre) : position(autre.position), normale(autre.normale) {}; constructeur de copie par def
         double getX() const {return position.getX();}
         double getY() const {return position.getY();}
@@ -37,14 +40,16 @@ class Plan : public Obstacle {
         Vecteur3D position;
         Vecteur3D normale;
     
+
 };
+
 
 class Dalle : public Plan {
     public:
-        // x,y,z  : centre de la dalle
-        // vect   : normale au plan (normalisée automatiquement)
-        // l, L   : longueur et largeur de la dalle
-        // dir    : direction de la longueur (normalisée, doit être dans le plan)
+        // x,y,z : centre de la dalle
+        // vect : normale au plan (normalisée automatiquement)
+        // l, L : longueur et largeur de la dalle
+        // dir : direction de la longueur (normalisée, doit être dans le plan)
         Dalle(const double& x, const double& y, const double& z,
               const Vecteur3D& vect,
               const double& l, const double& L,
@@ -53,19 +58,23 @@ class Dalle : public Plan {
         {
             direction_longueur = ~direction_longueur;
             // direction_largeur = normale × direction_longueur, puis normalisée
-            direction_largeur  = ~(normale ^ direction_longueur);
+            direction_largeur = ~(normale ^ direction_longueur);
             // largeur reste L (paramètre utilisateur), on ne l'écrase plus
         };
 
-        double getLongueur()            const {return longueur;}
-        double getLargeur()             const {return largeur;}
+
+        double getLongueur() const {return longueur;}
+        double getLargeur() const {return largeur;}
         Vecteur3D getDirection_longueur() const {return direction_longueur;}
-        Vecteur3D getDirection_largeur()  const {return direction_largeur;}
+        Vecteur3D getDirection_largeur() const {return direction_largeur;}
+
 
         // Retourne le point de la dalle le plus proche de x_i
         Vecteur3D PointPlusProche(Vecteur3D const& x_i) const override;
 
+
         virtual std::ostream& affiche(std::ostream& os) const override;
+
 
     private:
         double longueur;

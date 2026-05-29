@@ -3,6 +3,7 @@
 #include "../Agent/Agent.h"
 class ParticuleRoche;
 
+
 class ParticuleNeige : public Particule {
     public:
         using Particule::ajouteForce;

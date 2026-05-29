@@ -6,7 +6,9 @@
 #include "Dessinable/Dessinable.h"
 #include "SupportADessin/SupportADessin.h"
 
+
 class Particule;
+
 
 class Systeme: public Dessinable {
     public:
@@ -21,13 +23,13 @@ class Systeme: public Dessinable {
         void ajoute_obstacle(Obstacle* o) {obstacles.push_back(o);}
         void ajoute_source(Source* s) {sources.push_back(s);}
     // evolution
-        void evolue(); 
-    // get 
+        void evolue();
+    // get
         double getTemps() const {return temps;}
         const std::vector<Particule*>& getParticules() const {return particules;}
         const std::vector<Obstacle*>& getObstacles() const {return obstacles;}
         const std::vector<Source*>& getSources() const {return sources;}
-    // dessin    
+    // dessin
         virtual void dessine_sur(SupportADessin& support) override { support.dessine(*this); }
     // copie (pas de copie d'un système)
         Systeme(const Systeme&) = delete;
@@ -40,5 +42,6 @@ class Systeme: public Dessinable {
         std::vector<Source*> sources;
         double temps;
 };
+
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s);

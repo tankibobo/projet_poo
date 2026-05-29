@@ -5,8 +5,10 @@
 #include "Dessinable/Dessinable.h"
 #include "../Agent/Agent.h"
 
+
 class Particule;
 class ParticuleNeige;
+
 
 class Obstacle : public Dessinable, public Agent {
 public:

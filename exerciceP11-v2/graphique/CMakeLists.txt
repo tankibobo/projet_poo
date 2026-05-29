@@ -6,7 +6,7 @@ set(P11V2_SOURCES
     ../general/Plan/Plan.cc
     ../general/Source/Source.cc
     ../general/Systeme/Systeme.cc
-    ../general/Boite/Boite.cc
+    ../general/Brique/Brique.cc
     ../../commun/Vecteur3D/Vecteur3D.cc
     ../../commun/Aleatoire/Aleatoire.cc
 )

@@ -4,23 +4,29 @@
 #include "Constantes.h"
 #include <iostream>
 
+
 int main() {
+
 
     // constructeurs
     ParticuleNeige p1(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
     ParticuleRoche p2(12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 0.0}, {0.0, 0.2, 0.0});
-    ParticuleNeige p3(12.5, 0.1,  Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 1.0}, {0.0, 0.0, -0.05});
+    ParticuleNeige p3(12.5, 0.1, Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 1.0}, {0.0, 0.0, -0.05});
+
 
     // copie
-    ParticuleNeige p4(p1); 
+    ParticuleNeige p4(p1);
     ParticuleRoche p5(p2);
+
 
     std::cout << "p1 (neige) : " << p1 << std::endl;
     std::cout << "p2 (roche) : " << p2 << std::endl;
     std::cout << "p3 (neige) : " << p3 << std::endl;
 
+
     std::cout << "p4 (neige, copie) : " << p4 << std::endl;
     std::cout << "p5 (roche, copie) : " << p5 << std::endl;
+
 
     // ajoute force interaction
     std::cout << "Force d'interaction p2 sur p3 (=p3 sur p2 dans ce modele)" << std::endl;
@@ -33,6 +39,7 @@ int main() {
     std::cout << "p3 après dt: " << p3 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
+
     std::cout << "Force d'interaction p2 sur p5 (=p5 sur p2 dans ce modele)" << std::endl;
     std::cout << "___ avant ____" << std::endl;
     std::cout << "p5 avant : " << p5 << std::endl;
@@ -43,9 +50,12 @@ int main() {
     std::cout << "p5 après dt: " << p5 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
+
     // cas limites (particules a la meme position). normalement, par sécurité, deux particules exactement au même endroit ne s'appliquent aucune force (évite le NaN)
 
+
     ParticuleRoche p6(p2);
+
 
     std::cout << "Force d'interaction p2 sur p6 (=p6 sur p2 dans ce modele)" << std::endl;
     std::cout << "___ avant ____" << std::endl;
@@ -57,6 +67,7 @@ int main() {
     std::cout << "p6 après dt: " << p6 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
+
     std::cout << "Force d'interaction p4 sur p1 (=p1 sur p4 dans ce modele)" << std::endl;
     std::cout << "___ avant ____" << std::endl;
     std::cout << "p1 avant : " << p1 << std::endl;
@@ -66,6 +77,7 @@ int main() {
     p4.bouger(Constantes::dt);
     std::cout << "p1 après dt: " << p1 << std::endl;
     std::cout << "p4 après dt: " << p4 << std::endl;
+
 
     return 0;
 }

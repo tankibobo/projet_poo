@@ -3,6 +3,7 @@
 #include <ostream>
 #include <cmath>
 
+
 class Vecteur3D {
 	public:
 	//constructeurs
@@ -26,10 +27,12 @@ class Vecteur3D {
 	void operator/=(double k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k};}
 	void operator^=(const Vecteur3D& autre) {vecteur = {vecteur[1] * autre.getZ() - vecteur[2] * autre.getY(), vecteur[2] * autre.getX() - vecteur[0] * autre.getZ(), vecteur[0] * autre.getY() - vecteur[1] * autre.getX()};}
 
+
 	private :
-		std::array<double, 3> vecteur; 
+		std::array<double, 3> vecteur;
 		static constexpr double p = 1e-10;
 };
+
 
 std::ostream& operator<<(std::ostream& os, const Vecteur3D& v);
 bool operator==(const Vecteur3D& v1, const Vecteur3D& v2);

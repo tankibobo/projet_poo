@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 
+
 int main() {
     Particule* p1 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
     Particule* p2 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 0.0});
@@ -14,7 +15,9 @@ int main() {
     Plan* o1 = new Plan(0.0, 0.0, -0.9, 0.0, 0.0, 1.0);
     Systeme s({p1, p2, p3, p4}, {o1}, {});
 
+
     TextViewer viewer(std::cout);
+
 
     for (int i = 0; i <= 100; ++i) {
         std::cout << "t:" << i * Constantes::dt << "\n\n";

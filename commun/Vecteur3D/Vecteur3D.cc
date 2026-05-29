@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Vecteur3D.h"
 
+
 void Vecteur3D::set_coord(std::size_t x, const double& k) {
 	vecteur[x] = k;
 }
@@ -16,7 +17,7 @@ bool operator==(const Vecteur3D& v1, const Vecteur3D& v2) {
 	return false;
 }
 Vecteur3D operator^(Vecteur3D v1, const Vecteur3D& v2) {
-	(v1^=v2); 
+	(v1^=v2);
 	return v1;
 }
 Vecteur3D operator*(const Vecteur3D& v, double k) {

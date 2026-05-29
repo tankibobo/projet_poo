@@ -7,12 +7,15 @@
 #include "../ParticuleNeige/ParticuleNeige.h"
 #include "../Agent/Agent.h"
 
+
 class Obstacle : public Dessinable, public Agent {
 public:
     virtual Vecteur3D PointPlusProche(Vecteur3D const& x_i) const = 0;
 
+
     // Choc élastique après bouger() — par défaut ne fait rien (Plan infini).
     virtual void collision(Particule& /*p*/) {}
+
 
     virtual ~Obstacle() {}
     virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); };

@@ -3,7 +3,9 @@
 #include <vector>
 #include "../Particule/Particule.h"
 
+
 class Grille;
+
 
 class CalculGrille : public Calcul {
     private:

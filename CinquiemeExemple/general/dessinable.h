@@ -8,7 +8,7 @@ public:
     // la raison d'être des Dessinable
     virtual void dessine_sur(SupportADessin&) const = 0;
 
-    // mise en virtuel du destructeur (puisque classe abstraite)
+    // destructeur virtuel (puisque classe abstraite)
     virtual ~Dessinable()                    = default;
 
     // remise par défaut des constructeurs de copie et de déplacement

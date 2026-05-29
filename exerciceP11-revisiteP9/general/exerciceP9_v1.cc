@@ -7,6 +7,7 @@
 #include <cmath>
 #include <iostream>
 
+
 int main() {
     ParticuleNeige* p1 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
     ParticuleNeige* p2 = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0, 0});
@@ -15,9 +16,11 @@ int main() {
     Plan* o1 = new Plan(0, 0, -0.9, 0, 0, 1);
     Systeme s({p1, p2, p3, p4}, {o1}, {});
 
+
     for(int i(0); i <= 100; i++) {
         std::cout << "t:" << i * Constantes::dt << std::endl;
         std::cout << std::endl;
+
 
         std::cout << s << std::endl;
         s.evolue();

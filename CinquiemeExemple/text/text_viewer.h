@@ -13,10 +13,6 @@ public:
     TextViewer(TextViewer&&)                 = default;
     TextViewer& operator=(TextViewer&&)      = default;
 
-    /*
-     * Il faut surcharger la méthode dessine pour dessiner le contenu.
-     * Ne pas oublier de le faire pour toutes les méthodes de dessin !
-     */
     void dessine(Contenu const& a_dessiner) override;
 
 private:

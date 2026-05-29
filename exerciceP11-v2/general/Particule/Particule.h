@@ -6,8 +6,10 @@
 #include "Constantes.h"
 #include "../Agent/Agent.h"
 
+
 class ParticuleNeige;
 class ParticuleRoche;
+
 
 class Particule : public Dessinable, public Agent {
     public:
@@ -50,10 +52,11 @@ class Particule : public Dessinable, public Agent {
         Vecteur3D vitesse;
         Vecteur3D force;
         double masse_v;
-        double rayon; 
+        double rayon;
         double viscosite;
         double masse_v_milieu;
         double masse;
+
 
 };
 std::ostream& operator<<(std::ostream& os, const Particule& p);

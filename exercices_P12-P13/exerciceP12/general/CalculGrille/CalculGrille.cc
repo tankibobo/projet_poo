@@ -4,6 +4,7 @@
 #include <vector>
 #include "Particule/Particule.h"
 
+
 void CalculGrille::calculerForce(const std::vector<Particule*>& particules) {
     for (Particule* p : particules) {
         grille.retirerParticule(p);
@@ -16,6 +17,7 @@ void CalculGrille::calculerForce(const std::vector<Particule*>& particules) {
         grille.ajouterParticule(p);
     }
 }
+
 
 void CalculGrille::bouger(std::vector<Particule*>& particules, double dt) {
     for (Particule* p : particules) {

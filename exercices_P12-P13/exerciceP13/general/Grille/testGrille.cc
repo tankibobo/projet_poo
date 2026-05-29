@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 
+
 int main() {
     Particule* p1 = new Particule(1.0, 0.5, 1.0, 1.0); //vérifie en même temps "agrandirGrille" puisque la grille n'a pas de taille a la base
     Particule* p2 = new Particule(1.0, 0.5, 1.0, 1.0, {0.5, 0.5, 0.5});

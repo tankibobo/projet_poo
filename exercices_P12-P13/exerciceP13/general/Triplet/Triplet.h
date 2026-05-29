@@ -1,5 +1,6 @@
 #pragma once
 
+
 class Triplet {
     public:
         Triplet(int x_, int y_, int z_) : x(x_), y(y_), z(z_) {}

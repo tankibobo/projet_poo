@@ -2,7 +2,9 @@
 #include "../Particule/Particule.h"
 #include "../Agent/Agent.h"
 
+
 class ParticuleRoche;
+
 
 class ParticuleNeige : public Particule {
     public:

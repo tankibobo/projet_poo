@@ -28,10 +28,9 @@ void raylibRender::run()
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
-                // Afin de bien voir le cube, on va dessiner une grille.
+                // On dessine une grille pour voir mieux le cube
                 DrawGrid(200, 0.5f);
 
-                // Et on dessine le contenu.
                 c.dessine_sur(*this);
             EndMode3D();
         EndDrawing();

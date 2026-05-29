@@ -2,6 +2,7 @@
 #include <vector>
 #include "Particule/Particule.h"
 
+
 class Grille {
     private:
         std::vector<std::vector<std::vector<std::vector<Particule*>>>> grille;
@@ -31,7 +32,7 @@ class Grille {
             grille.resize(static_cast<size_t>(maxX - minX + 1), std::vector<std::vector<std::vector<Particule*>>>(static_cast<size_t>(maxY - minY + 1), std::vector<std::vector<Particule*>>(static_cast<size_t>(maxZ - minZ + 1))));
             for (Particule* p : particules) ajouterParticule(p);
         } //done
-        void ajouterParticule(Particule* particule); // done 
+        void ajouterParticule(Particule* particule); // done
         void retirerParticule(Particule* particule); //done
         void mettreAJour(Particule* particule) {retirerParticule(particule); ajouterParticule(particule);} // done
         std::vector<Particule*> getVoisins(const Particule* particule) const; // done

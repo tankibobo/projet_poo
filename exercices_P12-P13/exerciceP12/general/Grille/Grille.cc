@@ -3,6 +3,7 @@
 #include <vector>
 #include "Particule/Particule.h"
 
+
 void Grille::ajouterParticule(Particule* particule) {
     int x = troncature(particule->get_position().getX()/taille_case + decalage_x);
     int y = troncature(particule->get_position().getY()/taille_case + decalage_y);
@@ -33,6 +34,7 @@ void Grille::ajouterParticule(Particule* particule) {
     particule->setZ(z);
 }
 
+
 void Grille::retirerParticule(Particule* particule) {
     int x = particule->getX();
     int y = particule->getY();
@@ -40,6 +42,7 @@ void Grille::retirerParticule(Particule* particule) {
     std::vector<Particule*>& caze = grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)];
     caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end());
     }
+
 
 std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
     std::vector<Particule*> voisins;
@@ -63,6 +66,7 @@ std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
     return voisins;
 }
 
+
 void Grille::agrandirGrille(Particule* particule) {
     int x = (troncature(particule->get_position().getX()/taille_case + decalage_x));
     int y = (troncature(particule->get_position().getY()/taille_case + decalage_y));
@@ -82,6 +86,7 @@ void Grille::agrandirGrille(Particule* particule) {
     particule->setZ(z);
 }
 
+
 //cette fonction gère les cas où les coordonnées sont négatives O(n)
 void Grille::decaler(int x, int y, int z) {
     std::vector<Particule*> particules = getParticules();
@@ -93,6 +98,7 @@ void Grille::decaler(int x, int y, int z) {
         ajouterParticule(p);
     }
 }
+
 
 std::vector<Particule*> Grille::getParticules() const {
     std::vector<Particule*> particules;

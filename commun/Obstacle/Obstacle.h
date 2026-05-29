@@ -3,15 +3,16 @@
 #include "../SupportADessin/SupportADessin.h"
 #include "../Dessinable/Dessinable.h"
 
-class Particule;  // forward declaration pour collision()
+
+class Particule; // forward declaration pour collision()
+
 
 class Obstacle : public Dessinable {
 public:
     virtual Vecteur3D PointPlusProche(Vecteur3D const& x_i) const = 0;
 
-    // Résolution d'un choc élastique après le déplacement.
-    // Par défaut : ne fait rien (Plan infini → jamais de pénétration à corriger).
-    // Les sous-classes finies (Boite, ...) peuvent l'override.
+    // Par défaut collision() ne fait rien (Plan n'a rien à override pour corriger)
+    // Les sous-classes (Brique, ...) peuvent l'override.
     virtual void collision(Particule&) {}
 
     virtual ~Obstacle() {}

@@ -5,12 +5,15 @@
 #include "Vecteur3D/Vecteur3D.h"
 #include <ostream>
 
+
 std::ostream& operator<<(std::ostream& os, const Obstacle& o) {
     return o.affiche(os);
 }
 
+
 void Obstacle::opere_sur(ParticuleNeige& p) {force(p);}
 void Obstacle::opere_sur(ParticuleRoche& p) {force(p);}
+
 
 void Obstacle::force(Particule& p) const {;
     Vecteur3D proche = PointPlusProche(p.get_position());

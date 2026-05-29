@@ -2,6 +2,7 @@
 #include "Calcul.h"
 #include <vector>
 
+
 class CalculNaif : public Calcul {
     public:
         virtual void calculerForce(const std::vector<Particule*>& particules) override;

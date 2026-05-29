@@ -3,10 +3,12 @@
 #include "Constantes.h"
 #include "Vecteur3D/Vecteur3D.h"
 
+
 std::ostream& operator<<(std::ostream& os, const Particule& p) {
 os << "Pos: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "V: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "M: " << p.getMasse() << ", M/V: " << p.getMasseV() << ", R: " << p.getRayon();
     return os;
 }
+
 
 double Particule::f(const double& x) {
     if(x <= 1) {
@@ -18,6 +20,7 @@ double Particule::f(const double& x) {
     return ((std::pow(x, 6) - 2.0) / std::pow(x, 13));
 }
 
+
 Vecteur3D Particule::lambda_v() const {
     if(vitesse.norme() <= (80.0*viscosite)/(3.0*masse_v_milieu*rayon)) {
         return (6.0*Constantes::pi*viscosite*rayon)*vitesse;
@@ -25,9 +28,11 @@ Vecteur3D Particule::lambda_v() const {
     return (((9.0*Constantes::pi)/40.0)*rayon*rayon*masse_v_milieu*vitesse.norme())*vitesse;
 }
 
+
 void Particule::ajouteForce() {
     force += ((getMasse() * Constantes::g) - lambda_v());
 }
+
 
 void Particule::bouger(double dt) {
     vitesse += (dt/getMasse())*force;

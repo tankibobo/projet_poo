@@ -1,6 +1,8 @@
 #pragma once
 
+
 #include <random>
+
 
 class Aleatoire
 {
@@ -10,27 +12,33 @@ public:
   : generateur(static_cast<unsigned int>(graine))
   {}
 
+
   Aleatoire()
   : generateur(rd())
   {}
 
-  // mÃ©thodes
+
+  // méthodes
   double uniforme(double min = 0.0, double max = 1.0) {
     return distribution_uniforme(generateur, std::uniform_real_distribution<double>::param_type{min, max});
   }
+
 
   double gaussienne(double moyenne, double ecart_type) {
   return distribution_normale(generateur,std::normal_distribution<double>::param_type{moyenne, ecart_type});
   };
 
+
 private:
   static std::uniform_real_distribution<double> distribution_uniforme;
-  static std::normal_distribution<double>       distribution_normale;
-  static std::random_device                     rd;
+  static std::normal_distribution<double> distribution_normale;
+  static std::random_device rd;
+
 
   std::mt19937 generateur;
 
+
   // pas de copie
-  Aleatoire(Aleatoire const&)            = delete;
+  Aleatoire(Aleatoire const&) = delete;
   Aleatoire& operator=(Aleatoire const&) = delete;
 };

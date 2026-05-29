@@ -6,18 +6,22 @@
 #include "Source/Source.h"
 #include "../Agent/Agent.h"
 
+
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
     std::vector<Particule*> p(s.getParticules());
     std::vector<Obstacle*> o(s.getObstacles());
     std::vector<Source*> src(s.getSources());
 
+
     os << "Le système a " << p.size() << " particules, " << o.size() << " obstacles et " << src.size() << " sources." << std::endl;
     os << std::endl;
 
-    os << "Particules : " <<  std::endl;
+
+    os << "Particules : " << std::endl;
     for(size_t i(0); i < p.size(); i++) {
         os << "- " << *p[i] << std::endl;
     }
+
 
     os << std::endl;
     os << "Obstacles : " << std::endl;
@@ -25,20 +29,24 @@ std::ostream& operator<<(std::ostream& os, const Systeme& s) {
         os << "- " << *o[i] << std::endl;
     }
 
+
     os << std::endl;
     os << "Sources : " << std::endl;
     for(size_t i(0); i < src.size(); i++) {
         os << "- " << *src[i] << std::endl;
     }
 
+
     return os;
 }
 
+
 void Systeme::evolue() {
     for (Particule* p : particules) {
-        p->ajouteForce();                       
-        for (Obstacle* o : obstacles) p->ajouteForce(*o); 
+        p->ajouteForce();
+        for (Obstacle* o : obstacles) p->ajouteForce(*o);
     }
+
 
     for (size_t i(0); i < particules.size(); ++i) {
         for (size_t j(i + 1); j < particules.size(); ++j) {
@@ -46,17 +54,22 @@ void Systeme::evolue() {
         }
     }
 
+
     for (Particule* p : particules) p->bouger(Constantes::dt);
+
 
     // Chocs élastiques : correction de vitesse après pénétration éventuelle
     for (Particule* p : particules)
         for (Obstacle* o : obstacles) o->collision(*p);
 
+
     // Sources : création de nouvelles particules à chaque pas de temps
     for (Source* s : sources) s->creation(particules, Constantes::dt);
 
+
     temps += Constantes::dt;
 }
+
 
 Systeme::~Systeme() {
     for (Particule* p : particules) delete p;

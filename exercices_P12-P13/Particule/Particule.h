@@ -7,6 +7,7 @@
 #include "Plan/Plan.h"
 #include "Obstacle/Obstacle.h"
 
+
 class Particule : public Dessinable {
     public:
         // constructeurs
@@ -49,7 +50,7 @@ class Particule : public Dessinable {
         Vecteur3D vitesse;
         Vecteur3D force;
         double masse_v;
-        double rayon; 
+        double rayon;
         double viscosite;
         double masse_v_milieu;
         double masse;

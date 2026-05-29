@@ -4,6 +4,7 @@
 #include "../../../Particule/Particule.h"
 #include "../Triplet/Triplet.h"
 
+
 void Grille::ajouterParticule(Particule* particule) {
     int x = static_cast<int>(particule->get_position().getX()/taille_case);
     int y = static_cast<int>(particule->get_position().getY()/taille_case);
@@ -14,6 +15,7 @@ void Grille::ajouterParticule(Particule* particule) {
     grille[Triplet(x, y, z)].push_back(particule);
 }
 
+
 void Grille::retirerParticule(Particule* particule) {
     int x = particule->getX();
     int y = particule->getY();
@@ -21,6 +23,7 @@ void Grille::retirerParticule(Particule* particule) {
     std::vector<Particule*>& caze = grille[Triplet(x, y, z)];
     caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end());
     }
+
 
 std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
     std::vector<Particule*> voisins;

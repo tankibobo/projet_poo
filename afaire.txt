@@ -11,5 +11,5 @@ BONUS:
 - ajouter plusieurs types de particules dans la grille avec sigma_max (prendre le sigma maximal)
 - ajouter d'autres types de particules
 - ajouter deux-trois obstacles
-- changer la couleur des particules e focntion d'une grandeur physqieu (vitesse, force, etc)
+- changer la couleur des particules e focntion d'une grandeur physique (vitesse, force, etc)
 - autre idées potentielles

@@ -3,6 +3,7 @@
 #include "../Obstacle/Obstacle.h"
 #include <ostream>
 
+
 class Plan : public Obstacle {
     public:
         Plan() : position(0,0,0), normale(0,0,1) {};
@@ -22,7 +23,9 @@ class Plan : public Obstacle {
             normale = ~normale;
         };
     
-        // Plan(const Plan& autre) : position(autre.position), normale(autre.normale) {}; constructeur de copie par def
+
+        Plan(const Plan& autre) : position(autre.position), normale(autre.normale) {}; //constructeur de copie par def
+        
         double getX() const {return position.getX();}
         double getY() const {return position.getY();}
         double getZ() const {return position.getZ();}
@@ -35,7 +38,9 @@ class Plan : public Obstacle {
         Vecteur3D position;
         Vecteur3D normale;
     
+
 };
+
 
 class Dalle : public Plan {
     public:
@@ -53,5 +58,6 @@ class Dalle : public Plan {
         double largeur;
         Vecteur3D direction_longueur;
         Vecteur3D direction_largeur;
+
 
 };
