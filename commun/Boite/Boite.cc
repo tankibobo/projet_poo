@@ -3,23 +3,17 @@
 #include "../Vecteur3D/Vecteur3D.h"
 #include <ostream>
 
-Boite::Boite(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_)
-    : centre(centre_)
-    , demi_longueur(longueur/2.0), demi_largeur(largeur/2.0), demi_profondeur(profondeur/2.0)
-    , dir_longueur(~dir_longueur_), dir_largeur(~dir_largeur_)
-    , dir_profondeur(~(dir_longueur_ ^ dir_largeur_))
-{}
+Boite::Boite(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_): centre(centre_), demi_longueur(longueur/2.0), demi_largeur(largeur/2.0), demi_profondeur(profondeur/2.0), dir_longueur(~dir_longueur_), dir_largeur(~dir_largeur_), dir_profondeur(~(dir_longueur_ ^ dir_largeur_)) {}
 
 // Indice de la face la plus proche : 0/1=±longueur, 2/3=±largeur, 4/5=±profondeur
-static int facePlusProche(double d_longueur_pos, double d_longueur_neg, double d_largeur_pos,  double d_largeur_neg, double d_profondeur_pos, double d_profondeur_neg)
-{
+static int facePlusProche(double d_longueur_pos, double d_longueur_neg, double d_largeur_pos,  double d_largeur_neg, double d_profondeur_pos, double d_profondeur_neg) {
     int idx = 0;
     double dmin = d_longueur_pos;
-    if (d_longueur_neg   < dmin) { dmin = d_longueur_neg;   idx = 1; }
-    if (d_largeur_pos    < dmin) { dmin = d_largeur_pos;    idx = 2; }
-    if (d_largeur_neg    < dmin) { dmin = d_largeur_neg;    idx = 3; }
-    if (d_profondeur_pos < dmin) { dmin = d_profondeur_pos; idx = 4; }
-    if (d_profondeur_neg < dmin) { dmin = d_profondeur_neg; idx = 5; }
+    if(d_longueur_neg   < dmin) { dmin = d_longueur_neg;   idx = 1; }
+    if(d_largeur_pos    < dmin) { dmin = d_largeur_pos;    idx = 2; }
+    if(d_largeur_neg    < dmin) { dmin = d_largeur_neg;    idx = 3; }
+    if(d_profondeur_pos < dmin) { dmin = d_profondeur_pos; idx = 4; }
+    if(d_profondeur_neg < dmin) { dmin = d_profondeur_neg; idx = 5; }
     return idx;
 }
 
@@ -29,28 +23,23 @@ Vecteur3D Boite::PointPlusProche(Vecteur3D const& x_i) const {
     double proj_largeur    = local | dir_largeur;
     double proj_profondeur = local | dir_profondeur;
 
-    bool dedans = ((proj_longueur   >= -demi_longueur) and (proj_longueur   <= demi_longueur) and 
-                   (proj_largeur    >= -demi_largeur) and (proj_largeur    <= demi_largeur) and 
-                   (proj_profondeur >= -demi_profondeur) and (proj_profondeur <= demi_profondeur));
+    bool dedans = ((proj_longueur   >= -demi_longueur) and (proj_longueur   <= demi_longueur) and (proj_largeur    >= -demi_largeur) and (proj_largeur    <= demi_largeur) and (proj_profondeur >= -demi_profondeur) and (proj_profondeur <= demi_profondeur));
 
     if (not dedans) {
-        if (proj_longueur   < -demi_longueur)   proj_longueur   = -demi_longueur;
-        if (proj_longueur   >  demi_longueur)   proj_longueur   =  demi_longueur;
-        if (proj_largeur    < -demi_largeur)     proj_largeur    = -demi_largeur;
-        if (proj_largeur    >  demi_largeur)     proj_largeur    =  demi_largeur;
-        if (proj_profondeur < -demi_profondeur)  proj_profondeur = -demi_profondeur;
-        if (proj_profondeur >  demi_profondeur)  proj_profondeur =  demi_profondeur;
+        if(proj_longueur < -demi_longueur) {proj_longueur = -demi_longueur;}
+        if(proj_longueur > demi_longueur) {proj_longueur=demi_longueur;}
+        if(proj_largeur < -demi_largeur) {proj_largeur= -demi_largeur;}
+        if(proj_largeur > demi_largeur) {proj_largeur = demi_largeur;}
+        if(proj_profondeur < -demi_profondeur) {proj_profondeur = -demi_profondeur;}
+        if(proj_profondeur >  demi_profondeur) {proj_profondeur = demi_profondeur;}
     } else {
-        int face = facePlusProche(
-            demi_longueur - proj_longueur,     demi_longueur + proj_longueur,
-            demi_largeur  - proj_largeur,      demi_largeur  + proj_largeur,
-            demi_profondeur - proj_profondeur, demi_profondeur + proj_profondeur);
-        if      (face == 0) proj_longueur   =  demi_longueur;
-        else if (face == 1) proj_longueur   = -demi_longueur;
-        else if (face == 2) proj_largeur    =  demi_largeur;
-        else if (face == 3) proj_largeur    = -demi_largeur;
-        else if (face == 4) proj_profondeur =  demi_profondeur;
-        else                proj_profondeur = -demi_profondeur;
+        int face = facePlusProche(demi_longueur-proj_longueur, demi_longueur+proj_longueur, demi_largeur-proj_largeur, demi_largeur+proj_largeur, demi_profondeur-proj_profondeur, demi_profondeur+proj_profondeur);
+        if(face == 0) proj_longueur = demi_longueur;
+        else if (face == 1) {proj_longueur = -demi_longueur;}
+        else if (face == 2) {proj_largeur = demi_largeur;}
+        else if (face == 3) {proj_largeur = -demi_largeur;}
+        else if (face == 4) {proj_profondeur = demi_profondeur;}
+        else                {proj_profondeur = -demi_profondeur;}
     }
     return centre + proj_longueur*dir_longueur + proj_largeur*dir_largeur + proj_profondeur*dir_profondeur;
 }

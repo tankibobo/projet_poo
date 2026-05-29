@@ -13,16 +13,14 @@ public:
   Aleatoire()
   : generateur(rd())
   {}
-	
+
   // mÃ©thodes
   double uniforme(double min = 0.0, double max = 1.0) {
-    return distribution_uniforme(generateur,
-               std::uniform_real_distribution<double>::param_type{min, max});
+    return distribution_uniforme(generateur, std::uniform_real_distribution<double>::param_type{min, max});
   }
 
   double gaussienne(double moyenne, double ecart_type) {
-    return distribution_normale(generateur,
-               std::normal_distribution<double>::param_type{moyenne, ecart_type});
+  return distribution_normale(generateur,std::normal_distribution<double>::param_type{moyenne, ecart_type});
   };
 
 private:
@@ -32,7 +30,7 @@ private:
 
   std::mt19937 generateur;
 
-  // suppression des copies
+  // pas de copie
   Aleatoire(Aleatoire const&)            = delete;
   Aleatoire& operator=(Aleatoire const&) = delete;
 };
