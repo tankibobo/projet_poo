@@ -32,18 +32,6 @@ class Grille {
             decalage_z -= minZ;
             grille.resize(static_cast<size_t>(maxX - minX + 1), std::vector<std::vector<std::vector<Particule*>>>(static_cast<size_t>(maxY - minY + 1), std::vector<std::vector<Particule*>>(static_cast<size_t>(maxZ - minZ + 1))));
             for (Particule* p : particules) ajouterParticule(p);
-<<<<<<< Updated upstream
-        } //done
-        void ajouterParticule(Particule* particule); // done
-        void retirerParticule(Particule* particule); //done
-        void mettreAJour(Particule* particule) {retirerParticule(particule); ajouterParticule(particule);} // done
-        std::vector<Particule*> getVoisins(const Particule* particule) const; // done
-        void agrandirGrille(Particule* particule); // done
-        void decaler(int x, int y, int z); // done
-        std::vector<Particule*> getParticules() const; // done
-        int troncature(double x) { int q = static_cast<int>(x); if(q>x) q--;return q;}
-};
-=======
             }
             else { taille_case = 1;}
         } // test la taille que doit faire la grille car agrandirGrille() est lourde en calcul
@@ -59,4 +47,3 @@ class Grille {
         std::vector<Particule*> getParticules() const;
         int troncature(double x) { int q = static_cast<int>(x); if(q>x) q--;return q;} // arrondi en dessous pour les nombres négatifs et positifs
 };
->>>>>>> Stashed changes

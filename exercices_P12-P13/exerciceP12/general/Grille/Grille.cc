@@ -3,10 +3,6 @@
 #include <vector>
 #include "Particule/Particule.h"
 
-<<<<<<< Updated upstream
-
-void Grille::ajouterParticule(Particule* particule) {
-=======
 void Grille::ajouterParticule(Particule* particule) { 
     // on regarde les sigmas
     double taille_p = 2*particule->getSigma();
@@ -15,7 +11,6 @@ void Grille::ajouterParticule(Particule* particule) {
         refaireGrille(getParticules());
     }
     // on arrondi pour avoir des coordonnées dans la grille
->>>>>>> Stashed changes
     int x = troncature(particule->get_position().getX()/taille_case + decalage_x);
     int y = troncature(particule->get_position().getY()/taille_case + decalage_y);
     int z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
