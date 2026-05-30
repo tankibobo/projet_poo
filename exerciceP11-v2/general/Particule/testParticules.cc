@@ -50,26 +50,28 @@ int main() {
     std::cout << "p5 après dt: " << p5 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
+<<<<<<< Updated upstream
 
     // cas limites (particules a la meme position). normalement, par sécurité, deux particules exactement au même endroit ne s'appliquent aucune force (évite le NaN)
+=======
+    // cas limites (particules a la meme position).
+>>>>>>> Stashed changes
 
 
     ParticuleRoche p6(p2);
 
 
     std::cout << "Force d'interaction p2 sur p6 (=p6 sur p2 dans ce modele)" << std::endl;
-    std::cout << "___ avant ____" << std::endl;
     std::cout << "p6 avant : " << p6 << std::endl;
     std::cout << "p2 avant : " << p2 << std::endl;
     p6.ajouteForce(p2);
     p6.bouger(Constantes::dt);
     p2.bouger(Constantes::dt);
-    std::cout << "p6 après dt: " << p6 << std::endl;
+    std::cout << "p6 après dt: (doit être les mêmes)" << p6 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
 
     std::cout << "Force d'interaction p4 sur p1 (=p1 sur p4 dans ce modele)" << std::endl;
-    std::cout << "___ avant ____" << std::endl;
     std::cout << "p1 avant : " << p1 << std::endl;
     std::cout << "p4 avant : " << p4 << std::endl;
     p1.ajouteForce(p4);

@@ -1,6 +1,6 @@
 #include "Aleatoire/Aleatoire.h"
 #include "Vecteur3D/Vecteur3D.h"
-#include "Particule/Particule.h"
+#include "../Particule/Particule.h"
 #include "Source/Source.h"
 #include <vector>
 #include <ostream>
@@ -17,7 +17,7 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
 
 
     for (int i(0); i < nombre; ++i) {
-        Particule* p = new Particule(modele);
+        Particule* p = modele.copie();
 
 
         Vecteur3D v(

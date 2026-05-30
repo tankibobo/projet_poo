@@ -61,7 +61,7 @@ add_executable(exerciceP9_v2_P11
 )
 target_compile_options(exerciceP9_v2_P11 PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(chute_libre_P11
+add_executable(chute_libreP11
   chute_libre.cc
   ../../commun/Vecteur3D/Vecteur3D.cc
   ../../commun/Aleatoire/Aleatoire.cc
@@ -72,7 +72,7 @@ add_executable(chute_libre_P11
   Source/Source.cc
   Systeme/Systeme.cc
 )
-target_compile_options(chute_libre_P11 PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(chute_libreP11 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testP5_P11
   testP5.cc

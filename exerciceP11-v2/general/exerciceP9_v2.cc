@@ -1,4 +1,3 @@
-// SIMULATION D'EVOLUTION GRAPHIQUE, FIN SEMAINE 6
 // fonctionne et cmake verifié
 #include "Systeme/Systeme.h"
 #include "../texte/TextViewer.h"

@@ -6,30 +6,44 @@ add_executable(testSourceP12-P13
   Source/testSource.cc
   ../commun/Vecteur3D/Vecteur3D.cc
   ../commun/Aleatoire/Aleatoire.cc
-  ../commun/Plan/Plan.cc
-  ../commun/Obstacle/Obstacle.cc
+  Plan/Plan.cc
+  Obstacle/Obstacle.cc
   Particule/Particule.cc
   Source/Source.cc
+  ParticuleNeige/ParticuleNeige.cc
 )
 target_compile_options(testSourceP12-P13 PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(testSystemeP12-P13
-  Systeme/testSysteme.cc
+add_executable(testSystemeP12
+  Systeme/testSystemeP12.cc
   Systeme/Systeme.cc
   ../commun/Vecteur3D/Vecteur3D.cc
   ../commun/Aleatoire/Aleatoire.cc
-  ../commun/Plan/Plan.cc
-  ../commun/Obstacle/Obstacle.cc
+  Plan/Plan.cc
+  Obstacle/Obstacle.cc
   Particule/Particule.cc
+  Calcul/CalculNaif.cc
   Source/Source.cc
+  ParticuleNeige/ParticuleNeige.cc
+  ParticuleRoche/ParticuleRoche.cc
+  exerciceP12/general/CalculGrille/CalculGrille.cc
+  exerciceP12/general/Grille/Grille.cc
 )
-target_compile_options(testSystemeP12-P13 PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(testSystemeP12 PRIVATE ${PROJECT_WARNING_FLAGS})
 
-add_executable(testParticuleP12-P13
-  Particule/testParticule.cc
+add_executable(testSystemeP13
+  Systeme/testSystemeP12.cc
+  Systeme/Systeme.cc
   ../commun/Vecteur3D/Vecteur3D.cc
-  ../commun/Plan/Plan.cc
-  ../commun/Obstacle/Obstacle.cc
+  ../commun/Aleatoire/Aleatoire.cc
+  Plan/Plan.cc
+  Obstacle/Obstacle.cc
   Particule/Particule.cc
+  ParticuleNeige/ParticuleNeige.cc
+  ParticuleRoche/ParticuleRoche.cc
+  Calcul/CalculNaif.cc
+  Source/Source.cc
+  exerciceP13/general/CalculGrille/CalculGrille.cc
+  exerciceP13/general/Grille/Grille.cc
 )
-target_compile_options(testParticuleP12-P13 PRIVATE ${PROJECT_WARNING_FLAGS})
+target_compile_options(testSystemeP13 PRIVATE ${PROJECT_WARNING_FLAGS})

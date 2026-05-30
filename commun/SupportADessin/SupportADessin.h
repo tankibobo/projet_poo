@@ -14,7 +14,6 @@ class SupportADessin {
     virtual void dessine(Obstacle const&) = 0;
     virtual void dessine(Systeme const&) = 0;
     virtual void dessine(Source const&) = 0;
-    // ... autres choses que vous voudriez « dessiner »...
 
 
     virtual ~SupportADessin() = default;

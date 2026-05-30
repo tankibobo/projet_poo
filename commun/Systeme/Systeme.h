@@ -14,9 +14,9 @@ class Systeme: public Dessinable {
     public:
     // constructeurs
         Systeme() : temps(0) {};
-        Systeme(const unsigned int& p, const unsigned int& o, const unsigned int& s) : temps(0) {particules.reserve(p);obstacles.reserve(o);sources.reserve(s);};
+        Systeme(unsigned int p, unsigned int o, unsigned int s) : temps(0) {particules.reserve(p);obstacles.reserve(o);sources.reserve(s);};
         Systeme(const std::vector<Particule*>& p, const std::vector<Obstacle*>& o, const std::vector<Source*>& s) : temps(0) {particules = p; obstacles = o; sources = s;};
-        Systeme(const double& t, const unsigned int& p, const unsigned int& o, const unsigned int& s) : temps(t) {particules.reserve(p);obstacles.reserve(o);sources.reserve(s);};
+        Systeme(double t, unsigned int p, unsigned int o, unsigned int s) : temps(t) {particules.reserve(p);obstacles.reserve(o);sources.reserve(s);};
         Systeme(const double& t) : temps(t) {};
     // fonctions d'ajout
         void ajoute_particule(Particule* p) {particules.push_back(p);}
@@ -29,9 +29,15 @@ class Systeme: public Dessinable {
         const std::vector<Particule*>& getParticules() const {return particules;}
         const std::vector<Obstacle*>& getObstacles() const {return obstacles;}
         const std::vector<Source*>& getSources() const {return sources;}
+<<<<<<< Updated upstream
     // dessin
         virtual void dessine_sur(SupportADessin& support) override { support.dessine(*this); }
     // copie (pas de copie d'un système)
+=======
+    // dessin    
+        virtual void dessine_sur(SupportADessin& support) override {support.dessine(*this);}
+    // copie (on interdit la copie d'un système)
+>>>>>>> Stashed changes
         Systeme(const Systeme&) = delete;
         Systeme& operator=(const Systeme&) = delete;
     // destructeur

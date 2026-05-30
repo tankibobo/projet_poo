@@ -7,8 +7,8 @@
 #   monProgrammeTexte.cc
 #   ../general/Vecteur3D/Vecteur3D.cc
 #   ../general/Particule/Particule.cc
-#   ../general/Plan/Plan.cc
-#   ../general/Obstacle/Obstacle.cc
+#   ../../Plan/Plan.cc
+#   ../../Obstacle/Obstacle.cc
 #   ../general/Source/Source.cc
 #   ../general/Aleatoire/Aleatoire.cc
 #   ../general/Systeme/Systeme.cc

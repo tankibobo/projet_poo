@@ -8,6 +8,7 @@
 
 
 int main() {
+    // test seulement les opérateurs d'affichage et l'instanciation: les tests dans P11 (exerciceP11) sont plus complets et la méthodologie ne change pas
     Particule* p1 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_eau);
     Particule* p2 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_eau, {1.0, 0, 0});
     Particule* p3 = new Particule(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_eau, {0.5, sqrt(3)/2, 0});

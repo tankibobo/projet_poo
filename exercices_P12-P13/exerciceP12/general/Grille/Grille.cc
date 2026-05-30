@@ -3,11 +3,23 @@
 #include <vector>
 #include "Particule/Particule.h"
 
+<<<<<<< Updated upstream
 
 void Grille::ajouterParticule(Particule* particule) {
+=======
+void Grille::ajouterParticule(Particule* particule) { 
+    // on regarde les sigmas
+    double taille_p = 2*particule->getSigma();
+    if(taille_p > taille_case){
+        taille_case=taille_p;
+        refaireGrille(getParticules());
+    }
+    // on arrondi pour avoir des coordonnées dans la grille
+>>>>>>> Stashed changes
     int x = troncature(particule->get_position().getX()/taille_case + decalage_x);
     int y = troncature(particule->get_position().getY()/taille_case + decalage_y);
     int z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
+    // si les coordonnées sont négatives, on prend les coordnnées minimums et on y décale l'origine de la grille
     if (x < 0 or y < 0 or z < 0) {
         int minX = x;
         int minY = y;
@@ -23,9 +35,11 @@ void Grille::ajouterParticule(Particule* particule) {
         y = troncature(particule->get_position().getY()/taille_case + decalage_y);
         z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
     }
+    // si tout va bien, on ajt
     else if (x>=0 and y>=0 and z>=0 and static_cast<size_t>(x) < grille.size() and static_cast<size_t>(y) < grille[static_cast<size_t>(x)].size() and static_cast<size_t>(z) < grille[static_cast<size_t>(x)][static_cast<size_t>(y)].size()) {
         grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)].push_back(particule);
     }
+    // si les particules sortent de la grille, on l'agrandit
     else {
         agrandirGrille(particule);
     }
@@ -40,7 +54,7 @@ void Grille::retirerParticule(Particule* particule) {
     int y = particule->getY();
     int z = particule->getZ();
     std::vector<Particule*>& caze = grille[static_cast<size_t>(x)][static_cast<size_t>(y)][static_cast<size_t>(z)];
-    caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end());
+    caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end()); // 'case' est apparemment deja reserve par c++
     }
 
 
@@ -90,13 +104,12 @@ void Grille::agrandirGrille(Particule* particule) {
 //cette fonction gère les cas où les coordonnées sont négatives O(n)
 void Grille::decaler(int x, int y, int z) {
     std::vector<Particule*> particules = getParticules();
+    //decalage est un attribut de grille, permet de garder le decalage
     decalage_x -= x;
     decalage_y -= y;
     decalage_z -= z;
     grille.clear();
-    for(Particule* p : particules) {
-        ajouterParticule(p);
-    }
+    refaireGrille(particules);
 }
 
 

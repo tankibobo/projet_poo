@@ -4,11 +4,12 @@
 #include <vector>
 #include "Aleatoire/Aleatoire.h"
 #include "../Particule/Particule.h"
+#include "../ParticuleNeige/ParticuleNeige.h"
 
 
 int main() {
     Aleatoire gen(1234);
-    Particule modele(1000, 0.1, 1.8e-5, 1.3);
+    ParticuleNeige modele(1000, 0.1, 1.8e-5, 1.3);
     Source source(modele, 0, 0, 0, 0.5, 0.01, 10.0, true, gen);
 
 

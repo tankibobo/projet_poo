@@ -7,14 +7,12 @@ class Dessinable {
         virtual void dessine_sur(SupportADessin&) = 0;
         virtual ~Dessinable() = default;
 
-
-        // constructeurs de copie et de déplacement par défaut
+        // viens du tutoriel graphique 
         Dessinable(Dessinable const&) = default;
         Dessinable& operator=(Dessinable const&) = default;
         Dessinable(Dessinable&&) = default;
         Dessinable& operator=(Dessinable&&) = default;
 
 
-        // et remise aussi par défaut du constructeur par défaut
-        Dessinable() = default;
+        Dessinable() = default; // sinon on ne peut pas initialiser les sous classes par défaut
 };

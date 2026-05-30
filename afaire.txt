@@ -1,9 +1,6 @@
 listes des choses à faire impt
 
 CHOSES A FAIRE AVANT DE RENDRE AU MOINS:
-- enlever toute trace de claude et re organiser le code (ajouter des commentaires)
-- refaire tous les fichiers et voir les erreurs de base possibles (destructeur virtuel, ownership, etc?)
-- vérifier l'ownership dnas la classe système
 - refaire/revérifier tous les tests
 
 BONUS:

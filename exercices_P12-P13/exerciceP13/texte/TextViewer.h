@@ -3,7 +3,7 @@
 #include "SupportADessin/SupportADessin.h"
 #include "../../Particule/Particule.h"
 #include "../../Systeme/Systeme.h"
-#include "Obstacle/Obstacle.h"
+#include "../../Obstacle/Obstacle.h"
 #include "Source/Source.h"
 
 

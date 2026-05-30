@@ -13,12 +13,8 @@ os << "Pos: (" << p.get_position().getX() << " " << p.get_position().getY() << "
 
 
 double Particule::f(const double& x) {
-    if(x <= 1) {
-        return -1;
-    }
-    if(x >= 2) {
-        return 0;
-    }
+    if(x <= 1) {return -1;}
+    if(x >= 2) {return 0;}
     return ((std::pow(x, 6) - 2.0) / std::pow(x, 13));
 }
 

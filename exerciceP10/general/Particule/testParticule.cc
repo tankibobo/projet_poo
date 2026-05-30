@@ -32,7 +32,7 @@ int main() {
 
 
     // ajoute force interaction
-    std::cout << "Force d'interaction p2 sur p3 (=p3 sur p2 à retenir)" << std::endl;
+    std::cout << "Force d'interaction p2 sur p3 (=p3 sur p2 par Newton 3)" << std::endl;
     std::cout << "p3 avant : " << p3 << std::endl;
     p3.ajouteForce(p2);
     p3.bouger(Constantes::dt);

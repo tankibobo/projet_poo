@@ -1,4 +1,4 @@
-#include <iostream>
+#include <ostream>
 #include <array>
 #include "Particule.h"
 #include "Constantes.h"
@@ -7,18 +7,14 @@
 
 
 std::ostream& operator<<(std::ostream& os, const Particule& p) {
-os << "Pos: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "V: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "M: " << p.getMasse() << ", M/V: " << p.getMasseV() << ", R: " << p.getRayon();
+    os << "Pos: (" << p.get_position().getX() << " " << p.get_position().getY() << " " << p.get_position().getZ() << "), " << "V: (" << p.get_vitesse().getX() << " " << p.get_vitesse().getY() << " " << p.get_vitesse().getZ() << "), " << "M: " << p.getMasse() << ", M/V: " << p.getMasseV() << ", R: " << p.getRayon();
     return os;
 }
 
 
 double Particule::f(const double& x) {
-    if(x <= 1) {
-        return -1;
-    }
-    if(x >= 2) {
-        return 0;
-    }
+    if(x <= 1) {return -1;}
+    if(x >= 2) {return 0;}
     return ((std::pow(x, 6) - 2.0) / std::pow(x, 13));
 }
 
@@ -34,22 +30,6 @@ Vecteur3D Particule::lambda_v() const {
 void Particule::ajouteForce() {
     force += ((getMasse() * Constantes::g) - lambda_v());
 }
-
-
-void Particule::ajouteForce(Particule& p) {
-    Vecteur3D e_i_j = p.get_position() - position;
-    Vecteur3D f = forceLJ(e_i_j.norme()) * (~e_i_j);
-    force += f;
-    p.force -= f;
-}
-
-
-void Particule::ajouteForce(const Obstacle& obstacle) {;
-    Vecteur3D proche = obstacle.PointPlusProche(position);
-    Vecteur3D e_i_p = proche - position;
-    force += 2.0 * forceLJ(e_i_p.norme()) * (~e_i_p);
-}
-
 
 void Particule::bouger(double dt) {
     vitesse += (dt/getMasse())*force;

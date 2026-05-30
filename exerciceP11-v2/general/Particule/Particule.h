@@ -39,8 +39,8 @@ class Particule : public Dessinable, public Agent {
         virtual void ajouteForce(Agent& autre) = 0;
         virtual void opere_sur(ParticuleNeige& p) override = 0;
         virtual void opere_sur(ParticuleRoche& p) override = 0;
-        void bouger(double t);
         virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
+        void bouger(double t);
         virtual Particule* copie() const = 0;
         // constantes
         static double f(const double& x);

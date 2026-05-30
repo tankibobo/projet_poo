@@ -42,13 +42,14 @@ std::ostream& operator<<(std::ostream& os, const Systeme& s) {
 
 
 void Systeme::evolue() {
+    // force des obstacles et des frottements
     for (Particule* p : particules) {
         p->ajouteForce();
         for (Obstacle* o : obstacles) p->ajouteForce(*o);
     }
 
-
-    for (size_t i(0); i < particules.size(); ++i) {
+    // force d'interaction entre les particules
+    for (size_t i(0); i < particules.size(); ++i) { //la boucle exclut les particules "déjà évaluées" car ajouteForce applque la 3e loi de Newton
         for (size_t j(i + 1); j < particules.size(); ++j) {
             particules[i]->ajouteForce(*particules[j]);//3e loi Newton deja incluse
         }

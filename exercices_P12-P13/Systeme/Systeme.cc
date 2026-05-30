@@ -5,7 +5,10 @@
 #include "Obstacle/Obstacle.h"
 #include "Source/Source.h"
 #include "../Calcul/Calcul.h"
-
+#include "../Calcul/CalculGrille.h"
+#include "../Calcul/CalculNaif.h"
+#include "exerciceP12/general/Grille/Grille.h"
+#include <vector>
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
     std::vector<Particule*> p(s.getParticules());
@@ -60,4 +63,14 @@ Systeme::~Systeme() {
     for (Particule* p : particules) delete p;
     for (Obstacle* o : obstacles) delete o;
     for (Source* s : sources) delete s;
+    delete calcul;
+}
+
+void Systeme::grilleSysteme(bool b, std::vector<Particule*>& v) {
+    if(b) {
+        calcul = new CalculGrille(new Grille(v));
+    }
+    else {
+        calcul = new CalculNaif;
+    }
 }

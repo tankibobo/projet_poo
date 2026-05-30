@@ -8,7 +8,6 @@ int main() {
 
 
     // constructeurs
-    // ρ1 = 1 mg/mm³, ρ2 = ρ3 = 12.5 mg/mm³ ; milieu = air
     Particule p1(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air);
     Particule p2(12.5, 0.15, Constantes::viscosite_air, Constantes::mv_air, {1.0, 0.0, 0.0}, {0.0, 0.2, 0.0});
     Particule p3(12.5, 0.1, Constantes::viscosite_air, Constantes::mv_air, {0.0, 0.0, 1.0}, {0.0, 0.0, -0.05});

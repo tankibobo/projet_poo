@@ -4,11 +4,13 @@
 #include "Dessinable/Dessinable.h"
 #include "Vecteur3D/Vecteur3D.h"
 #include "Constantes.h"
-#include "Plan/Plan.h"
-#include "Obstacle/Obstacle.h"
+#include "../Plan/Plan.h"
+#include "../Obstacle/Obstacle.h"
 
+class ParticuleNeige;
+class ParticuleRoche;
 
-class Particule : public Dessinable {
+class Particule : public Dessinable, public Agent {
     public:
         // constructeurs
         Particule() = delete;
@@ -30,21 +32,22 @@ class Particule : public Dessinable {
         int getX() const {return x_grille;}
         int getY() const {return y_grille;}
         int getZ() const {return z_grille;}
-        double getSigma() const {return sigma;}
+        virtual double getEpsilon() const = 0;
+        virtual double getSigma() const = 0;
         // fonctions
-        static double forceLJ(double const& x) {return (24*epsilon)/(sigma*sigma) * f(x/sigma);}
+        static double forceLJ(double const& norme, double const& epsilon, double const& sigma) {return (24*epsilon)/(sigma*sigma) * f(norme/sigma);}
         Vecteur3D lambda_v() const;
         void ajouteForce(const Vecteur3D& v) {force += v;}
         void ajouteForce();
-        void ajouteForce(Particule& p);
-        void ajouteForce(const Obstacle& obstacle);
+        virtual void ajouteForce(Agent& autre) = 0;
+        virtual void opere_sur(ParticuleNeige& p) override = 0;
+        virtual void opere_sur(ParticuleRoche& p) override = 0;
         void bouger(double t);
         virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
-    private:
+        virtual Particule* copie() const = 0;
         // constantes
-        static constexpr double epsilon = 25;
-        static constexpr double sigma = 0.885;
         static double f(const double& x);
+    private:
         // attributs
         Vecteur3D position;
         Vecteur3D vitesse;
