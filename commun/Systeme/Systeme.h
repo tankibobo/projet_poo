@@ -29,15 +29,9 @@ class Systeme: public Dessinable {
         const std::vector<Particule*>& getParticules() const {return particules;}
         const std::vector<Obstacle*>& getObstacles() const {return obstacles;}
         const std::vector<Source*>& getSources() const {return sources;}
-<<<<<<< Updated upstream
     // dessin
         virtual void dessine_sur(SupportADessin& support) override { support.dessine(*this); }
     // copie (pas de copie d'un système)
-=======
-    // dessin    
-        virtual void dessine_sur(SupportADessin& support) override {support.dessine(*this);}
-    // copie (on interdit la copie d'un système)
->>>>>>> Stashed changes
         Systeme(const Systeme&) = delete;
         Systeme& operator=(const Systeme&) = delete;
     // destructeur

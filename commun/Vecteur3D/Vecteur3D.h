@@ -27,12 +27,7 @@ class Vecteur3D {
 
 
 	private :
-<<<<<<< Updated upstream
-		std::array<double, 3> vecteur;
-		static constexpr double p = 1e-10;
-=======
 		std::array<double, 3> vecteur; 
->>>>>>> Stashed changes
 };
 
 

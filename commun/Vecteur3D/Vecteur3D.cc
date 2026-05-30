@@ -34,8 +34,4 @@ Vecteur3D operator+(Vecteur3D v1, const Vecteur3D& v2) {v1+=v2; return v1;}
 Vecteur3D operator*(double k, const Vecteur3D& v) {return v*k;}
 Vecteur3D operator-(const Vecteur3D& v) {return (-1)*v;}
 Vecteur3D operator-(Vecteur3D v1, const Vecteur3D& v2) {v1-=v2; return v1;}
-<<<<<<< Updated upstream
-Vecteur3D operator/(const Vecteur3D& v, double k) {return (1/k)*v;};
-=======
 Vecteur3D operator/(const Vecteur3D& v, double k) {return (1/k)*v;}
->>>>>>> Stashed changes

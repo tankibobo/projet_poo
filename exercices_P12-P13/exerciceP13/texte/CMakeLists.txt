@@ -11,7 +11,7 @@
 #   ../../Obstacle/Obstacle.cc
 #   ../general/Source/Source.cc
 #   ../general/Aleatoire/Aleatoire.cc
-#   ../general/Systeme/Systeme.cc
+#   ../../Systeme/Systeme.cc
 # )
 # target_compile_options(monProgrammeTexte PRIVATE ${PROJECT_WARNING_FLAGS})
 # target_include_directories(monProgrammeTexte PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../general)
