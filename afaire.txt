@@ -1,11 +1,9 @@
 listes des choses à faire impt
 
 CHOSES A FAIRE AVANT DE RENDRE AU MOINS:
-- refaire/revérifier tous les tests
 
 BONUS:
 - faire des systèmes qui peuvent a la fois accueillir des particules de différents milieux (utiliser pour cela les grilles (avec une map?), en mettant différentes cases dans différents milieux)
-- ajouter plusieurs types de particules dans la grille avec sigma_max (prendre le sigma maximal)
 - ajouter d'autres types de particules
 - ajouter deux-trois obstacles
 - changer la couleur des particules e focntion d'une grandeur physique (vitesse, force, etc)
