@@ -13,9 +13,7 @@ void CalculGrille::calculerForce(const std::vector<Particule*>& particules) {
             p->ajouteForce(*v);
         }
     }
-    for(Particule* p : particules) {
-        grille->ajouterParticule(p);
-    }
+    grille->refaireGrille(particules);
 }
 
 

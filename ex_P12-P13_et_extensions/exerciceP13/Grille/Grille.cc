@@ -6,9 +6,9 @@
 
 
 void Grille::ajouterParticule(Particule* particule) {
-    int x = static_cast<int>(particule->get_position().getX()/taille_case);
-    int y = static_cast<int>(particule->get_position().getY()/taille_case);
-    int z = static_cast<int>(particule->get_position().getZ()/taille_case);
+    int x = (troncature(particule->get_position().getXGrille()/taille_case));
+    int y = (troncature(particule->get_position().getYGrille()/taille_case);
+    int z = (troncature((particule->get_position().getZGrille()/taille_case));
     particule->setX(x);
     particule->setY(y);
     particule->setZ(z);
@@ -17,19 +17,28 @@ void Grille::ajouterParticule(Particule* particule) {
 
 
 void Grille::retirerParticule(Particule* particule) {
-    int x = particule->getX();
-    int y = particule->getY();
-    int z = particule->getZ();
-    std::vector<Particule*>& caze = grille[Triplet(x, y, z)];
-    caze.erase(std::remove(caze.begin(), caze.end(), particule), caze.end());
+    int x = particule->getXGrille();
+    int y = particule->getYGrille();
+    int z = particule->getZGrille();
+    Triplet cle(x,y,z);
+    auto itMap = grille.find(cle);
+    if (itMap != grille.end()) { //la case existe?
+        std::vector<Particule*>& caze = itMap->second; //valeur de la case x,y,z
+
+        auto itParticule = std::find(caze.begin(), caze.end(), particule);
+        if (itParticule != caze.end()) {
+            *itParticule = caze.back();
+            caze.pop_back();
+        }
     }
+}
 
 
 std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
     std::vector<Particule*> voisins;
-    int x = particule->getX();
-    int y = particule->getY();
-    int z = particule->getZ();
+    int x = particule->getXGrille();
+    int y = particule->getYGrille();
+    int z = particule->getZGrille();
     // O(1) pas O(n^3)
     for(int i = x-1; i <= x+1; i++) {
         for(int j = y-1; j <= y+1; j++) {

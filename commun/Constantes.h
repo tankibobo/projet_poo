@@ -14,5 +14,5 @@ namespace Constantes {
     inline constexpr double pi = M_PI;
     inline constexpr double dt = 0.001; // intervalle de deplacement/de calcul de force d'un système
     inline constexpr double x_repulsif = 1.12; // passage a une force repulsive dans le LJ 
-    inline constexpr double p = 1e-10; // marge de comparaison entre les vecteurs
+    inline constexpr double p = 1e-5; // marge de comparaison entre les vecteurs
 }

@@ -44,7 +44,7 @@ class Grille {
         std::vector<Particule*> getVoisins(const Particule* particule) const; 
         void agrandirGrille(Particule* particule);
         void decaler(int x, int y, int z); // dans le cas ou une particule a des coordonnées négatives: on décale la grille pour inclure toutes les particules (très lourd en calcul)
-        void refaireGrille(const std::vector<Particule*>& v) {for(Particule* p: v) ajouterParticule(p);}
+        void refaireGrille(const std::vector<Particule*>& v) {grille.clear(); for(Particule* p: v) ajouterParticule(p);}
         std::vector<Particule*> getParticules() const;
         int troncature(double x) { int q = static_cast<int>(x); if(q>x) q--;return q;} // arrondi en dessous pour les nombres négatifs et positifs
 };

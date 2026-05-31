@@ -14,8 +14,8 @@ class Particule : public Dessinable {
         Particule() = delete;
         Particule(double mv, double r, double visc, double mv_milieu_, Vecteur3D pos_ = {0,0,0}, Vecteur3D vit_ = {0,0,0}): position(pos_), vitesse(vit_), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(mv_milieu_), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
         // setters
-        void setMasseV(const double& mv) {masse_v = mv; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
-        void setRayon(const double& r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
+        void setMasseV(double mv) {masse_v = mv; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
+        void setRayon(double r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
         void setVitesse(const Vecteur3D& v) {vitesse = v;}
         // getters
         Vecteur3D get_position() const {return position;}
@@ -26,7 +26,7 @@ class Particule : public Dessinable {
         double getMasseVMilieu() const {return masse_v_milieu;}
         double getMasse() const {return masse;}
         // fonctions
-        static double forceLJ(double const& x) {return (24*epsilon)/(sigma*sigma) * f(x/sigma);}
+        static double forceLJ(double x) {return (24*epsilon)/(sigma*sigma) * f(x/sigma);}
         Vecteur3D lambda_v() const;
         void ajouteForce(const Vecteur3D& v) {force += v;}
         void ajouteForce();
@@ -38,7 +38,7 @@ class Particule : public Dessinable {
         // constantes
         static constexpr double epsilon = 25;
         static constexpr double sigma = 0.885;
-        static double f(const double& x);
+        static double f(double x);
         // attributs
         Vecteur3D position;
         Vecteur3D vitesse;

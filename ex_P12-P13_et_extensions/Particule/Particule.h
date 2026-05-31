@@ -14,12 +14,12 @@ class Particule : public Dessinable, public Agent {
     public:
         // constructeurs
         Particule() = delete;
-        Particule(double mv, double r, double visc, double mv_milieu_, Vecteur3D pos_ = {0,0,0}, Vecteur3D vit_ = {0,0,0}): position(pos_), vitesse(vit_), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(mv_milieu_), masse((4.0/3.0)*Constantes::pi*r*r*r*mv) {};
+        Particule(double mv, double r, double visc, double mv_milieu_, Vecteur3D pos_ = {0,0,0}, Vecteur3D vit_ = {0,0,0}): position(pos_), vitesse(vit_), masse_v(mv), rayon(r), viscosite(visc), masse_v_milieu(mv_milieu_), masse((4.0/3.0)*Constantes::pi*r*r*r*mv), x_grille(0), y_grille(0), z_grille(0) /*evite les erreur par les getters*/ {};
         void setVitesse(const Vecteur3D& v) {vitesse = v;}
-        void setRayon(const double& r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
-        void setX(const int& x) {x_grille = x;}
-        void setY(const int& y) {y_grille = y;}
-        void setZ(const int& z) {z_grille = z;}
+        void setRayon(double r) {rayon = r; masse = (4.0/3.0)*Constantes::pi*rayon*rayon*rayon*masse_v;}
+        void setX(int x) {x_grille = x;}
+        void setY(int y) {y_grille = y;}
+        void setZ(int z) {z_grille = z;}
         void setPosition(const Vecteur3D& p) {position = p;}
         // getters
         Vecteur3D get_position() const {return position;}
@@ -29,9 +29,9 @@ class Particule : public Dessinable, public Agent {
         double getViscosite() const {return viscosite;}
         double getMasseVMilieu() const {return masse_v_milieu;}
         double getMasse() const {return masse;}
-        int getX() const {return x_grille;}
-        int getY() const {return y_grille;}
-        int getZ() const {return z_grille;}
+        int getXGrille() const {return x_grille;}
+        int getYGrille() const {return y_grille;}
+        int getZGrille() const {return z_grille;}
         virtual double getEpsilon() const = 0;
         virtual double getSigma() const = 0;
         // fonctions

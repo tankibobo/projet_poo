@@ -8,16 +8,16 @@
 class Plan : public Obstacle {
     public:
         Plan() : position(0,0,0), normale(0,0,1) {};
-        Plan(const double& a, const double& b, const double& c) : position(0,0,0), normale(a, b, c) {
+        Plan(double a, double b, double c) : position(0,0,0), normale(a, b, c) {
             normale = ~normale;
         };
         Plan(const Vecteur3D& vect) : position(0,0,0), normale(vect) {
             normale = ~normale;
         };
-        Plan(const double& x, const double& y, const double& z, const Vecteur3D& vect) : position(x,y,z), normale(vect) {
+        Plan(double x, double y, double z, const Vecteur3D& vect) : position(x,y,z), normale(vect) {
             normale = ~normale;
         };
-        Plan(const double& x, const double& y, const double& z, const double& a, const double& b, const double& c) : position(x,y,z), normale(a,b,c) {
+        Plan(double x, double y, double z, double a, double b, double c) : position(x,y,z), normale(a,b,c) {
             normale = ~normale;
         };
         Plan(const Vecteur3D& pos, const Vecteur3D& vect) : position(pos), normale(vect) {
@@ -40,7 +40,7 @@ class Plan : public Obstacle {
 
 class Dalle : public Plan {
     public:
-        Dalle(const double& x, const double& y, const double& z, const Vecteur3D& vect, const double& l, const double& L, const Vecteur3D& dir)
+        Dalle(double x, double y, double z, const Vecteur3D& vect, double l, double L, const Vecteur3D& dir)
             : Plan(x, y, z, vect), longueur(l), largeur(L), direction_longueur(dir)
         {
             direction_longueur = ~direction_longueur;
