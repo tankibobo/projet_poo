@@ -22,8 +22,8 @@ add_library(RayRenderExtensions STATIC
 
 target_include_directories(RayRenderExtensions PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/exercices_P12-P13
-    ${CMAKE_SOURCE_DIR}/exercices_P12-P13/exerciceP12/general
+    ${CMAKE_SOURCE_DIR}/ex_P12-P13_et_extensions
+    ${CMAKE_SOURCE_DIR}/ex_P12-P13_et_extensions/exerciceP12/general
     ${CMAKE_SOURCE_DIR}/commun
 )
 target_link_libraries(RayRenderExtensions PUBLIC raylib)
