@@ -38,5 +38,5 @@ private:
     Vecteur3D centre;
     double demi_longueur, demi_largeur, demi_profondeur;
     Vecteur3D dir_longueur, dir_largeur, dir_profondeur;
-    double restitution;    // coefficient de restitution ∈ [0, 1]
+    double restitution;    // coefficient de restitution entre [0, 1]
 };
