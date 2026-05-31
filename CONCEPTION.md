@@ -1,142 +1,124 @@
-# CONCEPTION — Points importants du projet POO
+# CONCEPTION
 
-## 1. Architecture générale
+## 1) Particules (classes Agent, Particule, ParticuleNeige, ParticuleRoche)
 
-Le projet est organisé en dossiers séparés par étape (`version-1`, `commun`, `exerciceP10`,
-`exerciceP11-revisiteP9`, `exerciceP11-v2`, `ex_P12-P13_et_extensions`). Une bibliothèque
-partagée `commun` est compilée une seule fois et linkée à tous les exécutables. Chaque classe
-est isolée dans son propre sous-dossier avec son `.h` et son `.cc`. La configuration CMake
-gère les dépendances entre les modules.
+**Semaine 1 à 10 :** Seule la classe Particule existe dans la modélisation des particules. On
+choisit de mettre tous les paramètres y compris celle de la masse volumique du milieu dans le
+constructeur. La masse, elle, est déduite à partir de la masse volumique de la particule et de
+son rayon.
+
+**Après semaine 10 :** Particule est une sous-classe d'Agent. Particule et Agent sont abstraites,
+on instancie seulement un certain type de particule : ParticuleNeige et ParticuleRoche. Ces
+particules sont quasi-identiques, elles ont simplement des méthodes pour modéliser leurs
+interactions entre elles, et leurs epsilon et sigma changent (conformément au modèle LLJ/WCA).
+Pour calculer les interactions entre des particules de différents types (ie. avec des sigmas et
+des epsilons différents), on fait une moyenne géométrique/arithmétique entre les sigmas et epsilons.
+
+**Semaine 12/13 :** On ajoute aux particules des positions x, y, z correspondant à leurs positions
+dans une grille potentielle. Même si cela relève d'une fuite d'abstraction, elle est assumée : elle
+permet un gain de temps non-négligeable dans les méthodes de la classe Grille, notamment pour
+accéder rapidement aux positions des particules ou pour accéder à leur position précédente dans
+la grille.
 
 ---
 
-## 2. Hiérarchie des classes et polymorphisme
+## 2) Obstacles (classes Obstacle, Plan, Dalle, Brique, Cylindre)
 
+**Semaine 1 à 10 :** Seules les classes Plan et Dalle existent. Les particules interagissent avec
+surtout Plan dans l'exercice P10.
+
+**Semaine complémentaire / extensions :** Ajout de la `Brique` (parallélépipède orientable) et du
+`Cylindre` (cylindre droit d'axe quelconque), qui introduisent toutes deux le rebond géométrique dur.
+
+La classe abstraite `Obstacle` impose `PointPlusProche()` (virtuelle pure, utilisée pour la force LJ)
+et fournit une méthode `collision()` avec corps vide par défaut — seuls Brique et Cylindre la
+surchargent.
+
+- **Plan** : position + normale unitaire. 6 constructeurs disponibles (normale seule, position + normale,
+  composantes séparées ou Vecteur3D). Repose uniquement sur LJ ; pas de rebond dur.
+- **Dalle** (hérite de Plan) : plan de dimensions finies. Ajoute longueur, largeur, direction_longueur.
+  La direction_largeur est déduite automatiquement par `~(normale ^ direction_longueur)`.
+- **Brique** : centre, demi-dimensions (longueur, largeur, profondeur), deux directions (la troisième
+  est déduite par produit vectoriel), coefficient de restitution ∈ [0,1] (clampé à 1 si hors plage).
+  `collision()` identifie la face la plus proche et applique `v' = v − (1+e)(v·n̂)n̂`.
+- **Cylindre** : centre, rayon, demi_hauteur, normale (axe), restitution, flag `avec_lj` (permet de
+  désactiver la force LJ pour un cylindre utilisé en paroi seule). `PointPlusProche()` décompose la
+  position en composante axiale et radiale pour traiter surface latérale et fond séparément.
+
+---
+
+## 3) Sources (classe Source)
+
+La `Source` contient une position, une vitesse moyenne, des écarts-types (vitesse et rayon), un
+débit (particules/seconde), un état (on/off), une **référence constante** vers une particule modèle
+et une **référence** vers un générateur aléatoire. La copie de `Source` est désactivée car la
+référence au générateur ne peut pas être réassignée.
+
+### `creation()` et `copie()`
+
+À chaque pas de temps, `creation()` calcule combien de particules émettre (`floor(debit * dt)`,
+avec tirage aléatoire pour la partie fractionnaire). Pour chaque particule, elle appelle
+`modele.copie()`, puis tire aléatoirement vitesse et rayon selon des lois normales.
+
+`copie()` est **virtuelle pure** dans `Particule`, implémentée en une ligne dans chaque sous-classe :
+
+```cpp
+virtual Particule* copie() const override { return new ParticuleNeige(*this); }
 ```
-Particule (abstraite)          Obstacle (abstraite)
-├── ParticuleSimple            ├── Plan
-├── Balle (exerciceP10)        ├── Brique
-├── ParticuleNeige             └── Cylindre
-└── ParticuleRoche
-```
 
-`Particule` est abstraite car `dessine_sur()` est virtuelle pure. Il est donc impossible
-d'instancier une particule sans préciser son type concret, ce qui garantit le bon
-fonctionnement du double dispatch. De même, `Obstacle` est abstraite via `PointPlusProche()`
-et `affiche()`.
+Ce **clonage virtuel** permet à `Source` de dupliquer la particule modèle sans connaître son type
+concret — pas besoin de `dynamic_cast` ni de factory explicite.
 
 ---
 
-## 3. Pattern Visiteur — double dispatch
+## 4) Système
 
-C'est le mécanisme central du rendu. Problème : comment appeler la bonne méthode de dessin
-selon le type réel d'un objet, sans `dynamic_cast` ou `if/else` dans le moteur de rendu ?
+**Semaine 1 à 11 :** Le système a plusieurs constructeurs, le plus important étant celui par défaut
+(qui rend une liste vide, et met le temps à 0) et celui qui prend des listes d'agents (particule,
+obstacle, source) en paramètre. Le système est maître du temps une fois que celui-ci est fixé, et
+maître des agents : l'appelant passe en paramètre un pointeur vers un agent, et perd sa propriété.
+C'est la classe qui le détruit. Un système ne peut pas être copié.
 
-**Solution — double dispatch :**
-- `Dessinable` : interface avec `virtual void dessine_sur(SupportADessin&) = 0`
-- `SupportADessin` : interface avec des overloads `dessine(Particule const&)`,
-  `dessine(Obstacle const&)`, `dessine(Source const&)`, `dessine(Systeme const&)`
-- Chaque classe concrète implémente `dessine_sur` en appelant `support.dessine(*this)`
-
-Le type de `*this` est connu statiquement dans chaque `dessine_sur` (type concret),
-donc le bon overload de `dessine` est choisi à la compilation. Le choix de l'objet appelant
-est résolu dynamiquement (vtable), puis le choix de l'overload statiquement : deux niveaux
-de dispatch.
-
-Deux supports sont implémentés : `TextViewer` (affichage textuel) et `raylibRender`
-(affichage 3D). Ajouter un nouveau support ne nécessite pas de modifier les classes de
-particules.
+**Semaine 12/13 :** Ce qui change ici, c'est surtout le constructeur de Système. On ajoute un `bool`,
+qui décide si le système utilise une grille ou non. Si c'est le cas, le système initialise un pointeur
+vers un `CalculGrille`, qui lui initialise une grille avec les particules initialisées par le pointeur
+(s'il y en a). La méthode `evolue()` utilise alors les méthodes de `CalculGrille`.
 
 ---
 
-## 4. Forces de Lennard-Jones et intégration
+## 5) Calcul par les grilles (Calcul, CalculGrille, CalculNaif, Grille, Triplet)
 
-La force entre deux particules i et j est dérivée du potentiel :
+Cette partie est sans aucun doute la plus complexe de notre code. Avant de s'attaquer aux cas
+limites, on choisit une implémentation basique, où on ne traite pas les cas où les particules
+dépassent les bornes de la grille. Le constructeur utilise les coordonnées maximales des particules
+passées en argument pour initialiser la grille à une certaine taille. On crée la fonction
+« troncature » qui arrondit les doubles vers le bas, car sinon, si on a des particules à
+(-0.8, 0.9, -0.1) et (0.1, 0.2, 0.3) avant l'arrondi (ce qui implique qu'elles ne sont pas dans
+la même case), elles finissent toutes les deux en [0][0][0] dans la grille car C++ arrondit vers 0.
 
-    V(r) = 4ε [ (σ/r)^12 − (σ/r)^6 ]
+On distingue deux façons pour une particule de dépasser les bornes de la grille :
 
-avec σ_eff = (σ_i + σ_j)/2 et ε_eff = sqrt(ε_i · ε_j) pour les paires mixtes.
+1. En ayant un indice plus grand que la taille de la grille
+2. En ayant une position négative dans la grille
 
-Un cutoff à r > 2σ annule la force pour éviter des calculs inutiles entre particules éloignées.
-L'intégration est faite par la méthode d'Euler explicite avec un pas de temps dt configurable.
-La gravité est ajoutée comme force constante selon −z.
+Pour le cas 1), on agrandit la grille et on y ajoute les particules : on utilise pour cela la
+fonction `resize()`.
 
----
+Pour le cas 2), on décale toute la grille afin que les coordonnées des particules concernées
+deviennent positives. Pour ce faire, on prend le minimum des coordonnées de toutes les particules
+(c'est-à-dire le point le plus bas tel que tous les autres particules soient au-dessus), on
+sauvegarde le décalage de l'origine vers ce point dans les attributs `decalage_{x,y,z}`, et on
+vide et rerempli la grille avec les nouvelles coordonnées.
 
-## 5. Obstacles — deux mécanismes de contrainte
+À la base, notre méthode `getParticules()` était très coûteuse et parcourait toute la grille, mais
+on a ajouté un pointeur vers un système, pour que la grille puisse accéder aux particules du système
+directement. Le double pointage entre Système et Grille (par CalculGrille) n'est pas problématique
+puisque les trois sont tout le temps détruits en même temps : système détruit calcul qui détruit grille.
 
-Chaque obstacle implémente deux mécanismes complémentaires :
-
-**Force LJ (douce)** : via `PointPlusProche(xi)` qui retourne le point de l'obstacle
-le plus proche de la particule. La distance à ce point sert à calculer une force répulsive
-LJ, exactement comme entre deux particules. Cela assure une répulsion progressive.
-
-**Collision géométrique (dure)** : via `collision(Particule&)` qui détecte si la
-particule est à l'intérieur de l'obstacle et corrige sa vitesse par rebond instantané.
-La loi de rebond est : `v' = v − (1+e)(v·n̂)n̂` avec e ∈ [0,1] le coefficient de
-restitution (1 = élastique, 0 = parfaitement inélastique). Le coefficient est clampé
-à 1 si une valeur hors plage est fournie.
-
-**Remarque sur le Plan** : `Plan` n'implémente pas de `collision()` géométrique — il
-repose uniquement sur la force LJ douce. À très haute vitesse, des particules peuvent
-traverser le plan entre deux pas de temps (tunneling numérique). Ce comportement est
-connu et accepté dans notre conception.
+Avec la map (P13), on n'a pas le problème de dépassement d'indices et le code est beaucoup plus simple.
 
 ---
 
-## 6. Grille d'optimisation des interactions (P12/P13)
+## 6) Outils Mathématiques (Vecteur3D, Aléatoire)
 
-Sans grille, le calcul des forces LJ est en O(n²). La grille réduit à O(n) en moyenne.
-
-**Principe** : la taille de case est égale à σ (rayon de coupure). Une particule n'interagit
-qu'avec les particules dans les 27 cases voisines en 3D (rayon 1 case dans chaque direction).
-
-**P12 — Grille tableau** (`vector<vector<Particule*>>`) :
-- Indexation directe : `indice = ix + nx*(iy + ny*iz)`
-- Taille fixe allouée à l'initialisation ; la fonction `agrandirGrille` redimensionne
-  si une particule sort des bornes
-- Accès O(1), mémoire O(nx·ny·nz) même pour les cases vides
-
-**P13 — Grille map** (`map<array<int,3>, vector<Particule*>>`) :
-- Seules les cases occupées existent en mémoire → adapté aux systèmes épars
-- Accès O(log n) par clé, mais mémoire proportionnelle aux cases occupées uniquement
-- Les entrées vides sont supprimées explicitement après `retirerParticule` pour éviter
-  une accumulation de cases fantômes dans la map
-
----
-
-## 7. Source de particules
-
-La `Source` génère des particules à chaque pas de temps selon un débit (particules/seconde).
-Les rayons et les vitesses initiales sont tirés selon une loi normale (classe `Aleatoire`,
-basée sur `std::normal_distribution`). Le modèle de particule est stocké par référence
-constante dans la `Source` : la `Source` ne possède pas la particule modèle, elle la clone.
-La copie de `Source` est désactivée pour éviter des problèmes de durée de vie du générateur.
-
----
-
-## 8. Gestion mémoire
-
-Les `Particule*`, `Obstacle*` et `Source*` stockés dans `Systeme` sont alloués dynamiquement
-(`new`) par l'utilisateur et détruits dans le **destructeur de Systeme** par des `delete`
-explicites. La copie de `Systeme` est désactivée (`= delete`) pour éviter les double-free.
-Les particules supprimées en cours de simulation (hors des bornes) sont retirées du vecteur
-et `delete`-ées immédiatement dans `Systeme::evolue()`.
-
----
-
-## 9. Version graphique — raylib
-
-**Changement de repère** : le simulateur utilise Z comme axe vertical, raylib utilise Y.
-La conversion `simToRay(x,y,z) → {x, z, y}` est appliquée à toutes les positions.
-
-**Détection des types** : `raylibRender::dessine(Particule const&)` utilise `dynamic_cast`
-pour choisir la couleur selon le type concret (Neige = bleu, Roche = marron). De même pour
-les obstacles (`Brique`, `Cylindre`, `Plan`) dans `dessine(Obstacle const&)` — ce centralise
-la logique de rendu dans le renderer sans polluer les classes de données.
-
-**Interactivité** : L = caméra libre (WASD + souris), O = sources on/off,
-UP/DOWN = débit ±10 particules/s.
-
-**Compatibilité** : raylib est cherchée localement en premier (`find_package`), puis
-téléchargée et compilée automatiquement via `FetchContent` si non trouvée (VMs de l'école).
+**Vecteur3D :**
