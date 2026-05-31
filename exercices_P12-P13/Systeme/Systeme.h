@@ -14,7 +14,7 @@ class Systeme: public Dessinable {
     public:
     // constructeurs
         Systeme(bool b) : temps(0) {grilleSysteme(b, particules);}
-        Systeme(const std::vector<Particule*>& p, const std::vector<Obstacle*>& o, const std::vector<Source*>& s, bool b) : temps(0) {particules = p; obstacles = o; sources = s; grilleSysteme(b, particules);};
+        Systeme(const std::vector<Particule*>& p, const std::vector<Obstacle*>& o, const std::vector<Source*>& s, bool b = false) : temps(0) {particules = p; obstacles = o; sources = s; grilleSysteme(b, particules);};
         Systeme(const double& t, const unsigned int& p, const unsigned int& o, const unsigned int& s, bool b) : temps(t) {particules.reserve(p);obstacles.reserve(o);sources.reserve(s); grilleSysteme(b, particules);};
         Systeme(const double& t, bool b) : temps(t) {grilleSysteme(b, particules);};
     // fonctions d'ajout

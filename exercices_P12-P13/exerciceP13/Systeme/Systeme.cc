@@ -1,13 +1,13 @@
-#include "Systeme.h"
+#include "../../Systeme/Systeme.h"
 #include <iostream>
 #include "Constantes.h"
-#include "../Particule/Particule.h"
-#include "Obstacle/Obstacle.h"
+#include "../../Particule/Particule.h"
+#include "../../Obstacle/Obstacle.h"
 #include "Source/Source.h"
-#include "../Calcul/Calcul.h"
-#include "../Calcul/CalculGrille.h"
-#include "../Calcul/CalculNaif.h"
-#include "exerciceP12/Grille/Grille.h"
+#include "../../Calcul/Calcul.h"
+#include "../../Calcul/CalculGrille.h"
+#include "../../Calcul/CalculNaif.h"
+#include "../Grille/Grille.h"
 #include <vector>
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
@@ -52,20 +52,9 @@ void Systeme::evolue() {
 
 
     calcul->calculerForce(particules); //3e loi Newton et boucle deja incluses
-
+    
 
     calcul->bouger(particules, Constantes::dt);
-
-
-    // Chocs élastiques/inélastiques avec les obstacles
-    for (Particule* p : particules)
-        for (Obstacle* o : obstacles) o->collision(*p);
-
-
-    // Création de nouvelles particules depuis les sources
-    for (Source* s : sources) s->creation(particules, Constantes::dt);
-
-
     temps += Constantes::dt;
 }
 
