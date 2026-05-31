@@ -12,21 +12,7 @@
 //   - Source au sommet qui émet des particules vers le bas
 //   - 4 rangées de cylindres horizontaux (axe selon sim-y)
 //     disposés en quinconce, comme les chevilles d'une planche de Galton
-//   - Sol en brique en bas
-//
-// Les particules tombent sous la gravité, dévient sur les cylindres
-// et forment une distribution binomiale sur le sol.
-//
-// Disposition (vue de face, x horizontal, z vertical) :
-//
-//   Source : (0, 2, 10)
-//
-//   Rangée 1  z=8.0 :       O     O          (x = ±0.8)
-//   Rangée 2  z=6.5 :     O     O     O      (x = -1.6, 0, 1.6)
-//   Rangée 3  z=5.0 :   O     O     O     O  (x = -2.4, -0.8, 0.8, 2.4)
-//   Rangée 4  z=3.5 : O   O     O     O   O  (x = -3.2, -1.6, 0, 1.6, 3.2)
-//
-//   Sol : z = 0
+//   - Brique en bas
 
 
 int main() {

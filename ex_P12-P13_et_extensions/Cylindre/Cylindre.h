@@ -6,12 +6,9 @@
 #include <ostream>
 
 
-// Cylindre de révolution défini par un centre, un rayon, une hauteur et un axe (normale unitaire).
 // La normale pointe le long de l'axe du cylindre.
 class Cylindre : public Obstacle {
 public:
-    // restitution_ : coefficient de restitution (1.0 = élastique, 0.0 = parfaitement inélastique)
-    // avec_lj_     : true = force Lennard-Jones activée, false = choc uniquement (pas d'attraction/répulsion LJ)
     Cylindre(Vecteur3D const& centre_, double rayon_, double hauteur_, Vecteur3D const& normale_, double restitution_ = 1.0, bool avec_lj_ = true);
 
 
@@ -38,6 +35,6 @@ private:
     double rayon;
     double demi_hauteur;
     Vecteur3D normale;     // axe du cylindre (unitaire)
-    double restitution;    // coefficient de restitution ∈ [0, 1]
+    double restitution;    // coefficient de restitution entre [0, 1]
     bool avec_lj;          // true = force LJ active, false = choc uniquement
 };

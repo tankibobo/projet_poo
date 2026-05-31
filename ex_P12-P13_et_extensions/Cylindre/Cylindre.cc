@@ -23,7 +23,7 @@ Vecteur3D Cylindre::PointPlusProche(Vecteur3D const& x_i) const {
     if (eu_norme > 0.0) u = ~e_u;
     else u = Vecteur3D(1, 0, 0);
 
-    // n* = signe(e·n) * n  (toujours du même côté que x_i par rapport à O)
+    // n* = signe(e·n) * n
     Vecteur3D n_star;
     if (en_scalaire >= 0.0) n_star = normale;
     else n_star = -normale;
@@ -32,7 +32,6 @@ Vecteur3D Cylindre::PointPlusProche(Vecteur3D const& x_i) const {
         // La particule est en face de la surface latérale
         return centre + e_n + rayon * u;
     } else {
-        // La particule est au-dessus ou en-dessous d'un fond
         double dist_radiale_fond = std::min(rayon, eu_norme); // limitée au rayon si la particule dépasse le bord du disque
         return centre + demi_hauteur * n_star + dist_radiale_fond * u;
     }
@@ -46,7 +45,6 @@ void Cylindre::collision(Particule& p) {
     Vecteur3D e_u = e - e_n;
     double eu_norme = e_u.norme();
 
-    // La particule est-elle à l'intérieur du cylindre ?
     if ((std::abs(en_scalaire) > demi_hauteur) or (eu_norme > rayon)) return;
 
     // Distance à la surface latérale vs distance au fond le plus proche
@@ -55,10 +53,8 @@ void Cylindre::collision(Particule& p) {
 
     Vecteur3D n_collision;
     if ((d_cote < d_fond) and (eu_norme > 0.0)) {
-        // Face latérale : normale radiale vers l'extérieur
         n_collision = ~e_u;
     } else {
-        // Fond supérieur ou inférieur : normale axiale vers l'extérieur
         if (en_scalaire >= 0.0) n_collision = normale;
         else n_collision = -normale;
     }
