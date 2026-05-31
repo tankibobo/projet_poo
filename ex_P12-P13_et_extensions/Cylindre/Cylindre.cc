@@ -5,7 +5,9 @@
 #include <algorithm>
 
 
-Cylindre::Cylindre(Vecteur3D const& centre_, double rayon_, double hauteur_, Vecteur3D const& normale_, double restitution_, bool avec_lj_) : centre(centre_), rayon(rayon_), demi_hauteur(hauteur_/2.0), normale(~normale_), restitution(restitution_), avec_lj(avec_lj_) {}
+Cylindre::Cylindre(Vecteur3D const& centre_, double rayon_, double hauteur_, Vecteur3D const& normale_, double restitution_, bool avec_lj_) : centre(centre_), rayon(rayon_), demi_hauteur(hauteur_/2.0), normale(~normale_), restitution(restitution_), avec_lj(avec_lj_) {
+    if (restitution < 0.0 or restitution > 1.0) restitution = 1.0;
+}
 
 
 // Complément mathématique B.5

@@ -3,7 +3,9 @@
 #include <ostream>
 
 
-Brique::Brique(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_, double restitution_) : centre(centre_), demi_longueur(longueur/2.0), demi_largeur(largeur/2.0), demi_profondeur(profondeur/2.0), dir_longueur(~dir_longueur_), dir_largeur(~dir_largeur_), dir_profondeur(~(dir_longueur_ ^ dir_largeur_)), restitution(restitution_) {}
+Brique::Brique(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_, double restitution_) : centre(centre_), demi_longueur(longueur/2.0), demi_largeur(largeur/2.0), demi_profondeur(profondeur/2.0), dir_longueur(~dir_longueur_), dir_largeur(~dir_largeur_), dir_profondeur(~(dir_longueur_ ^ dir_largeur_)), restitution(restitution_) {
+    if (restitution < 0.0 or restitution > 1.0) restitution = 1.0;
+}
 
 
 // Indice de la face la plus proche : 0/1=±longueur, 2/3=±largeur, 4/5=±profondeur
