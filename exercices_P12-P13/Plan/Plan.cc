@@ -18,21 +18,18 @@ std::ostream& Plan::affiche(std::ostream& os) const {
 // ── Dalle ────────────────────────────────────────────────────────────────────
 
 Vecteur3D Dalle::PointPlusProche(Vecteur3D const& x_i) const {
-    // 1. Projection de x_i sur le plan infini (réutilise Plan)
+    //On a dû changer le calcul car Dalle n'est pas infini, reprise de quelques parties du code de Brique.
     Vecteur3D proj = Plan::PointPlusProche(x_i);
 
-    // 2. Coordonnées locales par rapport au centre (position)
     Vecteur3D local = proj - position;
     double coord_l = local | direction_longueur;
     double coord_L = local | direction_largeur;
 
-    // 3. Clamp dans [-longueur/2 , +longueur/2] × [-largeur/2 , +largeur/2]
     if (coord_l < -longueur / 2.0) coord_l = -longueur / 2.0;
     if (coord_l >  longueur / 2.0) coord_l =  longueur / 2.0;
     if (coord_L < -largeur  / 2.0) coord_L = -largeur  / 2.0;
     if (coord_L >  largeur  / 2.0) coord_L =  largeur  / 2.0;
 
-    // 4. Reconstruction du point le plus proche sur la dalle finie
     return position + coord_l * direction_longueur + coord_L * direction_largeur;
 }
 

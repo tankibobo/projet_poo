@@ -22,10 +22,9 @@ class Plan : public Obstacle {
         Plan(const Vecteur3D& pos, const Vecteur3D& vect) : position(pos), normale(vect) {
             normale = ~normale;
         };
-    
 
         Plan(const Plan& autre) : position(autre.position), normale(autre.normale) {}; //constructeur de copie par def
-        
+
         double getX() const {return position.getX();}
         double getY() const {return position.getY();}
         double getZ() const {return position.getZ();}
@@ -37,27 +36,32 @@ class Plan : public Obstacle {
     protected:
         Vecteur3D position;
         Vecteur3D normale;
-    
-
 };
 
 
 class Dalle : public Plan {
     public:
-        Dalle(const double& x, const double& y, const double& z, const Vecteur3D& vect, const double& l, const double& L, const Vecteur3D& dir) : Plan(x,y,z,vect), longueur(l), largeur(L), direction_longueur(dir) {
+        Dalle(const double& x, const double& y, const double& z, const Vecteur3D& vect, const double& l, const double& L, const Vecteur3D& dir)
+            : Plan(x, y, z, vect), longueur(l), largeur(L), direction_longueur(dir)
+        {
             direction_longueur = ~direction_longueur;
-            direction_largeur = normale ^ direction_longueur;
-            largeur = direction_largeur.norme();
+            // direction_largeur = normale × direction_longueur, puis normalisée
+            direction_largeur = ~(normale ^ direction_longueur);
         };
+
         double getLongueur() const {return longueur;}
         double getLargeur() const {return largeur;}
         Vecteur3D getDirection_longueur() const {return direction_longueur;}
         Vecteur3D getDirection_largeur() const {return direction_largeur;}
+
+        // Retourne le point de la dalle le plus proche de x_i
+        Vecteur3D PointPlusProche(Vecteur3D const& x_i) const override;
+
+        virtual std::ostream& affiche(std::ostream& os) const override;
+
     private:
         double longueur;
         double largeur;
         Vecteur3D direction_longueur;
         Vecteur3D direction_largeur;
-
-
 };

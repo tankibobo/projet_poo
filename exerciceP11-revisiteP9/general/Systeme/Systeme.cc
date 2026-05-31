@@ -58,7 +58,7 @@ void Systeme::evolue() {
 
     //bouge les particules
     for (Particule* p : particules) p->bouger(Constantes::dt); 
-    // bouge les sources (après particules car sinon on va comptabiliser pleins de forces dans le même dt)
+    // fait fonctionner les sources (après particules car sinon on va comptabiliser pleins de forces dans le même dt)
     for (Source* s : sources) s->creation(particules, Constantes::dt);
     //bouge le temps
     temps += Constantes::dt;

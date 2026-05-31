@@ -9,10 +9,7 @@
 // Parallélépipède rectangle. dir_profondeur est déduit par dir_longueur ^ dir_largeur.
 class Brique : public Obstacle {
 public:
-    Brique(Vecteur3D const& centre_,
-          double longueur, double largeur, double profondeur,
-          Vecteur3D const& dir_longueur_,
-          Vecteur3D const& dir_largeur_);
+    Brique(Vecteur3D const& centre_, double longueur, double largeur, double profondeur, Vecteur3D const& dir_longueur_, Vecteur3D const& dir_largeur_);
 
 
     virtual void opere_sur(ParticuleNeige& p) override { force(p); }

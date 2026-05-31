@@ -12,8 +12,8 @@ class Obstacle : public Dessinable, public Agent {
 public:
     virtual Vecteur3D PointPlusProche(Vecteur3D const& x_i) const = 0;
 
-    // Choc élastique après bouger() — par défaut ne fait rien (Plan infini).
-    virtual void collision(Particule& /*p*/) {}
+    // Choc élastique après bouger() ; on a enlevé le nom de variable pour éviter les warnings.
+    virtual void collision(Particule&) {}
 
     virtual ~Obstacle() {}
     virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); };

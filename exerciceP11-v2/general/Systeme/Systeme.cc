@@ -59,7 +59,7 @@ void Systeme::evolue() {
     for (Particule* p : particules) p->bouger(Constantes::dt);
 
 
-    // Chocs élastiques : correction de vitesse après pénétration éventuelle
+    // Chocs élastiques : inversion des vitesses si particule dans un obstacle
     for (Particule* p : particules)
         for (Obstacle* o : obstacles) o->collision(*p);
 

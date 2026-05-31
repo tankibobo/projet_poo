@@ -4,7 +4,7 @@
 
 
 // en mm, mg, s
-// f gaffe aux unités pcq la force est en "mili-newton"
+// fait gaffe aux unités pcq la force est en "mili-newton"
 namespace Constantes {
     inline const Vecteur3D g = Vecteur3D(0, 0, -9.81e3);
     inline constexpr double mv_air = 1.3e-3;

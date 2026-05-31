@@ -7,9 +7,8 @@
 // raylib utilise Y vers le haut.
 // sim(x, y, z)  ->  ray(x, z_sim, y_sim)
 static Vector3 simToRay(double x, double y, double z) {
-    return { static_cast<float>(x),
-             static_cast<float>(z),
-             static_cast<float>(y) };
+    //static_cast pour éviter les warnings de conversion double->float (raylib utilise des float)
+    return { static_cast<float>(x), static_cast<float>(z), static_cast<float>(y) };
 }
 
 raylibRender::raylibRender()
@@ -36,7 +35,6 @@ void raylibRender::run(Systeme& systeme)
 {
     while (!WindowShouldClose()) {
 
-        // Touche L : activer/désactiver le mouvement libre de la caméra
         if (IsKeyPressed(KEY_L)) {
             deplacement = !deplacement;
         }
@@ -88,6 +86,7 @@ void raylibRender::dessine(Systeme const& s)
 void raylibRender::dessine(Obstacle const& o)
 {
     // Dessiner un Plan comme une surface plate
+    // dynamic_cast pour vérifier que l'obstacle est bien un Plan (et pas une Brique, etc.)
     Plan const* plan = dynamic_cast<Plan const*>(&o);
     if (plan != nullptr) {
         Vecteur3D pos = plan->getPos();

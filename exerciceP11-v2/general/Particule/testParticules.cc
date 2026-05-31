@@ -50,7 +50,8 @@ int main() {
     std::cout << "p5 après dt: " << p5 << std::endl;
     std::cout << "p2 après dt: " << p2 << std::endl;
 
-    // cas limites (particules a la meme position).
+
+    // cas limites (particules a la meme position). normalement, par sécurité, deux particules exactement au même endroit ne s'appliquent aucune force (évite le NaN)
 
 
     ParticuleRoche p6(p2);

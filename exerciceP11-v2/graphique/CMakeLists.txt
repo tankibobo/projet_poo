@@ -29,3 +29,10 @@ add_executable(exerciceP11v2_raylib
 )
 target_link_libraries(exerciceP11v2_raylib PRIVATE RayRenderP11v2)
 target_compile_options(exerciceP11v2_raylib PRIVATE ${PROJECT_WARNING_FLAGS})
+
+
+add_executable(simBrique_energie
+    main_brique_energie.cc
+)
+target_link_libraries(simBrique_energie PRIVATE RayRenderP11v2)
+target_compile_options(simBrique_energie PRIVATE ${PROJECT_WARNING_FLAGS})

@@ -24,7 +24,6 @@ class Plan : public Obstacle {
             normale = ~normale;
         };
     
-        // Plan(const Plan& autre) : position(autre.position), normale(autre.normale) {}; constructeur de copie par def
         double getX() const {return position.getX();}
         double getY() const {return position.getY();}
         double getZ() const {return position.getZ();}
@@ -41,20 +40,12 @@ class Plan : public Obstacle {
 
 class Dalle : public Plan {
     public:
-        // x,y,z  : centre de la dalle
-        // vect   : normale au plan (normalisée automatiquement)
-        // l, L   : longueur et largeur de la dalle
-        // dir    : direction de la longueur (normalisée, doit être dans le plan)
-        Dalle(const double& x, const double& y, const double& z,
-              const Vecteur3D& vect,
-              const double& l, const double& L,
-              const Vecteur3D& dir)
+        Dalle(const double& x, const double& y, const double& z, const Vecteur3D& vect, const double& l, const double& L, const Vecteur3D& dir)
             : Plan(x, y, z, vect), longueur(l), largeur(L), direction_longueur(dir)
         {
             direction_longueur = ~direction_longueur;
             // direction_largeur = normale × direction_longueur, puis normalisée
             direction_largeur  = ~(normale ^ direction_longueur);
-            // largeur reste L (paramètre utilisateur), on ne l'écrase plus
         };
 
         double getLongueur()            const {return longueur;}

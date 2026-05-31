@@ -4,6 +4,7 @@
 #include "../general/Particule/Particule.h"
 #include "Systeme/Systeme.h"
 #include "../general/Obstacle/Obstacle.h"
+#include "Source/Source.h"
 
 
 class TextViewer : public SupportADessin {

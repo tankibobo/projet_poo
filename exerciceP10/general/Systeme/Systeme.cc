@@ -57,7 +57,7 @@ void Systeme::evolue() {
     // bouge les particules 
     for (Particule* p : particules) p->bouger(Constantes::dt);
 
-    // bouge les sources
+    // fait fonctionner les sources
     for (Source* s : sources) s->creation(particules, Constantes::dt);
 
     //ajoute du temps (le système est maître du temps)

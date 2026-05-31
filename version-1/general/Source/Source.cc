@@ -8,6 +8,7 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
 
 
     double fraction(debit * dt);
+    // static_cast pour éviter les warnings de conversion double -> int
     int nombre(static_cast<int>(fraction));
     fraction -= nombre;
     if (generateur.uniforme(0.0, 1.0) < fraction) ++nombre;
@@ -24,8 +25,6 @@ void Source::creation(std::vector<Particule*>& particules, double dt) {
         );
         p->setVitesse(v);
 
-
-        // Étape 4 : rayon aléatoire gaussien
         double rayon = generateur.gaussienne(modele.getRayon(), ecart_type_rayon);
         p->setRayon(rayon);
 

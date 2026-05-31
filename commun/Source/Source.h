@@ -35,7 +35,6 @@ class Source : public Dessinable {
         Source& operator=(Source const&) = delete;
 
 
-        // vrmt pas sûr que la fonction sorte Particule& mais on verra :)
         void creation(std::vector<Particule*>& particules, double dt);
         virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
 

@@ -9,13 +9,8 @@ public:
 
     /*
      * La raison d'être des Dessinable
-     *
-     * Mettre ici toutes les méthodes nécessaires pour dessiner tous les
-     * objets que l'on veut dessiner. Par exemple :
      */
     virtual void dessine(Contenu const& a_dessiner) = 0;
-    // virtual void dessine(Nounours const& a_dessiner) = 0;
-    // virtual void dessine(Voiture  const& a_dessiner) = 0;
 
     // mise en virtuel du destructeur (puisque classe abstraite)
     virtual ~SupportADessin() = default;

@@ -19,12 +19,10 @@ class SupportADessin {
     virtual ~SupportADessin() = default;
 
 
-    // on ne copie pas les supports à dessin
+    // on ne copie pas les supports à dessin car raylibRender perd ses données spécifiques
     SupportADessin(SupportADessin const&) = delete;
     SupportADessin& operator=(SupportADessin const&) = delete;
 
-
-    // mais on peut les déplacer
     SupportADessin(SupportADessin&&) = default;
     SupportADessin& operator=(SupportADessin&&) = default;
 
