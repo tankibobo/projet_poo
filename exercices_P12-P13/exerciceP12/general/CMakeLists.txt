@@ -5,7 +5,7 @@ add_executable(exerciceP9_v1_P12
   ../../Plan/Plan.cc
   ../../Obstacle/Obstacle.cc
   ../../Particule/Particule.cc
-  ../../Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../../Source/Source.cc
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc
@@ -22,7 +22,7 @@ add_executable(exerciceP9_v2_P12
   ../../Plan/Plan.cc
   ../../Obstacle/Obstacle.cc
   ../../Particule/Particule.cc
-  ../../Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../../Source/Source.cc
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc
@@ -39,7 +39,7 @@ add_executable(chute_libreP12
   ../../Plan/Plan.cc
   ../../Obstacle/Obstacle.cc
   ../../Particule/Particule.cc
-  ../../Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../../Source/Source.cc
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc
@@ -56,7 +56,7 @@ add_executable(testP5_P12
   ../../Plan/Plan.cc
   ../../Obstacle/Obstacle.cc
   ../../Particule/Particule.cc
-  ../../Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../../Source/Source.cc
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc
@@ -73,7 +73,7 @@ add_executable(testGrilleP12
   ../../Obstacle/Obstacle.cc
   ../../Particule/Particule.cc
   ../../Calcul/CalculNaif.cc
-  ../../Systeme/Systeme.cc
+  Systeme/Systeme.cc
   ../../Source/Source.cc
   Grille/Grille.cc
   CalculGrille/CalculGrille.cc

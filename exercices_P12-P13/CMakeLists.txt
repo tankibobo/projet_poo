@@ -16,7 +16,7 @@ target_compile_options(testSourceP12-P13 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testSystemeP12
   Systeme/testSystemeP12.cc
-  Systeme/Systeme.cc
+  exerciceP12/general/Systeme/Systeme.cc
   ../commun/Vecteur3D/Vecteur3D.cc
   ../commun/Aleatoire/Aleatoire.cc
   Plan/Plan.cc
@@ -33,7 +33,7 @@ target_compile_options(testSystemeP12 PRIVATE ${PROJECT_WARNING_FLAGS})
 
 add_executable(testSystemeP13
   Systeme/testSystemeP12.cc
-  Systeme/Systeme.cc
+  exerciceP13/general/Systeme/Systeme.cc
   ../commun/Vecteur3D/Vecteur3D.cc
   ../commun/Aleatoire/Aleatoire.cc
   Plan/Plan.cc

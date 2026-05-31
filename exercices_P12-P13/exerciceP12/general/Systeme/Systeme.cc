@@ -1,10 +1,14 @@
-#include "Systeme/Systeme.h"
+#include "../../../Systeme/Systeme.h"
 #include <iostream>
 #include "Constantes.h"
-#include "../Particule/Particule.h"
-#include "Obstacle/Obstacle.h"
+#include "../../../Particule/Particule.h"
+#include "../../../Obstacle/Obstacle.h"
 #include "Source/Source.h"
-
+#include "../../../Calcul/Calcul.h"
+#include "../../../Calcul/CalculGrille.h"
+#include "../../../Calcul/CalculNaif.h"
+#include "../Grille/Grille.h"
+#include <vector>
 
 std::ostream& operator<<(std::ostream& os, const Systeme& s) {
     std::vector<Particule*> p(s.getParticules());
@@ -41,26 +45,16 @@ std::ostream& operator<<(std::ostream& os, const Systeme& s) {
 
 
 void Systeme::evolue() {
-    // force des obstacles et des frottements
     for (Particule* p : particules) {
         p->ajouteForce();
         for (Obstacle* o : obstacles) p->ajouteForce(*o);
     }
 
-    // force d'interaction entre les particules
-    for (size_t i(0); i < particules.size(); ++i) { //la boucle exclut les particules "déjà évaluées" car ajouteForce applque la 3e loi de Newton
-        for (size_t j(i + 1); j < particules.size(); ++j) {
-            particules[i]->ajouteForce(*particules[j]); //3e loi Newton deja incluse
-        }
-    }
 
-    // bouge les particules 
-    for (Particule* p : particules) p->bouger(Constantes::dt);
+    calcul->calculerForce(particules); //3e loi Newton et boucle deja incluses
+    
 
-    // bouge les sources
-    for (Source* s : sources) s->creation(particules, Constantes::dt);
-
-    //ajoute du temps (le système est maître du temps)
+    calcul->bouger(particules, Constantes::dt);
     temps += Constantes::dt;
 }
 
@@ -69,4 +63,14 @@ Systeme::~Systeme() {
     for (Particule* p : particules) delete p;
     for (Obstacle* o : obstacles) delete o;
     for (Source* s : sources) delete s;
+    delete calcul;
+}
+
+void Systeme::grilleSysteme(bool b, std::vector<Particule*>& v) {
+    if(b) {
+        calcul = new CalculGrille(new Grille(v, this));
+    }
+    else {
+        calcul = new CalculNaif;
+    }
 }

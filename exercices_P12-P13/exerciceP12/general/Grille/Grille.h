@@ -10,8 +10,9 @@ class Grille {
         int decalage_x;
         int decalage_y;
         int decalage_z;
+        Systeme* systeme;
     public:
-        Grille(std::vector<Particule*> particules = {}, int dX = 0, int dY = 0, int dZ = 0): decalage_x(dX), decalage_y(dY), decalage_z(dZ) {
+        Grille(std::vector<Particule*> particules = {}, Systeme* s = nullptr, int dX = 0, int dY = 0, int dZ = 0): systeme(s), decalage_x(dX), decalage_y(dY), decalage_z(dZ) {
             if(particules.size() != 0) {
             taille_case = sigmaMax(particules);
             int minX(0), minY(0), minZ(0);

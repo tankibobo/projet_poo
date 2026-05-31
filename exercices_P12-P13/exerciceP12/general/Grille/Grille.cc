@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include "Particule/Particule.h"
+#include "../../../Systeme/Systeme.h"
 
 void Grille::ajouterParticule(Particule* particule) { 
     // on regarde les sigmas
@@ -109,17 +110,20 @@ void Grille::decaler(int x, int y, int z) {
 
 
 std::vector<Particule*> Grille::getParticules() const {
-    std::vector<Particule*> particules;
-    for(const std::vector<std::vector<std::vector<Particule*>>>& i : grille) {
-        for(const std::vector<std::vector<Particule*>>& j : i) {
-            for(const std::vector<Particule*>& k : j) {
-                for(Particule* p : k) {
-                    if(p != nullptr) {
-                        particules.push_back(p);
+    if(systeme != nullptr){return systeme->getParticules();}
+    else {
+        std::vector<Particule*> particules;
+        for(const std::vector<std::vector<std::vector<Particule*>>>& i : grille) {
+            for(const std::vector<std::vector<Particule*>>& j : i) {
+                for(const std::vector<Particule*>& k : j) {
+                    for(Particule* p : k) {
+                        if(p != nullptr) {
+                            particules.push_back(p);
+                        }
                     }
                 }
             }
         }
+        return particules;
     }
-    return particules;
 }
