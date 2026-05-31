@@ -59,7 +59,7 @@ void Cylindre::collision(Particule& p) {
         else n_collision = -normale;
     }
 
-    // Rebond : v' = v - (1+e)(v·n̂)n̂  avec e=1 élastique, e=0 parfaitement inélastique
+    // Rebond : v' = v - (1+e)(v·n)n  avec e=1 élastique, e=0 parfaitement inélastique
     Vecteur3D vitesse = p.get_vitesse();
     double vn = vitesse | n_collision;
     if (vn < 0.0) p.setVitesse(vitesse - (1.0 + restitution)*vn*n_collision);

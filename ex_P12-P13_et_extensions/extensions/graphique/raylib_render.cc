@@ -51,6 +51,18 @@ void raylibRender::run(Systeme& systeme) {
         if (IsKeyPressed(KEY_L)) deplacement = !deplacement;
         if (deplacement) UpdateCamera(&camera, CAMERA_FREE);
 
+        // Contrôles des sources
+        const std::vector<Source*>& srcs = systeme.getSources();
+        if (IsKeyPressed(KEY_O)) {
+            for (Source* s : srcs) s->toggleEtat();
+        }
+        if (IsKeyPressed(KEY_UP)) {
+            for (Source* s : srcs) s->setDebit(s->getDebit() + 10.0);
+        }
+        if (IsKeyPressed(KEY_DOWN)) {
+            for (Source* s : srcs) s->setDebit(s->getDebit() - 10.0);
+        }
+
 
         systeme.evolue();
 
@@ -90,20 +102,29 @@ void raylibRender::run(Systeme& systeme) {
 
 
             // HUD contrôles
-            DrawRectangle(8, 8, 320, 80, Fade(LIGHTGRAY, 0.7f));
-            DrawText("Appuyez sur 'L' : camera libre (WASD + souris)", 14, 14, 14, DARKGRAY);
-            DrawText((std::string("Camera : ") + (deplacement ? "libre" : "fixe")).c_str(), 14, 32, 14, DARKGRAY);
-            DrawRectangle(14, 50, 14, 14, SKYBLUE);
-            DrawText("ParticuleNeige (e=25, s=0.885)", 34, 50, 14, DARKBLUE);
-            DrawRectangle(14, 68, 14, 14, BROWN);
-            DrawText("ParticuleRoche (e=45, s=0.600)", 34, 68, 14, MAROON);
-            DrawFPS(10, 96);
+            DrawRectangle(8, 8, 340, 116, Fade(LIGHTGRAY, 0.7f));
+            DrawText("'L' : camera libre (WASD + souris)", 14, 14, 14, DARKGRAY);
+            DrawText((std::string("Camera : ") + (deplacement ? "libre" : "fixe")).c_str(), 14, 30, 14, DARKGRAY);
+            DrawText("'O' : sources on/off", 14, 46, 14, DARKGRAY);
+            DrawText("'UP'/'DOWN' : debit +/-10", 14, 62, 14, DARKGRAY);
+            
+            if (!srcs.empty()) {
+                bool actives = srcs[0]->getEtat();
+                std::string etatStr = std::string("Sources : ") + (actives ? "ON" : "OFF")
+                                    + "  debit=" + std::to_string(static_cast<int>(srcs[0]->getDebit()));
+                DrawText(etatStr.c_str(), 14, 78, 14, actives ? DARKGREEN : RED);
+            }
+            DrawRectangle(14, 96, 14, 14, SKYBLUE);
+            DrawText("ParticuleNeige (e=25, s=0.885)", 34, 96, 14, DARKBLUE);
+            DrawRectangle(14, 112, 14, 14, BROWN);
+            DrawText("ParticuleRoche (e=45, s=0.600)", 34, 112, 14, MAROON);
+            DrawFPS(10, 130);
 
             // HUD énergies
-            DrawRectangle(8, 116, 240, 60, Fade(LIGHTGRAY, 0.7f));
-            DrawText(("Ec = " + fmtSci(Ec) + " J").c_str(), 14, 122, 14, DARKGREEN);
-            DrawText(("Ep = " + fmtSci(Ep) + " J").c_str(), 14, 140, 14, ORANGE);
-            DrawText(("Em = " + fmtSci(Em) + " J").c_str(), 14, 158, 14, MAROON);
+            DrawRectangle(8, 230, 240, 60, Fade(LIGHTGRAY, 0.7f));
+            DrawText(("Ec = " + fmtSci(Ec) + " J").c_str(), 14, 236, 14, DARKGREEN);
+            DrawText(("Ep = " + fmtSci(Ep) + " J").c_str(), 14, 254, 14, ORANGE);
+            DrawText(("Em = " + fmtSci(Em) + " J").c_str(), 14, 272, 14, MAROON);
         EndDrawing();
     }
 }

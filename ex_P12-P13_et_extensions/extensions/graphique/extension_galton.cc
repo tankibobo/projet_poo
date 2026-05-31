@@ -19,10 +19,8 @@ int main() {
     // Sol
     Brique* sol = new Brique({0.0, 2.0, -0.25}, 10.0, 6.0, 0.5, {1,0,0}, {0,1,0});
 
-    // Rangée 1 : 2 cylindres à z=8.0
     // restitution=0.3 : rebond faible (30% de la vitesse normale est restituée)
-    // avec_lj=false  : pas de force LJ — sinon les particules se suspendent dans
-    //                  les puits de potentiel formés entre deux chevilles voisines
+    // avec_lj=false  : pas de force LJ — sinon les particules sont suspendues entre deux cylindres voisins à cause de la repulsion LJ
     Cylindre* c1_1 = new Cylindre({-0.8, 2.0, 8.0}, 0.2, 5.0, {0,1,0}, 0.3, false);
     Cylindre* c1_2 = new Cylindre({ 0.8, 2.0, 8.0}, 0.2, 5.0, {0,1,0}, 0.3, false);
 

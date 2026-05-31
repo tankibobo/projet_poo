@@ -20,8 +20,10 @@ class Source : public Dessinable {
         Source(Particule const& modele_, double x, double y, double z, double ecart_v, double ecart_r, double debit_, bool etat_, Aleatoire& generateur_) : position(x,y,z), vitesse_moyenne(0,0,1), ecart_type_vitesse(ecart_v), ecart_type_rayon(ecart_r), debit(debit_), etat(etat_), modele(modele_), generateur(generateur_) {};
 
 
-        void on() {etat = true;}
+        void on()  {etat = true;}
         void off() {etat = false;}
+        void toggleEtat() {etat = !etat;}
+        void setDebit(double d) {if (d >= 0.0) debit = d;}
 
 
         Vecteur3D getPosition() const {return position;}
