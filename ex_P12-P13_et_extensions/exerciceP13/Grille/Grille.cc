@@ -6,9 +6,9 @@
 
 
 void Grille::ajouterParticule(Particule* particule) {
-    int x = (troncature(particule->get_position().getXGrille()/taille_case));
-    int y = (troncature(particule->get_position().getYGrille()/taille_case);
-    int z = (troncature((particule->get_position().getZGrille()/taille_case));
+    int x = (troncature(particule->get_position().getX()/taille_case));
+    int y = (troncature(particule->get_position().getY()/taille_case));
+    int z = (troncature(particule->get_position().getZ()/taille_case));
     particule->setX(x);
     particule->setY(y);
     particule->setZ(z);
@@ -30,6 +30,7 @@ void Grille::retirerParticule(Particule* particule) {
             *itParticule = caze.back();
             caze.pop_back();
         }
+        if (caze.empty()) grille.erase(itMap); // supprimer l'entrée vide
     }
 }
 

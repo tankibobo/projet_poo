@@ -54,10 +54,15 @@ void Systeme::evolue() {
     calcul->calculerForce(particules); //3e loi Newton et boucle deja incluses
 
     calcul->bouger(particules, Constantes::dt);
+
+    // Chocs avec les obstacles
+    for (Particule* p : particules)
+        for (Obstacle* o : obstacles) o->collision(*p);
+
     size_t taille = particules.size();
     // Sources : création de nouvelles particules à chaque pas de temps
     for (Source* s : sources) s->creation(particules, Constantes::dt);
-    for(size_t i(taille); taille < particules.size(); i++) {
+    for(size_t i(taille); i < particules.size(); i++) {
         calcul->ajouterPart(particules[i]);
     }
     temps += Constantes::dt;

@@ -34,16 +34,16 @@ int main() {
     std::cout << (g.getGrille()[3][0][0].empty()) << std::endl;
 
     //maj et agrandissement 
-    std::cout << "case de p1 (before deplacement)" << p1->getX() << "," << p1->getY() << "," << p1->getZ() << std::endl;
+    std::cout << "case de p1 (before deplacement)" << p1->getXGrille() << "," << p1->getYGrille() << "," << p1->getZGrille() << std::endl;
     std::cout << "tailles before deplacemnet (x,y,z)" << g.getGrille().size() << std::endl;
     p1->setPosition({5.0, 5.0, 5.0});
     g.mettreAJour(p1);
-    std::cout << "case de p1 (after deplacement)" << p1->getX() << "," << p1->getY() << "," << p1->getZ() << std::endl;
+    std::cout << "case de p1 (after deplacement)" << p1->getXGrille() << "," << p1->getYGrille() << "," << p1->getZGrille() << std::endl;
     std::cout << "tailles before deplacemnet (x,y,z)" << g.getGrille().size() << std::endl;
 
     // decalage
     Particule* pneg = new ParticuleNeige(1.0, 0.4, Constantes::viscosite_air, Constantes::mv_air, {-5.0, -3.0, 0.0});
-    std::cout << "case de p1 (before decalage)" << p1->getX() << "," << p1->getY() << "," << p1->getZ() << std::endl;
+    std::cout << "case de p1 (before decalage)" << p1->getXGrille() << "," << p1->getYGrille() << "," << p1->getZGrille() << std::endl;
     g.ajouterParticule(pneg);
-    std::cout << "case de p1 (after decalage)" << p1->getX() << "," << p1->getY() << "," << p1->getZ() << std::endl;
+    std::cout << "case de p1 (after decalage)" << p1->getXGrille() << "," << p1->getYGrille() << "," << p1->getZGrille() << std::endl;
 }

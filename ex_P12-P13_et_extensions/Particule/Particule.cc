@@ -12,7 +12,7 @@ std::ostream& operator<<(std::ostream& os, const Particule& p) {
 }
 
 
-double Particule::f(const double& x) {
+double Particule::f(double x) {
     if(x <= 1) {return -1;}
     if(x >= 2) {return 0;}
     return ((std::pow(x, 6) - 2.0) / std::pow(x, 13));

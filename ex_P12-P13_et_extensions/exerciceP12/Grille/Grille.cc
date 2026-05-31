@@ -12,24 +12,24 @@ void Grille::ajouterParticule(Particule* particule) {
         refaireGrille(getParticules());
     }
     // on arrondi pour avoir des coordonnées dans la grille
-    int x = troncature(particule->get_position().getXGrille()/taille_case + decalage_x);
-    int y = troncature(particule->get_position().getYGrille()/taille_case + decalage_y);
-    int z = troncature(particule->get_position().getZGrille()/taille_case + decalage_z);
+    int x = troncature(particule->get_position().getX()/taille_case + decalage_x);
+    int y = troncature(particule->get_position().getY()/taille_case + decalage_y);
+    int z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
     // si les coordonnées sont négatives, on prend les coordnnées minimums et on y décale l'origine de la grille
     if (x < 0 or y < 0 or z < 0) {
         int minX = x;
         int minY = y;
         int minZ = z;
         for(Particule* p : getParticules()) {
-            minX = std::min(minX, (particule->get_position().getXGrille()/taille_case + decalage_x));
-            minY = std::min(minY, (particule->get_position().getYGrille()/taille_case + decalage_y));
-            minZ = std::min(minZ, (particule->get_position().getZGrille()/taille_case + decalage_z));
+            minX = std::min(minX, troncature(p->get_position().getX()/taille_case + decalage_x));
+            minY = std::min(minY, troncature(p->get_position().getY()/taille_case + decalage_y));
+            minZ = std::min(minZ, troncature(p->get_position().getZ()/taille_case + decalage_z));
         }
         grille[0][0][0].push_back(particule);
         decaler(static_cast<int>(minX), static_cast<int>(minY), static_cast<int>(minZ));
-        x = troncature(particule->get_position().getXGrille()/taille_case + decalage_x);
-        y = troncature(particule->get_position().getYGrille()/taille_case + decalage_y);
-        z = troncature(particule->get_position().getZGrille()/taille_case + decalage_z);
+        x = troncature(particule->get_position().getX()/taille_case + decalage_x);
+        y = troncature(particule->get_position().getY()/taille_case + decalage_y);
+        z = troncature(particule->get_position().getZ()/taille_case + decalage_z);
     }
     // si tout va bien, on ajt
     else if (x>=0 and y>=0 and z>=0 and static_cast<size_t>(x) < grille.size() and static_cast<size_t>(y) < grille[static_cast<size_t>(x)].size() and static_cast<size_t>(z) < grille[static_cast<size_t>(x)][static_cast<size_t>(y)].size()) {
@@ -78,9 +78,9 @@ std::vector<Particule*> Grille::getVoisins(const Particule* particule) const {
 
 
 void Grille::agrandirGrille(Particule* particule) {
-    int x = (troncature(particule->get_position().getXGrille()/taille_case + decalage_x));
-    int y = (troncature(particule->get_position().getYGrille()/taille_case + decalage_y));
-    int z = (troncature(particule->get_position().getZGrille()/taille_case + decalage_z));
+    int x = (troncature(particule->get_position().getX()/taille_case + decalage_x));
+    int y = (troncature(particule->get_position().getY()/taille_case + decalage_y));
+    int z = (troncature(particule->get_position().getZ()/taille_case + decalage_z));
     if(static_cast<size_t>(x) >= grille.size()) {
         grille.resize(static_cast<size_t>(x+1));
     }

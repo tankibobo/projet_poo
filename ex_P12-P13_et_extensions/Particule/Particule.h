@@ -46,7 +46,7 @@ class Particule : public Dessinable, public Agent {
         virtual void dessine_sur(SupportADessin& support) override{ support.dessine(*this); }
         virtual Particule* copie() const = 0;
         // constantes
-        static double f(const double& x);
+        static double f(double x);
     private:
         // attributs
         Vecteur3D position;

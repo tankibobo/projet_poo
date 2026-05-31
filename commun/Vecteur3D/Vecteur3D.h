@@ -19,11 +19,11 @@ class Vecteur3D {
 	// opérateurs
 	double norme() const {return sqrt(vecteur[0]*vecteur[0] + vecteur[1]*vecteur[1] + vecteur[2]*vecteur[2]);}
 	double norme2() const {return vecteur[0]*vecteur[0] + vecteur[1]*vecteur[1] + vecteur[2]*vecteur[2];}
-	Vecteur3D& operator+=(const Vecteur3D& autre) {vecteur = {autre.getX() + vecteur[0], autre.getY() + vecteur[1], autre.getZ() + vecteur[2]};}
-	Vecteur3D& operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()};}
-	Vecteur3D& operator*=(double k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]};}
-	Vecteur3D& operator/=(double k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k};}
-	Vecteur3D& operator^=(const Vecteur3D& autre) {vecteur = {vecteur[1] * autre.getZ() - vecteur[2] * autre.getY(), vecteur[2] * autre.getX() - vecteur[0] * autre.getZ(), vecteur[0] * autre.getY() - vecteur[1] * autre.getX()};}
+	Vecteur3D& operator+=(const Vecteur3D& autre) {vecteur = {autre.getX() + vecteur[0], autre.getY() + vecteur[1], autre.getZ() + vecteur[2]}; return *this;}
+	Vecteur3D& operator-=(const Vecteur3D& autre) {vecteur = {vecteur[0] - autre.getX(), vecteur[1] - autre.getY(), vecteur[2] - autre.getZ()}; return *this;}
+	Vecteur3D& operator*=(double k) {vecteur = {k*vecteur[0], k*vecteur[1], k*vecteur[2]}; return *this;}
+	Vecteur3D& operator/=(double k) {vecteur = {vecteur[0]/k, vecteur[1]/k, vecteur[2]/k}; return *this;}
+	Vecteur3D& operator^=(const Vecteur3D& autre) {vecteur = {vecteur[1] * autre.getZ() - vecteur[2] * autre.getY(), vecteur[2] * autre.getX() - vecteur[0] * autre.getZ(), vecteur[0] * autre.getY() - vecteur[1] * autre.getX()}; return *this;}
 
 
 	private :

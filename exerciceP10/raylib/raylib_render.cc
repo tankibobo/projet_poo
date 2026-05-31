@@ -99,5 +99,6 @@ void raylibRender::dessine(Source const& s)
 {
     Vecteur3D pos = s.getPosition();
     Vector3 rPos  = simToRay(pos.getX(), pos.getY(), pos.getZ());
-    DrawSphere(rPos, 0.2f, YELLOW);
+    DrawCube(rPos, 0.5f, 0.5f, 0.5f, RED);
+    DrawCubeWires(rPos, 0.5f, 0.5f, 0.5f, DARKGRAY);
 }
